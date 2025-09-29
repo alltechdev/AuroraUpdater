@@ -18,10 +18,10 @@ jobs:
       uses: actions/setup-java@v4
       with:
         java-version: '21'
-        distribution: 'adopt'
+        distribution: 'temurin'
 
     - name: Cache Gradle dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: |
           ~/.gradle/caches
@@ -33,14 +33,14 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    - name: Build Debug APK
-      run: ./gradlew assembleVanillaDebug
+    - name: Build Release APK
+      run: ./gradlew assembleVanillaRelease --no-daemon --stacktrace
 
     - name: Upload APK
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
-        name: aurora-updater-debug
-        path: app/build/outputs/apk/vanilla/debug/app-vanilla-debug.apk
+        name: aurora-updater-release
+        path: app/build/outputs/apk/vanilla/release/app-vanilla-release-unsigned.apk
 
     - name: Get commit SHA
       id: vars
@@ -61,7 +61,7 @@ jobs:
           - Removed customization settings
           
           Install the APK below to try the latest version.
-        files: app/build/outputs/apk/vanilla/debug/app-vanilla-debug.apk
+        files: app/build/outputs/apk/vanilla/release/app-vanilla-release-unsigned.apk
         draft: false
         prerelease: true
       env:
