@@ -5,6 +5,7 @@
 
 package com.aurora.store.compose.ui.about
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -133,6 +134,13 @@ private fun BrandHeader() {
             style = MaterialTheme.typography.bodyMedium,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
+        )
+        Text(
+            text = "GitHub: https://github.com/alltechdev/AuroraUpdater",
+            style = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.primary),
+            modifier = Modifier.clickable { 
+                context.browse("https://github.com/alltechdev/AuroraUpdater")
+            }
         )
     }
 }
