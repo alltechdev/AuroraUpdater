@@ -66,7 +66,7 @@ private fun ScreenContent(onNavigateUp: () -> Unit = {}, onAboutAurora: () -> Un
     val linkSummary = stringArrayResource(R.array.link_subtitle)
     val linkIcons = intArrayOf(
         R.drawable.ic_code,
-        R.drawable.ic_gitlab
+        R.drawable.ic_code
     )
 
     val links = linkURLS.mapIndexed { index, url ->
