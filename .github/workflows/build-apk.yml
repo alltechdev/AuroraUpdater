@@ -42,11 +42,23 @@ jobs:
     - name: Build Release APK
       run: ./gradlew assembleVanillaRelease --no-daemon --stacktrace
 
+    - name: Sign APK
+      uses: r0adkll/sign-android-release@v1
+      id: sign_app
+      with:
+        releaseDirectory: app/build/outputs/apk/vanilla/release
+        signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+        alias: ${{ secrets.ALIAS }}
+        keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+        keyPassword: ${{ secrets.KEY_PASSWORD }}
+      env:
+        BUILD_TOOLS_VERSION: "34.0.0"
+
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: aurora-updater-release
-        path: app/build/outputs/apk/vanilla/release/app-vanilla-release-unsigned.apk
+        path: ${{ steps.sign_app.outputs.signedReleaseFile }}
 
     - name: Get commit SHA
       id: vars
@@ -67,7 +79,7 @@ jobs:
           - Removed customization settings
           
           Install the APK below to try the latest version.
-        files: app/build/outputs/apk/vanilla/release/app-vanilla-release-unsigned.apk
+        files: ${{ steps.sign_app.outputs.signedReleaseFile }}
         draft: false
         prerelease: true
       env:
