@@ -1,57 +1,34 @@
-# Aurora Store
+# Aurora Updater
 
-Aurora Store enables you to search and download apps from the official Google Play store. You can check app descriptions, screenshots, updates, reviews, and download the APK directly from Google Play to your device. 
+Aurora Updater is a simplified version of Aurora Store focused solely on updating your existing apps. It provides a clean interface to view and manage app updates without the ability to browse or download new applications.
 
-To use Aurora Store, log in using Google Play account, when you first open and configure Aurora Store.
+To use Aurora Updater, log in using Google Play account when you first open and configure Aurora Updater.
 
-Unlike a traditional app store, Aurora Store does not own, license or distribute any apps. All apps, app descriptions, screenshots and other content in Aurora Store are directly accessed, downloaded and/or displayed from Google Play. 
+Unlike a traditional app store, Aurora Updater does not own, license or distribute any apps. All app updates and content are directly accessed from Google Play. 
 
-Aurora Store works exactly like a door or a browser, allowing you to log in to your Google Play account and find the apps from Google Play. 
-
-*_Please note that Aurora Store does not have any approval, sponsorship or authorization from Google, Google Play, any apps downloaded through Aurora Store or any app developers; neither does Aurora Store have any affiliation, cooperation or connection with them._*
-
-[<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="90">](https://f-droid.org/packages/com.aurora.store/)
-[<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" alt="Get it on IzzyOnDroid" height="90">](https://apt.izzysoft.de/fdroid/index/apk/com.aurora.store)
+*_Please note that Aurora Updater does not have any approval, sponsorship or authorization from Google, Google Play, any apps updated through Aurora Updater or any app developers; neither does Aurora Updater have any affiliation, cooperation or connection with them._*
 
 ## Features
 
 - FOSS: Has GPLv3 licence
+- Clean, simplified interface focused on app updates only
 - Beautiful design: Built upon latest Material 3 guidelines
 - Account login: You can login with either personal or an anonymous account
-- Device & Locale spoofing: Change your device and/or locale to access geo locked apps
-- [Exodus Privacy](https://exodus-privacy.eu.org/) integration: Instantly see trackers in app
-- [Plexus](https://plexus.techlore.tech/) integration: Instantly see app compatibility without Google Play Services or with microG
 - Updates blacklisting: Ignore updates for specific apps
-- Download manager
-- Manual downloads: allows you to download older version of apps, provided
-  - The APKs are available with Google
-  - You know the version codes for older versions 
+- No app browsing or search functionality - updates only 
 
 ## Limitations
 
 - The underlying API used is reversed engineered from the Google Play Store, changes on side may break it.
-- Provides only base minimum features
-  - Can not download or update paid apps.
-  - Can not update apps/games with [Play Asset Delivery](https://developer.android.com/guide/playcore/asset-delivery)
-- Multiple in-app features are not available if logged in as Anonymous.
-  - Library
-  - Purchase History
-  - Editor's choice
-  - Beta Programs
-  - Review Add/Update
-- Token dispenser server is not super reliable, downtimes are expected.  
+- Updates only - cannot browse or download new apps
+- Cannot update paid apps
+- Cannot update apps/games with [Play Asset Delivery](https://developer.android.com/guide/playcore/asset-delivery)
+- Some features not available if logged in as Anonymous
+- Token dispenser server is not super reliable, downtimes are expected
 
 ## Downloads
 
-Please only download the latest stable releases from one of these sources:
-
-- [Official website](https://auroraoss.com/)
-- [GitLab Releases](https://gitlab.com/AuroraOSS/AuroraStore/-/releases)
-- [IzzyOnDroid](https://apt.izzysoft.de/fdroid/index/apk/com.aurora.store) (reproducible)
-- [F-Droid](https://f-droid.org/packages/com.aurora.store/) (signed by F-Droid, [more details](https://f-droid.org/docs/Signing_Process/))
-- [App Gallery](https://appgallery.huawei.com/app/C110907863) (limited to certain countries)
-
-You can also get latest debug builds signed with AOSP test keys for testing latest changes from our [GitLab Package Registry](https://gitlab.com/AuroraOSS/AuroraStore/-/packages/24103616).
+Download the latest APK from [GitHub Releases](https://github.com/alltechdev/AuroraUpdater/releases)
 
 ## Certificate Fingerprints
 

@@ -49,13 +49,4 @@
             tools:listitem="@layout/view_app_list" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/search_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/margin_large"
-        android:contentDescription="@string/action_search"
-        app:srcCompat="@drawable/ic_round_search" />
 </RelativeLayout>

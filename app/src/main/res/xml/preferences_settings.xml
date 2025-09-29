@@ -33,12 +33,6 @@
         app:layout="@layout/item_preference"
         app:title="@string/title_installation" />
 
-    <Preference
-        app:icon="@drawable/ic_ui"
-        app:iconSpaceReserved="false"
-        app:key="pref_ui"
-        app:layout="@layout/item_preference"
-        app:title="@string/pref_ui_title" />
 
     <Preference
         app:icon="@drawable/ic_network"

@@ -56,8 +56,6 @@ class MainActivity : AppCompatActivity() {
 
     // TopLevelFragments
     private val topLevelFrags = listOf(
-        R.id.appsContainerFragment,
-        R.id.gamesContainerFragment,
         R.id.updatesFragment
     )
 
@@ -113,11 +111,7 @@ class MainActivity : AppCompatActivity() {
         B.navView.setupWithNavController(navController)
 
         // Handle quick exit from back actions
-        val defaultTab = when (Preferences.getInteger(this, PREFERENCE_DEFAULT_SELECTED_TAB)) {
-            1 -> R.id.gamesContainerFragment
-            2 -> R.id.updatesFragment
-            else -> R.id.appsContainerFragment
-        }
+        val defaultTab = R.id.updatesFragment
         onBackPressedDispatcher.addCallback(this) {
             if (navController.currentDestination?.id in topLevelFrags) {
                 if (navController.currentDestination?.id == defaultTab) {
