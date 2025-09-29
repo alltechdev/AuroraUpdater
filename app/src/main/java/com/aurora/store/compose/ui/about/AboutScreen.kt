@@ -19,10 +19,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -45,20 +41,11 @@ import com.aurora.store.data.model.Link
 
 @Composable
 fun AboutScreen(onNavigateUp: () -> Unit) {
-    var shouldShowAboutDialog by rememberSaveable { mutableStateOf(false) }
-
-    if (shouldShowAboutDialog) {
-        AboutDialog(onDismiss = { shouldShowAboutDialog = false })
-    }
-
-    ScreenContent(
-        onNavigateUp = onNavigateUp,
-        onAboutAurora = { shouldShowAboutDialog = true }
-    )
+    ScreenContent(onNavigateUp = onNavigateUp)
 }
 
 @Composable
-private fun ScreenContent(onNavigateUp: () -> Unit = {}, onAboutAurora: () -> Unit = {}) {
+private fun ScreenContent(onNavigateUp: () -> Unit = {}) {
     val context = LocalContext.current
 
     val linkURLS = stringArrayResource(R.array.link_urls)
