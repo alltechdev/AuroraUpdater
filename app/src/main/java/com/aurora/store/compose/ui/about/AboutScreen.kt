@@ -136,13 +136,6 @@ private fun BrandHeader() {
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
-        Text(
-            text = "GitHub: https://github.com/alltechdev/AuroraUpdater",
-            style = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.primary),
-            modifier = Modifier.clickable { 
-                context.browse("https://github.com/alltechdev/AuroraUpdater")
-            }
-        )
     }
 }
 
