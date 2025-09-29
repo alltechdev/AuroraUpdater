@@ -63,7 +63,7 @@ class AppInstaller @Inject constructor(
         const val EXTRA_DISPLAY_NAME = "com.aurora.store.data.installer.AppInstaller.EXTRA_DISPLAY_NAME"
 
         fun getCurrentInstaller(context: Context): Installer {
-            return Installer.entries[Preferences.getInteger(context, PREFERENCE_INSTALLER_ID)]
+            return Installer.entries[Preferences.getInteger(context, PREFERENCE_INSTALLER_ID, 2)]
         }
 
         fun getAvailableInstallersInfo(context: Context): List<InstallerInfo> {

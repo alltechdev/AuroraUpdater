@@ -77,7 +77,7 @@ class InstallerFragment : BaseFragment<FragmentInstallerBinding>() {
         // Toolbar
         binding.toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
 
-        installerId = Preferences.getInteger(requireContext(), PREFERENCE_INSTALLER_ID)
+        installerId = Preferences.getInteger(requireContext(), PREFERENCE_INSTALLER_ID, 2)
 
         if (AppInstaller.hasShizukuOrSui(requireContext())) {
             Shizuku.addBinderReceivedListenerSticky(shizukuAliveListener)
