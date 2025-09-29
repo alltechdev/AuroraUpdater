@@ -76,12 +76,12 @@
     </string-array>
 
     <string-array name="link_titles">
-        <item>@string/about_aurora_updater_github_title</item>
+        <item>@string/aurora_updater_repo_title</item>
         <item>@string/about_original_aurora_store_title</item>
     </string-array>
 
     <string-array name="link_subtitle">
-        <item>@string/about_aurora_updater_github_summary</item>
+        <item>@string/aurora_updater_repo_summary</item>
         <item>@string/about_original_aurora_store_summary</item>
     </string-array>
 

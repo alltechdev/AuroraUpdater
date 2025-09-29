@@ -417,6 +417,8 @@
     <string name="about_aurora_updater_github_summary">View source code and report issues</string>
     <string name="about_original_aurora_store_title">Original Aurora Store</string>
     <string name="about_original_aurora_store_summary">Visit the original Aurora Store project</string>
+    <string name="aurora_updater_repo_title">Aurora Updater Repository</string>
+    <string name="aurora_updater_repo_summary">Source code and releases</string>
 
     <!-- MoreDialogFragment -->
     <string name="title_more">More</string>
