@@ -423,20 +423,10 @@ class MoreDialogFragment : DialogFragment() {
 
     private fun getOptions(): List<Option> {
         return listOf(
-            ViewOption(
-                title = R.string.title_apps_games,
-                icon = R.drawable.ic_apps,
-                destinationID = R.id.appsGamesFragment
-            ),
             ComposeOption(
                 title = R.string.title_blacklist_manager,
                 icon = R.drawable.ic_blacklist,
                 screen = Screen.Blacklist
-            ),
-            ComposeOption(
-                title = R.string.title_favourites_manager,
-                icon = R.drawable.ic_favorite_unchecked,
-                screen = Screen.Favourite
             ),
             ViewOption(
                 title = R.string.title_spoof_manager,
