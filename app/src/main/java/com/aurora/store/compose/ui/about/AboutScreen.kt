@@ -102,10 +102,7 @@ private fun ScreenContent(onNavigateUp: () -> Unit = {}, onAboutAurora: () -> Un
                 LinkComposable(
                     link = link,
                     onClick = {
-                        when (link.id) {
-                            0 -> onAboutAurora()
-                            else -> context.browse(link.url)
-                        }
+                        context.browse(link.url)
                     }
                 )
             }
