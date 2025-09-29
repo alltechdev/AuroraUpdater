@@ -4,8 +4,7 @@ Simplified Aurora Store fork focused on app updates only.
 
 ## Features
 - Updates only - no app browsing
-- Anonymous login
-- Clean Material 3 interface
+- Anonymous login - Spoof Manager as fallback
 
 ## Download
 [Latest APK](https://github.com/alltechdev/AuroraUpdater/releases)
