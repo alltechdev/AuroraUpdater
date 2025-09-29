@@ -156,13 +156,6 @@ class UpdatesFragment : BaseFragment<FragmentUpdatesBinding>() {
                                 .id(update.packageName)
                                 .update(update)
                                 .download(download)
-                                .click { _ ->
-                                    if (update.packageName == requireContext().packageName) {
-                                        requireContext().browse(Constants.GITLAB_URL)
-                                    } else {
-                                        openDetailsFragment(update.packageName)
-                                    }
-                                }
                                 .longClick { _ ->
                                     openAppMenuSheet(MinimalApp.fromUpdate(update))
                                     false
