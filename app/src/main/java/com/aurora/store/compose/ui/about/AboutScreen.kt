@@ -100,6 +100,7 @@ private fun ScreenContent(onNavigateUp: () -> Unit = {}) {
 
 @Composable
 private fun BrandHeader() {
+    val context = LocalContext.current
     Column(
         modifier = Modifier
             .fillMaxWidth()
