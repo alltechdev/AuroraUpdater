@@ -65,18 +65,8 @@ private fun ScreenContent(onNavigateUp: () -> Unit = {}, onAboutAurora: () -> Un
     val linkTitles = stringArrayResource(R.array.link_titles)
     val linkSummary = stringArrayResource(R.array.link_subtitle)
     val linkIcons = intArrayOf(
-        R.drawable.ic_about,
-        R.drawable.ic_help,
-        R.drawable.ic_xda,
-        R.drawable.ic_telegram,
         R.drawable.ic_gitlab,
-        R.drawable.ic_fdroid,
-        R.drawable.ic_bitcoin_btc,
-        R.drawable.ic_bitcoin_bch,
-        R.drawable.ic_ethereum_eth,
-        R.drawable.ic_bhim,
-        R.drawable.ic_paypal,
-        R.drawable.ic_libera_pay,
+        R.drawable.ic_about
     )
 
     val links = linkURLS.mapIndexed { index, url ->
