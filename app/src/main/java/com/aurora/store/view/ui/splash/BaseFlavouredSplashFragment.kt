@@ -14,6 +14,7 @@ import com.aurora.extensions.getPackageName
 import com.aurora.extensions.navigate
 import com.aurora.store.R
 import com.aurora.store.compose.navigation.Screen
+import com.aurora.store.data.installer.AppInstaller
 import com.aurora.store.data.model.AuthState
 import com.aurora.store.databinding.FragmentSplashBinding
 import com.aurora.store.util.PackageUtil
@@ -23,6 +24,7 @@ import com.aurora.store.util.Preferences.PREFERENCE_INTRO
 import com.aurora.store.util.Preferences.PREFERENCE_MICROG_AUTH
 import com.aurora.store.view.ui.commons.BaseFragment
 import com.aurora.store.viewmodel.auth.AuthViewModel
+import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -79,6 +81,15 @@ abstract class BaseFlavouredSplashFragment : BaseFragment<FragmentSplashBinding>
         }
 
         attachActions()
+        
+        // Request root access early since it's the default installer
+        if (!AppInstaller.hasRootAccess()) {
+            try {
+                Shell.getShell() // This will trigger root permission request
+            } catch (e: Exception) {
+                Log.w(TAG, "Failed to request root access: ${e.message}")
+            }
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.authState.collectLatest {
