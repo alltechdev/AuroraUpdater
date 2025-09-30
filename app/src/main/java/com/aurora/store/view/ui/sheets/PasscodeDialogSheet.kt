@@ -51,6 +51,7 @@ class PasscodeDialogSheet : BottomSheetDialogFragment() {
         const val MODE_SET = "set"
         const val MODE_CONFIRM = "confirm"
         const val MODE_REMOVE = "remove"
+        const val MODE_VERIFY_FOR_CHANGE = "verify_for_change"
 
         fun newInstanceForVerify(): PasscodeDialogSheet {
             return PasscodeDialogSheet().apply {
@@ -81,6 +82,14 @@ class PasscodeDialogSheet : BottomSheetDialogFragment() {
             return PasscodeDialogSheet().apply {
                 arguments = Bundle().apply {
                     putString(ARG_MODE, MODE_REMOVE)
+                }
+            }
+        }
+
+        fun newInstanceForChangeVerification(): PasscodeDialogSheet {
+            return PasscodeDialogSheet().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_MODE, MODE_VERIFY_FOR_CHANGE)
                 }
             }
         }
@@ -138,6 +147,10 @@ class PasscodeDialogSheet : BottomSheetDialogFragment() {
             MODE_REMOVE -> {
                 binding.title.text = getString(R.string.blacklist_password_remove_title)
                 binding.subtitle.text = getString(R.string.blacklist_password_remove_subtitle)
+            }
+            MODE_VERIFY_FOR_CHANGE -> {
+                binding.title.text = getString(R.string.blacklist_password_change_verify_title)
+                binding.subtitle.text = getString(R.string.blacklist_password_change_verify_subtitle)
             }
         }
     }
@@ -245,6 +258,17 @@ class PasscodeDialogSheet : BottomSheetDialogFragment() {
                         }
                         .setNegativeButton("Cancel", null)
                         .show()
+                } else {
+                    showError(getString(R.string.blacklist_password_error_wrong))
+                    binding.passcodeInput.text?.clear()
+                }
+            }
+            MODE_VERIFY_FOR_CHANGE -> {
+                if (PasscodeUtil.verifyBlacklistPassword(requireContext(), password)) {
+                    // Password correct, proceed to set new password
+                    dismiss()
+                    val setPasswordDialog = newInstanceForSet()
+                    setPasswordDialog.show(parentFragmentManager, TAG)
                 } else {
                     showError(getString(R.string.blacklist_password_error_wrong))
                     binding.passcodeInput.text?.clear()
