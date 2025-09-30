@@ -93,9 +93,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 )) { _, which ->
                     when (which) {
                         0 -> {
-                            // Change password
-                            val setPasswordDialog = PasscodeDialogSheet.newInstanceForSet()
-                            setPasswordDialog.show(parentFragmentManager, PasscodeDialogSheet.TAG)
+                            // Change password - first verify current password
+                            showPasswordVerificationForChange()
                         }
                         1 -> {
                             // Remove password - first verify current password
@@ -113,6 +112,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun showPasswordVerificationForRemoval() {
         val verifyDialog = PasscodeDialogSheet.newInstanceForRemoval()
+        verifyDialog.show(parentFragmentManager, PasscodeDialogSheet.TAG)
+    }
+
+    private fun showPasswordVerificationForChange() {
+        val verifyDialog = PasscodeDialogSheet.newInstanceForChangeVerification()
         verifyDialog.show(parentFragmentManager, PasscodeDialogSheet.TAG)
     }
 }

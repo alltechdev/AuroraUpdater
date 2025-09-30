@@ -569,4 +569,6 @@
     <string name="blacklist_password_remove_subtitle">Enter your current password to remove it</string>
     <string name="blacklist_password_remove_confirmation_title">Remove Password</string>
     <string name="blacklist_password_remove_confirmation_message">Are you sure you want to remove the password?</string>
+    <string name="blacklist_password_change_verify_title">Verify Current Password</string>
+    <string name="blacklist_password_change_verify_subtitle">Enter your current password to change it</string>
 </resources>
