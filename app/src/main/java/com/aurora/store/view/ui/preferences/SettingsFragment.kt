@@ -26,6 +26,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.aurora.store.R
+import com.aurora.store.util.PasscodeUtil
+import com.aurora.store.view.ui.sheets.PasscodeDialogSheet
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -52,6 +55,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
             findNavController().navigate(R.id.updatesPreference)
             true
         }
+        findPreference<Preference>("pref_blacklist_password")?.setOnPreferenceClickListener {
+            handleBlacklistPasswordPreference()
+            true
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,5 +67,52 @@ class SettingsFragment : PreferenceFragmentCompat() {
             title = getString(R.string.title_settings)
             setNavigationOnClickListener { findNavController().navigateUp() }
         }
+        
+        updatePasswordPreferenceSummary()
+    }
+
+    private fun updatePasswordPreferenceSummary() {
+        findPreference<Preference>("pref_blacklist_password")?.summary = 
+            if (PasscodeUtil.hasBlacklistPassword(requireContext())) {
+                "Password is set"
+            } else {
+                getString(R.string.pref_blacklist_password_summary)
+            }
+    }
+
+    private fun handleBlacklistPasswordPreference() {
+        val hasPassword = PasscodeUtil.hasBlacklistPassword(requireContext())
+        
+        if (hasPassword) {
+            // Show options: Change or Remove
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle(getString(R.string.pref_blacklist_password_title))
+                .setItems(arrayOf(
+                    getString(R.string.pref_blacklist_password_change),
+                    getString(R.string.pref_blacklist_password_remove)
+                )) { _, which ->
+                    when (which) {
+                        0 -> {
+                            // Change password
+                            val setPasswordDialog = PasscodeDialogSheet.newInstanceForSet()
+                            setPasswordDialog.show(parentFragmentManager, PasscodeDialogSheet.TAG)
+                        }
+                        1 -> {
+                            // Remove password - first verify current password
+                            showPasswordVerificationForRemoval()
+                        }
+                    }
+                }
+                .show()
+        } else {
+            // No password set, show set password dialog
+            val setPasswordDialog = PasscodeDialogSheet.newInstanceForSet()
+            setPasswordDialog.show(parentFragmentManager, PasscodeDialogSheet.TAG)
+        }
+    }
+
+    private fun showPasswordVerificationForRemoval() {
+        val verifyDialog = PasscodeDialogSheet.newInstanceForRemoval()
+        verifyDialog.show(parentFragmentManager, PasscodeDialogSheet.TAG)
     }
 }
