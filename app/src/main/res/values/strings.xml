@@ -49,6 +49,7 @@
     <string name="account_google">"Google"</string>
     <string name="account_login_using">Log in using</string>
     <string name="account_logout">Log out from Aurora</string>
+    <string name="account_login_trouble">Having trouble logging in? Click below to spoof your device.</string>
     <string name="action_back">"Back"</string>
     <string name="action_blacklist">"Blacklist"</string>
     <string name="action_blacklist_add">"Add to blacklist"</string>
