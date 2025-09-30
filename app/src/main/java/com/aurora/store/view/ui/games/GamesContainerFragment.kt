@@ -68,9 +68,6 @@ class GamesContainerFragment : BaseFragment<FragmentAppsGamesBinding>() {
             title = getString(R.string.title_games)
             setOnMenuItemClickListener {
                 when (it.itemId) {
-                    R.id.menu_download_manager -> {
-                        requireContext().navigate(Screen.Downloads)
-                    }
 
                     R.id.menu_more -> {
                         findNavController().navigate(

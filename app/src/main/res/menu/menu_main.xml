@@ -20,11 +20,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/menu_download_manager"
-        android:icon="@drawable/ic_download_manager"
-        android:title="@string/title_download_manager"
-        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_more"
