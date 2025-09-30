@@ -181,6 +181,9 @@ abstract class BaseFlavouredSplashFragment : BaseFragment<FragmentSplashBinding>
             }
         }
 
+        binding.btnSpoofManager?.addOnClickListener {
+            findNavController().navigate(R.id.spoofFragment)
+        }
     }
 
     open fun resetActions() {

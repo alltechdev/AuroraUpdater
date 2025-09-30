@@ -100,5 +100,23 @@
             android:layout_height="wrap_content"
             app:btnStateIcon="@drawable/ic_anonymous"
             app:btnStateText="@string/account_anonymous" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_trouble"
+            style="@style/AuroraTextStyle.Line2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_normal"
+            android:text="@string/account_login_trouble"
+            android:textAlignment="center"
+            android:gravity="center" />
+
+        <com.aurora.store.view.custom.layouts.button.StateButton
+            android:id="@+id/btn_spoof_manager"
+            android:layout_width="@dimen/width_button"
+            android:layout_height="wrap_content"
+            app:btnStateIcon="@drawable/ic_spoof"
+            app:btnStateText="@string/title_spoof_manager" />
     </LinearLayout>
 </LinearLayout>
