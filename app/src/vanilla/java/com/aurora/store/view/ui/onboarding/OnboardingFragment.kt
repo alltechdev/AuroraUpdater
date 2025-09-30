@@ -21,6 +21,8 @@ package com.aurora.store.view.ui.onboarding
 
 import androidx.fragment.app.Fragment
 import com.aurora.Constants
+import com.aurora.store.data.installer.AppInstaller
+import com.aurora.store.data.model.Installer
 import com.aurora.store.util.Preferences.PREFERENCE_AUTO_DELETE
 import com.aurora.store.util.Preferences.PREFERENCE_DEFAULT_SELECTED_TAB
 import com.aurora.store.util.Preferences.PREFERENCE_DISPENSER_URLS
@@ -54,7 +56,14 @@ class OnboardingFragment : BaseFlavouredOnboardingFragment() {
 
         /*Installer*/
         save(PREFERENCE_AUTO_DELETE, true)
-        save(PREFERENCE_INSTALLER_ID, 0)
+        
+        // Smart installer selection: use ROOT if available, otherwise SESSION
+        val installerId = if (AppInstaller.hasRootAccess()) {
+            Installer.ROOT.ordinal
+        } else {
+            Installer.SESSION.ordinal
+        }
+        save(PREFERENCE_INSTALLER_ID, installerId)
 
         /*Updates*/
         save(PREFERENCE_UPDATES_EXTENDED, false)
