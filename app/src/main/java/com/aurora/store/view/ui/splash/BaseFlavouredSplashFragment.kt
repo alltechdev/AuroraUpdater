@@ -92,12 +92,10 @@ abstract class BaseFlavouredSplashFragment : BaseFragment<FragmentSplashBinding>
                     AuthState.Valid -> {
                         val packageName =
                             requireActivity().intent.getPackageName(requireArguments())
-                        if (packageName.isNullOrBlank()) {
-                            navigateToDefaultTab()
-                        } else {
+                        if (!packageName.isNullOrBlank()) {
                             requireArguments().remove("packageName")
-                            openDetailsFragment(packageName)
                         }
+                        navigateToDefaultTab()
                     }
 
                     AuthState.Available -> {
@@ -113,12 +111,10 @@ abstract class BaseFlavouredSplashFragment : BaseFragment<FragmentSplashBinding>
                     AuthState.SignedIn -> {
                         val packageName =
                             requireActivity().intent.getPackageName(requireArguments())
-                        if (packageName.isNullOrBlank()) {
-                            navigateToDefaultTab()
-                        } else {
+                        if (!packageName.isNullOrBlank()) {
                             requireArguments().remove("packageName")
-                            openDetailsFragment(packageName)
                         }
+                        navigateToDefaultTab()
                     }
 
                     AuthState.SignedOut -> {
