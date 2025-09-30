@@ -116,16 +116,6 @@ class PermissionsFragment : BaseFragment<FragmentOnboardingPermissionsBinding>()
             )
         }
 
-        if (isSAndAbove) {
-            permissions.add(
-                Permission(
-                    PermissionType.APP_LINKS,
-                    getString(R.string.app_links_title),
-                    getString(R.string.app_links_desc),
-                    optional = true
-                ),
-            )
-        }
 
         return permissions
     }

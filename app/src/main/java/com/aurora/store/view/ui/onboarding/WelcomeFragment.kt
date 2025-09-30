@@ -77,7 +77,7 @@ class WelcomeFragment : BaseFragment<FragmentOnboardingWelcomeBinding>() {
                 title = requireContext().getString(R.string.source_code_title),
                 subtitle = requireContext().getString(R.string.source_code_subtitle),
                 icon = R.drawable.ic_code,
-                url = "https://gitlab.com/AuroraOSS/AuroraStore/"
+                url = "https://github.com/alltechdev/AuroraUpdater"
             ),
             Dash(
                 id = 3,

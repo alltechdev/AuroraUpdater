@@ -64,6 +64,10 @@ class InstallerFragment : BaseFragment<FragmentInstallerBinding>() {
                 save(PREFERENCE_INSTALLER_ID, 5)
                 binding.epoxyRecycler.requestModelBuild()
             } else {
+                // Shizuku permission denied, fallback to session installer
+                this.installerId = 0
+                save(PREFERENCE_INSTALLER_ID, 0)
+                binding.epoxyRecycler.requestModelBuild()
                 showDialog(
                     R.string.action_installations,
                     R.string.installer_shizuku_unavailable
@@ -131,6 +135,10 @@ class InstallerFragment : BaseFragment<FragmentInstallerBinding>() {
                     this.installerId = installerId
                     save(PREFERENCE_INSTALLER_ID, installerId)
                 } else {
+                    // Root access denied, fallback to session installer
+                    this.installerId = 0
+                    save(PREFERENCE_INSTALLER_ID, 0)
+                    binding.epoxyRecycler.requestModelBuild()
                     showDialog(
                         R.string.action_installations,
                         R.string.installer_root_unavailable
@@ -143,6 +151,10 @@ class InstallerFragment : BaseFragment<FragmentInstallerBinding>() {
                     this.installerId = installerId
                     save(PREFERENCE_INSTALLER_ID, installerId)
                 } else {
+                    // Aurora Service unavailable, fallback to session installer
+                    this.installerId = 0
+                    save(PREFERENCE_INSTALLER_ID, 0)
+                    binding.epoxyRecycler.requestModelBuild()
                     showDialog(
                         R.string.action_installations,
                         R.string.installer_service_unavailable
@@ -155,6 +167,10 @@ class InstallerFragment : BaseFragment<FragmentInstallerBinding>() {
                     this.installerId = installerId
                     save(PREFERENCE_INSTALLER_ID, installerId)
                 } else {
+                    // App Manager unavailable, fallback to session installer
+                    this.installerId = 0
+                    save(PREFERENCE_INSTALLER_ID, 0)
+                    binding.epoxyRecycler.requestModelBuild()
                     showDialog(
                         R.string.action_installations,
                         R.string.installer_am_unavailable
@@ -170,12 +186,20 @@ class InstallerFragment : BaseFragment<FragmentInstallerBinding>() {
                     } else if (shizukuAlive && !Shizuku.shouldShowRequestPermissionRationale()) {
                         Shizuku.requestPermission(9000)
                     } else {
+                        // Shizuku permission denied, fallback to session installer
+                        this.installerId = 0
+                        save(PREFERENCE_INSTALLER_ID, 0)
+                        binding.epoxyRecycler.requestModelBuild()
                         showDialog(
                             R.string.action_installations,
                             R.string.installer_shizuku_unavailable
                         )
                     }
                 } else {
+                    // Shizuku unavailable, fallback to session installer
+                    this.installerId = 0
+                    save(PREFERENCE_INSTALLER_ID, 0)
+                    binding.epoxyRecycler.requestModelBuild()
                     showDialog(
                         R.string.action_installations,
                         R.string.installer_shizuku_unavailable
