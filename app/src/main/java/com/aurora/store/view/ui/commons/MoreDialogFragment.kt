@@ -64,6 +64,8 @@ import com.aurora.store.R
 import com.aurora.store.compose.navigation.Screen
 import com.aurora.store.compose.theme.AuroraTheme
 import com.aurora.store.util.Preferences
+import com.aurora.store.util.PasscodeUtil
+import com.aurora.store.view.ui.sheets.PasscodeDialogSheet
 import com.aurora.store.viewmodel.commons.MoreViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
@@ -154,7 +156,7 @@ class MoreDialogFragment : DialogFragment() {
                                                 findNavController().navigate(option.destinationID)
                                             }
 
-                                            is ComposeOption -> context.navigate(option.screen)
+                                            is ComposeOption -> handleComposeOptionClick(context, option.screen)
                                         }
                                     }
                                 )
@@ -171,7 +173,7 @@ class MoreDialogFragment : DialogFragment() {
                                             findNavController().navigate(option.destinationID)
                                         }
 
-                                        is ComposeOption -> context.navigate(option.screen)
+                                        is ComposeOption -> handleComposeOptionClick(context, option.screen)
                                     }
                                 }
                             )
@@ -449,5 +451,25 @@ class MoreDialogFragment : DialogFragment() {
                 screen = Screen.About
             )
         )
+    }
+
+    private fun handleComposeOptionClick(context: Context, screen: Screen) {
+        if (screen is Screen.Blacklist) {
+            // Check if password is required for blacklist access
+            if (PasscodeUtil.hasBlacklistPassword(context)) {
+                // Show password dialog
+                val passwordDialog = PasscodeDialogSheet.newInstanceForVerify()
+                passwordDialog.show(parentFragmentManager, PasscodeDialogSheet.TAG)
+                dismiss() // Close the more dialog
+            } else {
+                // No password set, navigate directly
+                context.navigate(screen)
+                dismiss()
+            }
+        } else {
+            // For other screens, navigate normally
+            context.navigate(screen)
+            dismiss()
+        }
     }
 }

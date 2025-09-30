@@ -47,4 +47,12 @@
         app:key="pref_updates"
         app:layout="@layout/item_preference"
         app:title="@string/title_updates" />
+
+    <Preference
+        app:icon="@drawable/ic_blacklist"
+        app:iconSpaceReserved="false"
+        app:key="pref_blacklist_password"
+        app:layout="@layout/item_preference"
+        app:title="@string/pref_blacklist_password_title"
+        app:summary="@string/pref_blacklist_password_summary" />
 </PreferenceScreen>

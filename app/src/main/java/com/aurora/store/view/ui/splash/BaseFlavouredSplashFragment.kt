@@ -22,7 +22,9 @@ import com.aurora.store.util.Preferences.PREFERENCE_DEFAULT_SELECTED_TAB
 import com.aurora.store.util.Preferences.PREFERENCE_INTRO
 import com.aurora.store.util.Preferences.PREFERENCE_MICROG_AUTH
 import com.aurora.store.view.ui.commons.BaseFragment
+import com.aurora.store.view.ui.sheets.PasscodeDialogSheet
 import com.aurora.store.viewmodel.auth.AuthViewModel
+import com.aurora.store.util.PasscodeUtil
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -61,7 +63,7 @@ abstract class BaseFlavouredSplashFragment : BaseFragment<FragmentSplashBinding>
             setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.menu_blacklist_manager -> {
-                        requireContext().navigate(Screen.Blacklist)
+                        handleBlacklistAccess()
                     }
 
                     R.id.menu_spoof_manager -> {
@@ -185,6 +187,17 @@ abstract class BaseFlavouredSplashFragment : BaseFragment<FragmentSplashBinding>
         binding.btnAnonymous.apply {
             updateProgress(false)
             isEnabled = true
+        }
+    }
+
+    private fun handleBlacklistAccess() {
+        if (PasscodeUtil.hasBlacklistPassword(requireContext())) {
+            // Password is set, show verification dialog
+            val passwordDialog = PasscodeDialogSheet.newInstanceForVerify()
+            passwordDialog.show(childFragmentManager, PasscodeDialogSheet.TAG)
+        } else {
+            // No password set, navigate directly
+            requireContext().navigate(Screen.Blacklist)
         }
     }
 }

@@ -545,4 +545,27 @@
     <string name="select_app_for_details">Select an app for more details</string>
     <string name="action_filter_no_ads">No advertisements</string>
     <string name="action_filter_no_gms">No play services</string>
+
+    <!-- Blacklist Password -->
+    <string name="pref_blacklist_password_title">Blacklist Manager Password</string>
+    <string name="pref_blacklist_password_summary">Set a password to access Blacklist Manager</string>
+    <string name="pref_blacklist_password_set">Set Password</string>
+    <string name="pref_blacklist_password_change">Change Password</string>
+    <string name="pref_blacklist_password_remove">Remove Password</string>
+    <string name="blacklist_password_dialog_title">Enter Password</string>
+    <string name="blacklist_password_dialog_subtitle">Enter your password to access Blacklist Manager</string>
+    <string name="blacklist_password_set_title">Set Password</string>
+    <string name="blacklist_password_set_subtitle">Enter a password (minimum 4 characters)</string>
+    <string name="blacklist_password_confirm_title">Confirm Password</string>
+    <string name="blacklist_password_confirm_subtitle">Enter the password again to confirm</string>
+    <string name="blacklist_password_hint">Enter password</string>
+    <string name="blacklist_password_error_mismatch">Passwords do not match</string>
+    <string name="blacklist_password_error_invalid">Password must be at least 4 characters (letters and numbers only)</string>
+    <string name="blacklist_password_error_wrong">Incorrect password</string>
+    <string name="blacklist_password_set_success">Password set successfully</string>
+    <string name="blacklist_password_removed_success">Password removed successfully</string>
+    <string name="blacklist_password_remove_title">Remove Password</string>
+    <string name="blacklist_password_remove_subtitle">Enter your current password to remove it</string>
+    <string name="blacklist_password_remove_confirmation_title">Remove Password</string>
+    <string name="blacklist_password_remove_confirmation_message">Are you sure you want to remove the password?</string>
 </resources>
