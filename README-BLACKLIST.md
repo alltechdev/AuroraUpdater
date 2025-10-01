@@ -1,4 +1,4 @@
-# Aurora Updater - Auto-Blacklist Branch 🚀
+# Aurora Updater - Auto-Blacklist Branch
 
 This branch contains enhanced Aurora Updater with **automatic blacklist updates** and improved user experience.
 
