@@ -108,7 +108,7 @@ Your blacklist JSON must be an array of Android package names:
 ]
 ```
 
-## 🔄 How Auto-Updates Work
+## How Auto-Updates Work
 
 1. **App starts** → Immediate blacklist fetch from configured URL
 2. **Every 15 seconds** → Background fetch and comparison
@@ -119,7 +119,7 @@ Your blacklist JSON must be an array of Android package names:
 
 ---
 
-## 📄 License
+## License
 
 This project maintains the same license as the original Aurora Store.
 ---
