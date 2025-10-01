@@ -98,41 +98,6 @@ var remoteBlacklistUrl: String
     )
 ```
 
-#### Option 2: Direct JSON URL
-
-For direct JSON hosting (not GitHub API):
-
-1. **Host your JSON file** on any web server
-2. **Update the parsing logic** in `RemoteBlacklistProvider.kt`:
-```kotlin
-val remoteBlacklist = try {
-    // Check if this is a GitHub API response or direct JSON
-    if (remoteBlacklistUrl.contains("api.github.com")) {
-        // GitHub API response parsing (existing code)
-        val apiResponse = json.parseToJsonElement(responseBody).jsonObject
-        val contentEncoded = apiResponse["content"]?.jsonPrimitive?.content
-            ?: throw IllegalArgumentException("No content field in GitHub API response")
-        
-        val decodedContent = String(Base64.getDecoder().decode(contentEncoded.replace("\n", "")))
-        json.decodeFromString<List<String>>(decodedContent).toMutableSet()
-    } else {
-        // Direct JSON response - ADD THIS FOR YOUR CUSTOM URL
-        json.decodeFromString<List<String>>(responseBody).toMutableSet()
-    }
-} catch (e: Exception) {
-    Log.e(TAG, "Failed to parse remote blacklist JSON", e)
-    return@withContext false
-}
-```
-
-#### Option 3: Runtime Configuration
-
-You could also add a settings screen to let users configure their own blacklist URL:
-
-1. **Add a preference** in `preferences_settings.xml`
-2. **Create a settings handler** in `SettingsFragment.kt`
-3. **Update the URL** through `Preferences.putString()`
-
 ### Blacklist JSON Format
 
 Your blacklist JSON must be an array of Android package names:
@@ -145,12 +110,6 @@ Your blacklist JSON must be an array of Android package names:
 ]
 ```
 
-**Package Name Examples:**
-- `com.facebook.katana` (Facebook)
-- `com.instagram.android` (Instagram)
-- `com.whatsapp` (WhatsApp)
-- `com.tiktok.musically` (TikTok)
-
 ## 🔄 How Auto-Updates Work
 
 1. **App starts** → Immediate blacklist fetch from configured URL
@@ -159,79 +118,12 @@ Your blacklist JSON must be an array of Android package names:
 4. **UpdatesFragment receives event** → Automatically refresh app list
 5. **User sees changes** → No manual action required
 
-## 🐛 Debugging
-
-### Enable Debug Logging
-
-The app includes comprehensive logging. To see blacklist activity:
-
-```bash
-adb logcat | grep -E "(RemoteBlacklistProvider|BlacklistProvider)"
-```
-
-**Debug logs show:**
-- ✅ Successful updates with entry counts
-- 🔄 "Unchanged, skipping update" when no changes
-- ❌ Network errors and parsing failures
-- 📝 First 5 blacklist entries for verification
-
-### Common Issues
-
-**Updates not working?**
-- Check internet connection
-- Verify blacklist URL is accessible
-- Check logs for parsing errors
-
-**UI not refreshing?**
-- Verify `BusEvent.BlacklistUpdated` is being emitted
-- Check `UpdatesFragment` event listener is active
-
-## 📦 Distribution
-
-### Debug vs Release Builds
-
-- **Debug APK:** For testing, includes logging, larger file size
-- **Release APK:** Optimized for distribution, smaller size, obfuscated
-
-### GitHub Actions Artifacts
-
-Each successful build creates downloadable artifacts:
-- `aurora-updater-debug-<commit-sha>`
-- `aurora-updater-release-<commit-sha>`
-
-Artifacts are kept for **30 days** and include the full commit SHA for tracking.
-
-## 🔧 Technical Details
-
-### Architecture Changes
-
-- **AuroraApp.kt:** Handles global 15-second update timer
-- **RemoteBlacklistProvider.kt:** GitHub API integration with base64 decoding
-- **BusEvent.kt:** Added `BlacklistUpdated` event for UI notifications
-- **UpdatesFragment.kt:** Automatic refresh on blacklist changes
-- **Settings:** Removed blacklist password UI components
-
-### Performance Optimizations
-
-- ⚡ **Change detection** prevents unnecessary UI updates
-- 🎯 **Background threading** for network requests
-- 💾 **Efficient caching** with timestamp tracking
-- 🔄 **Event-driven UI** updates only when needed
 
 ---
 
 ## 📄 License
 
 This project maintains the same license as the original Aurora Store.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch from `feature/auto-blacklist-updates`
-3. Make your changes
-4. Test with both debug and release builds
-5. Submit a pull request
-
 ---
 
 **Happy updating! 🚀**
