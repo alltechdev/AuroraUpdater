@@ -11,12 +11,24 @@ This branch contains enhanced Aurora Updater with **automatic blacklist updates*
 
 ## Building the App
 
+### GitHub Actions Auto-Build
+
+The repository automatically builds APKs when you push changes to the `feature/auto-blacklist-updates` branch:
+
+1. **Push changes** to trigger build
+2. **Go to Actions tab** in your GitHub repository
+3. **Download artifacts** from the completed workflow
+
+**Builds are triggered by:**
+- Changes to `.kt`, `.java`, `.xml`, `.gradle` files
+- **NOT triggered by** README, docs, or other non-code changes
+
+### Local Build
+
 ### Prerequisites
 - **Java 21** (OpenJDK recommended)
 - **Android SDK** (API level 34+)
 - **Git**
-
-### Local Build
 
 1. **Clone and checkout the branch:**
 ```bash
@@ -43,18 +55,6 @@ export PATH=$JAVA_HOME/bin:$PATH
 4. **Find built APKs:**
 - Debug: `app/build/outputs/apk/vanilla/debug/`
 - Release: `app/build/outputs/apk/vanilla/release/`
-
-### GitHub Actions Auto-Build
-
-The repository automatically builds APKs when you push changes to the `feature/auto-blacklist-updates` branch:
-
-1. **Push changes** to trigger build
-2. **Go to Actions tab** in your GitHub repository
-3. **Download artifacts** from the completed workflow
-
-**Builds are triggered by:**
-- Changes to `.kt`, `.java`, `.xml`, `.gradle` files
-- **NOT triggered by** README, docs, or other non-code changes
 
 ## Configuring Blacklist URLs
 
