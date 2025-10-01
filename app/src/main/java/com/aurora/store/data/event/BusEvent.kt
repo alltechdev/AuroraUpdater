@@ -26,6 +26,7 @@ sealed class BusEvent : Event() {
     lateinit var error: String
 
     data class Blacklisted(val packageName: String) : BusEvent()
+    data object BlacklistUpdated : BusEvent()
 }
 
 sealed class AuthEvent : Event() {

@@ -22,6 +22,8 @@ package com.aurora.store
 
 import android.app.Application
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.util.Log.DEBUG
 import android.util.Log.INFO
 import androidx.core.content.ContextCompat
@@ -36,6 +38,7 @@ import com.aurora.extensions.setAppTheme
 import com.aurora.store.data.event.EventFlow
 import com.aurora.store.data.helper.DownloadHelper
 import com.aurora.store.data.helper.UpdateHelper
+import com.aurora.store.data.providers.RemoteBlacklistProvider
 import com.aurora.store.data.receiver.PackageManagerReceiver
 import com.aurora.store.util.CommonUtil
 import com.aurora.store.util.NotificationUtil
@@ -44,6 +47,7 @@ import com.aurora.store.util.Preferences
 import com.google.android.material.color.DynamicColors
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import org.lsposed.hiddenapibypass.HiddenApiBypass
 import javax.inject.Inject
@@ -62,6 +66,12 @@ class AuroraApp : Application(), Configuration.Provider, SingletonImageLoader.Fa
 
     @Inject
     lateinit var updateHelper: UpdateHelper
+
+    @Inject
+    lateinit var remoteBlacklistProvider: RemoteBlacklistProvider
+    
+    private var blacklistUpdateHandler: Handler? = null
+    private var blacklistUpdateRunnable: Runnable? = null
 
     override val workManagerConfiguration: Configuration
         get() = Configuration.Builder()
@@ -105,6 +115,28 @@ class AuroraApp : Application(), Configuration.Provider, SingletonImageLoader.Fa
         )
 
         CommonUtil.cleanupInstallationSessions(applicationContext)
+
+        // Start continuous blacklist updates
+        startBlacklistUpdateService()
+    }
+
+    private fun startBlacklistUpdateService() {
+        // Update immediately when app starts
+        scope.launch {
+            remoteBlacklistProvider.fetchAndUpdateBlacklist()
+        }
+        
+        // Setup repeating timer for every 15 seconds
+        blacklistUpdateHandler = Handler(Looper.getMainLooper())
+        blacklistUpdateRunnable = object : Runnable {
+            override fun run() {
+                scope.launch {
+                    remoteBlacklistProvider.fetchAndUpdateBlacklist()
+                }
+                blacklistUpdateHandler?.postDelayed(this, 15_000) // 15 seconds
+            }
+        }
+        blacklistUpdateHandler?.postDelayed(blacklistUpdateRunnable!!, 15_000) // Start first update after 15 seconds
     }
 
     override fun newImageLoader(context: Context): ImageLoader {

@@ -21,6 +21,7 @@ package com.aurora.store.data.providers
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.aurora.extensions.isNAndAbove
 import com.aurora.store.util.Preferences
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -36,13 +37,17 @@ class BlacklistProvider @Inject constructor(
 ) {
 
     private val PREFERENCE_BLACKLIST = "PREFERENCE_BLACKLIST"
+    private val TAG = BlacklistProvider::class.java.simpleName
 
     var blacklist: MutableSet<String>
-        set(value) = Preferences.putString(
-            context,
-            PREFERENCE_BLACKLIST,
-            json.encodeToString(value)
-        )
+        set(value) {
+            Log.d(TAG, "Setting blacklist with ${value.size} entries: ${value.take(5)}")
+            Preferences.putString(
+                context,
+                PREFERENCE_BLACKLIST,
+                json.encodeToString(value)
+            )
+        }
         get() {
             return try {
                 val rawBlacklist = if (isNAndAbove) {
@@ -65,10 +70,14 @@ class BlacklistProvider @Inject constructor(
                 } else {
                     Preferences.getString(context, PREFERENCE_BLACKLIST)
                 }
-                if (rawBlacklist!!.isEmpty())
+                if (rawBlacklist!!.isEmpty()) {
+                    Log.d(TAG, "No blacklist found, returning empty set")
                     mutableSetOf()
-                else
-                    json.decodeFromString<MutableSet<String>>(rawBlacklist)
+                } else {
+                    val blacklistSet = json.decodeFromString<MutableSet<String>>(rawBlacklist)
+                    Log.d(TAG, "Retrieved blacklist with ${blacklistSet.size} entries: ${blacklistSet.take(5)}")
+                    blacklistSet
+                }
             } catch (e: Exception) {
                 mutableSetOf()
             }

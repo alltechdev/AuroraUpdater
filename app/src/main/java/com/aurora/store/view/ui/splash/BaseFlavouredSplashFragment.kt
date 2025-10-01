@@ -62,10 +62,6 @@ abstract class BaseFlavouredSplashFragment : BaseFragment<FragmentSplashBinding>
         binding.toolbar.apply {
             setOnMenuItemClickListener {
                 when (it.itemId) {
-                    R.id.menu_blacklist_manager -> {
-                        handleBlacklistAccess()
-                    }
-
                     R.id.menu_spoof_manager -> {
                         findNavController().navigate(R.id.spoofFragment)
                     }
@@ -194,13 +190,7 @@ abstract class BaseFlavouredSplashFragment : BaseFragment<FragmentSplashBinding>
     }
 
     private fun handleBlacklistAccess() {
-        if (PasscodeUtil.hasBlacklistPassword(requireContext())) {
-            // Password is set, show verification dialog
-            val passwordDialog = PasscodeDialogSheet.newInstanceForVerify()
-            passwordDialog.show(childFragmentManager, PasscodeDialogSheet.TAG)
-        } else {
-            // No password set, navigate directly
-            requireContext().navigate(Screen.Blacklist)
-        }
+        // Blacklist management is no longer available to users
+        // Blacklist is now automatically managed via remote URL
     }
 }

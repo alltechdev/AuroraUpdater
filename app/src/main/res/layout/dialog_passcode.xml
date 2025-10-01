@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="@string/blacklist_password_dialog_title"
+        android:text="Enter Password"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold" />
 
@@ -19,14 +19,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="@string/blacklist_password_dialog_subtitle"
+        android:text="Enter your password"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="@string/blacklist_password_hint">
+        android:hint="Enter password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passcode_input"

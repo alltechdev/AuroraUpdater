@@ -21,7 +21,6 @@ import com.aurora.store.MainActivity
 import com.aurora.store.R
 import com.aurora.store.compose.ui.about.AboutScreen
 import com.aurora.store.compose.ui.accounts.AccountsScreen
-import com.aurora.store.compose.ui.blacklist.BlacklistScreen
 import com.aurora.store.compose.ui.commons.PermissionRationaleScreen
 import com.aurora.store.compose.ui.details.AppDetailsScreen
 import com.aurora.store.compose.ui.dev.DevProfileScreen
@@ -51,9 +50,6 @@ fun NavDisplay(startDestination: NavKey) {
             rememberViewModelStoreNavEntryDecorator()
         ),
         entryProvider = entryProvider {
-            entry<Screen.Blacklist> {
-                BlacklistScreen(onNavigateUp = { onNavigateUp() })
-            }
 
             entry<Screen.Search> {
                 SearchScreen(onNavigateUp = { onNavigateUp() })

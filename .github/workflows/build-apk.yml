@@ -2,15 +2,21 @@ name: Build APK
 
 on:
   push:
-    branches: [ master, main ]
+    branches: [ feature/auto-blacklist-updates ]
     paths-ignore:
-      - 'README.md'
-      - '*.md'
+      - '**.md'
+      - '**.txt'
+      - 'docs/**'
+      - '.gitignore'
+      - 'LICENSE'
   pull_request:
-    branches: [ master, main ]
+    branches: [ feature/auto-blacklist-updates ]
     paths-ignore:
-      - 'README.md'
-      - '*.md'
+      - '**.md'
+      - '**.txt'
+      - 'docs/**'
+      - '.gitignore'
+      - 'LICENSE'
 
 jobs:
   build:
@@ -39,36 +45,45 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
+    - name: Build Debug APK
+      run: ./gradlew assembleVanillaDebug --no-daemon --stacktrace
+      
     - name: Build Release APK
       run: ./gradlew assembleVanillaRelease --no-daemon --stacktrace
 
-    - name: Upload APK
+    - name: Upload Debug APK
       uses: actions/upload-artifact@v4
       with:
-        name: aurora-updater-release
-        path: app/build/outputs/apk/vanilla/release/app-vanilla-release-unsigned.apk
+        name: aurora-updater-debug-${{ github.sha }}
+        path: app/build/outputs/apk/vanilla/debug/*.apk
+        retention-days: 30
+        
+    - name: Upload Release APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: aurora-updater-release-${{ github.sha }}
+        path: app/build/outputs/apk/vanilla/release/*.apk
+        retention-days: 30
 
     - name: Get commit SHA
       id: vars
       run: echo "sha_short=$(echo ${GITHUB_SHA} | cut -c1-7)" >> $GITHUB_OUTPUT
 
-    - name: Create Release (on push to master)
-      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-      uses: softprops/action-gh-release@v1
-      with:
-        tag_name: build-${{ steps.vars.outputs.sha_short }}
-        name: Aurora Updater Build ${{ steps.vars.outputs.sha_short }}
-        body: |
-          Automated build from commit ${{ github.sha }}
-          
-          **Changes in this build:**
-          - Simplified Aurora Store focused only on app updates
-          - Removed app browsing and search functionality
-          - Removed customization settings
-          
-          Install the APK below to try the latest version.
-        files: app/build/outputs/apk/vanilla/release/app-vanilla-release-unsigned.apk
-        draft: false
-        prerelease: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Add build summary
+      run: |
+        echo "📱 **APK Build Complete!**" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Debug APK:**" >> $GITHUB_STEP_SUMMARY
+        ls -la app/build/outputs/apk/vanilla/debug/*.apk >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Release APK:**" >> $GITHUB_STEP_SUMMARY
+        ls -la app/build/outputs/apk/vanilla/release/*.apk >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "✨ **Features in this build:**" >> $GITHUB_STEP_SUMMARY
+        echo "- 🔄 Auto-blacklist updates every 15 seconds" >> $GITHUB_STEP_SUMMARY
+        echo "- 🚀 Automatic UI refresh when blacklist changes" >> $GITHUB_STEP_SUMMARY
+        echo "- 🎯 Smart change detection (only updates when needed)" >> $GITHUB_STEP_SUMMARY
+        echo "- 🔧 Removed blacklist password protection" >> $GITHUB_STEP_SUMMARY
+        echo "- 📡 Fixed GitHub API integration with proper URL" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "📦 Download the artifacts from the Actions tab above!" >> $GITHUB_STEP_SUMMARY

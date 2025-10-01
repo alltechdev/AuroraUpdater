@@ -28,9 +28,11 @@ import com.aurora.Constants
 import com.aurora.extensions.browse
 import com.aurora.extensions.navigate
 import com.aurora.extensions.requiresObbDir
+import com.aurora.store.AuroraApp
 import com.aurora.store.MobileNavigationDirections
 import com.aurora.store.R
 import com.aurora.store.compose.navigation.Screen
+import com.aurora.store.data.event.BusEvent
 import com.aurora.store.data.model.MinimalApp
 import com.aurora.store.data.model.PermissionType
 import com.aurora.store.data.providers.PermissionProvider.Companion.isGranted
@@ -94,6 +96,15 @@ class UpdatesFragment : BaseFragment<FragmentUpdatesBinding>() {
 
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.fetchUpdates()
+        }
+
+        // Listen for blacklist updates and refresh automatically
+        viewLifecycleOwner.lifecycleScope.launch {
+            AuroraApp.events.busEvent.collect { event ->
+                if (event is BusEvent.BlacklistUpdated) {
+                    viewModel.fetchUpdates()
+                }
+            }
         }
 
     }

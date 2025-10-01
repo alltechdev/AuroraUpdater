@@ -29,6 +29,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceFragmentCompat
 import com.aurora.extensions.navigate
 import com.aurora.store.R
@@ -133,24 +134,24 @@ class PasscodeDialogSheet : BottomSheetDialogFragment() {
     private fun setupUI() {
         when (mode) {
             MODE_VERIFY -> {
-                binding.title.text = getString(R.string.blacklist_password_dialog_title)
-                binding.subtitle.text = getString(R.string.blacklist_password_dialog_subtitle)
+                binding.title.text = "Enter Password"
+                binding.subtitle.text = "Enter your password"
             }
             MODE_SET -> {
-                binding.title.text = getString(R.string.blacklist_password_set_title)
-                binding.subtitle.text = getString(R.string.blacklist_password_set_subtitle)
+                binding.title.text = "Set Password"
+                binding.subtitle.text = "Enter a password (minimum 4 characters)"
             }
             MODE_CONFIRM -> {
-                binding.title.text = getString(R.string.blacklist_password_confirm_title)
-                binding.subtitle.text = getString(R.string.blacklist_password_confirm_subtitle)
+                binding.title.text = "Confirm Password"
+                binding.subtitle.text = "Enter the password again to confirm"
             }
             MODE_REMOVE -> {
-                binding.title.text = getString(R.string.blacklist_password_remove_title)
-                binding.subtitle.text = getString(R.string.blacklist_password_remove_subtitle)
+                binding.title.text = "Remove Password"
+                binding.subtitle.text = "Enter your current password to remove it"
             }
             MODE_VERIFY_FOR_CHANGE -> {
-                binding.title.text = getString(R.string.blacklist_password_change_verify_title)
-                binding.subtitle.text = getString(R.string.blacklist_password_change_verify_subtitle)
+                binding.title.text = "Verify Current Password"
+                binding.subtitle.text = "Enter your current password to change it"
             }
         }
     }
@@ -182,20 +183,15 @@ class PasscodeDialogSheet : BottomSheetDialogFragment() {
         val password = binding.passcodeInput.text.toString()
 
         if (!PasscodeUtil.isValidPassword(password)) {
-            showError(getString(R.string.blacklist_password_error_invalid))
+            showError("Password must be at least 4 characters (letters and numbers only)")
             return
         }
 
         when (mode) {
             MODE_VERIFY -> {
-                if (PasscodeUtil.verifyBlacklistPassword(requireContext(), password)) {
-                    // Password correct, navigate to blacklist
-                    dismiss()
-                    requireContext().navigate(Screen.Blacklist)
-                } else {
-                    showError(getString(R.string.blacklist_password_error_wrong))
-                    binding.passcodeInput.text?.clear()
-                }
+                // Direct access to blacklist without password
+                dismiss()
+                findNavController().navigate(Screen.Blacklist)
             }
             MODE_SET -> {
                 // First entry, ask for confirmation
@@ -211,7 +207,7 @@ class PasscodeDialogSheet : BottomSheetDialogFragment() {
                     dismiss()
                     Toast.makeText(
                         requireContext(),
-                        getString(R.string.blacklist_password_set_success),
+                        "Password set successfully",
                         Toast.LENGTH_SHORT
                     ).show()
                     
@@ -226,7 +222,7 @@ class PasscodeDialogSheet : BottomSheetDialogFragment() {
                         }
                     }
                 } else {
-                    showError(getString(R.string.blacklist_password_error_mismatch))
+                    showError("Passwords do not match")
                     binding.passcodeInput.text?.clear()
                 }
             }
@@ -234,14 +230,14 @@ class PasscodeDialogSheet : BottomSheetDialogFragment() {
                 if (PasscodeUtil.verifyBlacklistPassword(requireContext(), password)) {
                     // Password correct, show confirmation dialog
                     MaterialAlertDialogBuilder(requireContext())
-                        .setTitle(getString(R.string.blacklist_password_remove_confirmation_title))
-                        .setMessage(getString(R.string.blacklist_password_remove_confirmation_message))
+                        .setTitle("Remove Password")
+                        .setMessage("Are you sure you want to remove the password?")
                         .setPositiveButton("Remove") { _, _ ->
                             PasscodeUtil.removeBlacklistPassword(requireContext())
                             dismiss() // Dismiss after the action is confirmed
                             Toast.makeText(
                                 requireContext(),
-                                getString(R.string.blacklist_password_removed_success),
+                                "Password removed successfully",
                                 Toast.LENGTH_SHORT
                             ).show()
                             
@@ -259,7 +255,7 @@ class PasscodeDialogSheet : BottomSheetDialogFragment() {
                         .setNegativeButton("Cancel", null)
                         .show()
                 } else {
-                    showError(getString(R.string.blacklist_password_error_wrong))
+                    showError("Incorrect password")
                     binding.passcodeInput.text?.clear()
                 }
             }
@@ -270,7 +266,7 @@ class PasscodeDialogSheet : BottomSheetDialogFragment() {
                     val setPasswordDialog = newInstanceForSet()
                     setPasswordDialog.show(parentFragmentManager, TAG)
                 } else {
-                    showError(getString(R.string.blacklist_password_error_wrong))
+                    showError("Incorrect password")
                     binding.passcodeInput.text?.clear()
                 }
             }

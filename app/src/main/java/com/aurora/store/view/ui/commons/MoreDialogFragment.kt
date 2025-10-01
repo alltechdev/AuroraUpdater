@@ -425,11 +425,6 @@ class MoreDialogFragment : DialogFragment() {
 
     private fun getOptions(): List<Option> {
         return listOf(
-            ComposeOption(
-                title = R.string.title_blacklist_manager,
-                icon = R.drawable.ic_blacklist,
-                screen = Screen.Blacklist
-            ),
             ViewOption(
                 title = R.string.title_spoof_manager,
                 icon = R.drawable.ic_spoof,
@@ -454,22 +449,8 @@ class MoreDialogFragment : DialogFragment() {
     }
 
     private fun handleComposeOptionClick(context: Context, screen: Screen) {
-        if (screen is Screen.Blacklist) {
-            // Check if password is required for blacklist access
-            if (PasscodeUtil.hasBlacklistPassword(context)) {
-                // Show password dialog
-                val passwordDialog = PasscodeDialogSheet.newInstanceForVerify()
-                passwordDialog.show(parentFragmentManager, PasscodeDialogSheet.TAG)
-                dismiss() // Close the more dialog
-            } else {
-                // No password set, navigate directly
-                context.navigate(screen)
-                dismiss()
-            }
-        } else {
-            // For other screens, navigate normally
-            context.navigate(screen)
-            dismiss()
-        }
+        // Navigate normally (blacklist option removed)
+        context.navigate(screen)
+        dismiss()
     }
 }

@@ -65,15 +65,6 @@ class AppMenuSheet : BaseDialogSheet<SheetAppMenuBinding>() {
         val isBlacklisted: Boolean = viewModel.blacklistProvider.isBlacklisted(args.app.packageName)
 
         with(binding.navigationView) {
-            //Switch strings for Add/Remove Blacklist
-            val blackListMenu: MenuItem = menu.findItem(R.id.action_blacklist)
-            blackListMenu.setTitle(
-                if (isBlacklisted)
-                    R.string.action_whitelist
-                else
-                    R.string.action_blacklist_add
-            )
-
             //Show/Hide actions based on installed status
             val installed = PackageUtil.isInstalled(requireContext(), args.app.packageName)
             menu.findItem(R.id.action_uninstall).isVisible = installed
@@ -81,21 +72,6 @@ class AppMenuSheet : BaseDialogSheet<SheetAppMenuBinding>() {
 
             setNavigationItemSelectedListener { item ->
                 when (item.itemId) {
-                    R.id.action_blacklist -> {
-
-                        if (isBlacklisted) {
-                            viewModel.blacklistProvider.whitelist(args.app.packageName)
-                            requireContext().toast(R.string.toast_apk_whitelisted)
-                        } else {
-                            viewModel.blacklistProvider.blacklist(args.app.packageName)
-                            requireContext().toast(R.string.toast_apk_blacklisted)
-                        }
-
-                        dismissAllowingStateLoss()
-                        AuroraApp.events.send(
-                            BusEvent.Blacklisted(args.app.packageName)
-                        )
-                    }
 
                     R.id.action_local -> {
                         requestDocumentCreation.launch("${args.app.packageName}.zip")
