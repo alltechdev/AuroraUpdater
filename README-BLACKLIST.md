@@ -2,14 +2,14 @@
 
 This branch contains enhanced Aurora Updater with **automatic blacklist updates** and improved user experience.
 
-## ✨ New Features
+## Features
 
-- 🔄 **Auto-blacklist updates every 15 seconds** while app is running
-- 🚀 **Automatic UI refresh** when blacklist changes (no manual pull-to-refresh needed)
-- 🎯 **Smart change detection** - only updates when blacklist actually changes
-- 🏗️ **Automatic APK building** via GitHub Actions when code changes
+- **Auto-blacklist updates every 15 seconds** while app is running
+- **Automatic UI refresh** when blacklist changes (no manual pull-to-refresh needed)
+- **Smart change detection** - only updates when blacklist actually changes
+- **Automatic APK building** via GitHub Actions when code changes
 
-## 🏗️ Building the App
+## Building the App
 
 ### Prerequisites
 - **Java 21** (OpenJDK recommended)
@@ -53,10 +53,10 @@ The repository automatically builds APKs when you push changes to the `feature/a
 3. **Download artifacts** from the completed workflow
 
 **Builds are triggered by:**
-- ✅ Changes to `.kt`, `.java`, `.xml`, `.gradle` files
-- ❌ **NOT triggered by** README, docs, or other non-code changes
+- Changes to `.kt`, `.java`, `.xml`, `.gradle` files
+- **NOT triggered by** README, docs, or other non-code changes
 
-## 🔗 Configuring Blacklist URLs
+## Configuring Blacklist URLs
 
 The app fetches blacklist data from a remote JSON source. You can configure different blacklist URLs:
 
