@@ -7,8 +7,6 @@ This branch contains enhanced Aurora Updater with **automatic blacklist updates*
 - 🔄 **Auto-blacklist updates every 15 seconds** while app is running
 - 🚀 **Automatic UI refresh** when blacklist changes (no manual pull-to-refresh needed)
 - 🎯 **Smart change detection** - only updates when blacklist actually changes
-- 🔧 **Removed blacklist password protection** for streamlined access
-- 📡 **Fixed GitHub API integration** with proper URL and base64 decoding
 - 🏗️ **Automatic APK building** via GitHub Actions when code changes
 
 ## 🏗️ Building the App
