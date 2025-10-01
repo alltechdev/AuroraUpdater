@@ -124,4 +124,4 @@ Your blacklist JSON must be an array of Android package names:
 This project maintains the same license as the original Aurora Store.
 ---
 
-**Happy updating! 🚀**
+**Happy updating! **
