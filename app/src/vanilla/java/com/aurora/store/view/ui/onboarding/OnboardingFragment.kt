@@ -20,9 +20,14 @@
 package com.aurora.store.view.ui.onboarding
 
 import androidx.fragment.app.Fragment
+import androidx.core.content.edit
 import com.aurora.Constants
 import com.aurora.store.data.installer.AppInstaller
 import com.aurora.store.data.model.Installer
+import com.aurora.store.data.providers.SpoofProvider
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import java.util.Properties
 import com.aurora.store.util.Preferences.PREFERENCE_AUTO_DELETE
 import com.aurora.store.util.Preferences.PREFERENCE_DEFAULT_SELECTED_TAB
 import com.aurora.store.util.Preferences.PREFERENCE_DISPENSER_URLS
@@ -36,9 +41,16 @@ import com.aurora.store.util.Preferences.PREFERENCE_UPDATES_EXTENDED
 import com.aurora.store.util.Preferences.PREFERENCE_VENDING_VERSION
 import com.aurora.store.util.save
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class OnboardingFragment : BaseFlavouredOnboardingFragment() {
+
+    @Inject
+    lateinit var spoofProvider: SpoofProvider
+
+    @Inject
+    lateinit var json: Json
 
     override fun loadDefaultPreferences() {
         /*Filters*/
@@ -54,20 +66,42 @@ class OnboardingFragment : BaseFlavouredOnboardingFragment() {
         save(PREFERENCE_DEFAULT_SELECTED_TAB, 0)
         save(PREFERENCE_FOR_YOU, true)
 
+        /*Device Spoof - Default to reloaded_beryllium for better compatibility*/
+        setDefaultDeviceSpoof()
+
         /*Installer*/
         save(PREFERENCE_AUTO_DELETE, true)
-        
-        // Smart installer selection: use ROOT if available, otherwise SESSION
-        val installerId = if (AppInstaller.hasRootAccess()) {
-            Installer.ROOT.ordinal
-        } else {
-            Installer.SESSION.ordinal
+
+        // Smart installer selection: prefer Aurora Services, then ROOT, then SESSION
+        val installerId = when {
+            AppInstaller.hasAuroraService(requireContext()) -> Installer.SERVICE.ordinal
+            AppInstaller.hasRootAccess() -> Installer.ROOT.ordinal
+            else -> Installer.SESSION.ordinal
         }
         save(PREFERENCE_INSTALLER_ID, installerId)
 
         /*Updates*/
         save(PREFERENCE_UPDATES_EXTENDED, false)
         save(PREFERENCE_UPDATES_CHECK_INTERVAL, 3)
+    }
+
+    private fun setDefaultDeviceSpoof() {
+        // Find and set reloaded_beryllium as default device spoof
+        val availableDevices = spoofProvider.availableSpoofDeviceProperties
+        val berylliumDevice = availableDevices.find { properties ->
+            val name = properties.getProperty("UserReadableName", "")
+            // Just search for "beryllium" in the UserReadableName
+            name.contains("beryllium", ignoreCase = true)
+        }
+
+        berylliumDevice?.let { properties ->
+            // Write spoof synchronously to ensure it's available immediately
+            val prefs = requireContext().getSharedPreferences(requireContext().packageName + "_preferences", android.content.Context.MODE_PRIVATE)
+            prefs.edit(true) {
+                putBoolean("DEVICE_SPOOF_ENABLED", true)
+                putString("DEVICE_SPOOF_PROPERTIES", json.encodeToString<Properties>(properties))
+            }
+        }
     }
 
     override fun onboardingPages(): List<Fragment> {
