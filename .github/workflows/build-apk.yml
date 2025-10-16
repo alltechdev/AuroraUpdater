@@ -2,7 +2,7 @@ name: Build APK
 
 on:
   push:
-    branches: [ feature/auto-blacklist-updates ]
+    branches: [ master, main, master-qin, qin-feature/auto-blacklist-updates ]
     paths-ignore:
       - '**.md'
       - '**.txt'
@@ -10,13 +10,14 @@ on:
       - '.gitignore'
       - 'LICENSE'
   pull_request:
-    branches: [ feature/auto-blacklist-updates ]
+    branches: [ master, main, master-qin, qin-feature/auto-blacklist-updates ]
     paths-ignore:
       - '**.md'
       - '**.txt'
       - 'docs/**'
       - '.gitignore'
       - 'LICENSE'
+  workflow_dispatch:
 
 jobs:
   build:
