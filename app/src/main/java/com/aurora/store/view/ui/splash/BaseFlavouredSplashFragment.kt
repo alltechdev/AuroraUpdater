@@ -176,10 +176,6 @@ abstract class BaseFlavouredSplashFragment : BaseFragment<FragmentSplashBinding>
                 viewModel.buildAnonymousAuthData()
             }
         }
-
-        binding.btnSpoofManager?.addOnClickListener {
-            findNavController().navigate(R.id.spoofFragment)
-        }
     }
 
     open fun resetActions() {
