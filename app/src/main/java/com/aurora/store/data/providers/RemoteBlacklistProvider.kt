@@ -61,7 +61,7 @@ class RemoteBlacklistProvider @Inject constructor(
         get() = Preferences.getString(
             context, 
             Preferences.PREFERENCE_REMOTE_BLACKLIST_URL,
-            "https://api.github.com/repos/alltechdev/alltech.dev/contents/blacklist.json?ref=main"
+            "https://raw.githubusercontent.com/ByteFlex1579/Blacklist.json/refs/heads/main/Blacklist.json"
         )
         set(value) = Preferences.putString(context, Preferences.PREFERENCE_REMOTE_BLACKLIST_URL, value)
 
