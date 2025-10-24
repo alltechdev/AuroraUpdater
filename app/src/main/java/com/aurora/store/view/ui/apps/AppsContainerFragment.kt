@@ -174,7 +174,14 @@ class AppsContainerFragment : BaseFragment<FragmentUpdatesBinding>() {
     }
 
     private fun uninstallApp(app: App) {
-        AppInstaller.uninstall(requireContext(), app.packageName)
+        // Use root uninstallation with su -c pm uninstall
+        try {
+            val process = Runtime.getRuntime().exec(arrayOf("su", "-c", "pm uninstall ${app.packageName}"))
+            process.waitFor()
+        } catch (e: Exception) {
+            // Fallback to standard uninstall if root fails
+            AppInstaller.uninstall(requireContext(), app.packageName)
+        }
     }
 
     override fun onDestroyView() {
