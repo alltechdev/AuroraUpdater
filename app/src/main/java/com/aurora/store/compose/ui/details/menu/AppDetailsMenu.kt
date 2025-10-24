@@ -92,7 +92,6 @@ private fun AppDetailsMenuPreview(@PreviewParameter(AppPreviewProvider::class) a
         actions = {
             AppDetailsMenu(
                 isInstalled = app.isInstalled,
-                isFavorite = true,
                 isExpanded = true
             )
         }
