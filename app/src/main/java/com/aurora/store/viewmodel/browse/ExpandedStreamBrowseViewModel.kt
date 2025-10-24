@@ -33,7 +33,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ExpandedStreamBrowseViewModel @Inject constructor(
-    private val streamHelper: ExpandedBrowseHelper
+    private val streamHelper: ExpandedBrowseHelper,
+    private val whitelistProvider: com.aurora.store.data.providers.WhitelistProvider
 ) : ViewModel() {
 
     private val TAG = ExpandedStreamBrowseViewModel::class.java.simpleName

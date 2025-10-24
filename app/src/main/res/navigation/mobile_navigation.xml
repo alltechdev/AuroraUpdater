@@ -45,7 +45,7 @@
         android:id="@+id/appsContainerFragment"
         android:name="com.aurora.store.view.ui.apps.AppsContainerFragment"
         android:label="@string/title_apps"
-        tools:layout="@layout/fragment_apps_games" />
+        tools:layout="@layout/fragment_updates" />
     <fragment
         android:id="@+id/gamesContainerFragment"
         android:name="com.aurora.store.view.ui.games.GamesContainerFragment"

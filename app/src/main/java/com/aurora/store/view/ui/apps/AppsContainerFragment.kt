@@ -21,54 +21,46 @@ package com.aurora.store.view.ui.apps
 
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updateLayoutParams
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.aurora.extensions.navigate
+import com.aurora.extensions.requiresObbDir
+import com.aurora.gplayapi.data.models.App
+import com.aurora.store.AuroraApp
 import com.aurora.store.MobileNavigationDirections
 import com.aurora.store.R
-import com.aurora.store.compose.navigation.Screen
-import com.aurora.store.databinding.FragmentAppsGamesBinding
-import com.aurora.store.util.Preferences
+import com.aurora.store.data.event.BusEvent
+import com.aurora.store.data.model.MinimalApp
+import com.aurora.store.data.model.PermissionType
+import com.aurora.store.data.providers.PermissionProvider.Companion.isGranted
+import com.aurora.store.data.room.download.Download
+import com.aurora.store.data.room.update.Update
+import com.aurora.store.databinding.FragmentUpdatesBinding
+import com.aurora.store.view.epoxy.views.app.AppUpdateViewModel_
+import com.aurora.store.view.epoxy.views.app.NoAppViewModel_
+import com.aurora.store.view.epoxy.views.shimmer.AppListViewShimmerModel_
 import com.aurora.store.view.ui.commons.BaseFragment
-import com.aurora.store.view.ui.commons.CategoryFragment
-import com.aurora.store.view.ui.commons.ForYouFragment
-import com.aurora.store.view.ui.commons.TopChartContainerFragment
-import com.aurora.store.viewmodel.apps.AppsContainerViewModel
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
+import com.aurora.store.viewmodel.apps.WhitelistAppsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class AppsContainerFragment : BaseFragment<FragmentAppsGamesBinding>() {
+class AppsContainerFragment : BaseFragment<FragmentUpdatesBinding>() {
 
-    private val viewModel: AppsContainerViewModel by viewModels()
+    private val viewModel: WhitelistAppsViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Adjust FAB margins for edgeToEdge display
-        ViewCompat.setOnApplyWindowInsetsListener(binding.searchFab) { _, windowInsets ->
-            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.navigationBars())
-            binding.searchFab.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                bottomMargin = insets.bottom + resources.getDimensionPixelSize(R.dimen.margin_large)
-            }
-            WindowInsetsCompat.CONSUMED
-        }
+        // Disable swipe refresh - apps list doesn't need manual refresh
+        binding.swipeRefreshLayout.isEnabled = false
 
         // Toolbar
         binding.toolbar.apply {
             title = getString(R.string.title_apps)
             setOnMenuItemClickListener {
                 when (it.itemId) {
-
                     R.id.menu_more -> {
                         findNavController().navigate(
                             MobileNavigationDirections.actionGlobalMoreDialogFragment()
@@ -79,71 +71,91 @@ class AppsContainerFragment : BaseFragment<FragmentAppsGamesBinding>() {
             }
         }
 
-        // ViewPager
-        val isForYouEnabled = Preferences.getBoolean(
-            requireContext(),
-            Preferences.PREFERENCE_FOR_YOU
-        )
-
-        binding.pager.adapter = ViewPagerAdapter(
-            childFragmentManager,
-            viewLifecycleOwner.lifecycle,
-            !viewModel.authProvider.isAnonymous,
-            isForYouEnabled
-        )
-
-        binding.pager.isUserInputEnabled =
-            false //Disable viewpager scroll to avoid scroll conflicts
-
-        val tabTitles: MutableList<String> = mutableListOf<String>().apply {
-            if (isForYouEnabled) {
-                add(getString(R.string.tab_for_you))
+        // Observe whitelist apps combined with download status
+        viewLifecycleOwner.lifecycleScope.launch {
+            combine(
+                viewModel.apps,
+                viewModel.downloadsList,
+                viewModel.isLoading
+            ) { apps, downloads, loading ->
+                Triple(apps, downloads, loading)
+            }.collect { (apps, downloads, loading) ->
+                updateController(apps, downloads, loading)
             }
-
-            add(getString(R.string.tab_top_charts))
-            add(getString(R.string.tab_categories))
         }
 
-        TabLayoutMediator(
-            binding.tabLayout,
-            binding.pager,
-            true
-        ) { tab: TabLayout.Tab, position: Int ->
-            tab.text = tabTitles[position]
-        }.attach()
-
-        binding.searchFab.setOnClickListener {
-            requireContext().navigate(Screen.Search)
+        // Listen for whitelist updates and refresh
+        viewLifecycleOwner.lifecycleScope.launch {
+            AuroraApp.events.busEvent.collect { event ->
+                if (event is BusEvent.WhitelistUpdated) {
+                    viewModel.fetchWhitelistApps()
+                }
+            }
         }
+
+        // Initial fetch
+        viewModel.fetchWhitelistApps()
+    }
+
+    private fun updateController(apps: List<App>?, downloads: List<Download>, loading: Boolean) {
+        binding.recycler.withModels {
+            setFilterDuplicates(true)
+            if (loading || apps == null) {
+                // Show loading shimmer
+                for (i in 1..10) {
+                    add(
+                        AppListViewShimmerModel_()
+                            .id(i)
+                    )
+                }
+            } else if (apps.isEmpty()) {
+                // Show empty state
+                add(
+                    NoAppViewModel_()
+                        .id("no_apps")
+                        .icon(R.drawable.ic_apps)
+                        .message(R.string.no_apps_available)
+                )
+            } else {
+                // Display whitelisted apps with install buttons
+                apps.forEach { app ->
+                    val download = downloads.find { it.packageName == app.packageName }
+
+                    // Convert App to Update for display
+                    val update = Update.fromApp(requireContext(), app)
+
+                    add(
+                        AppUpdateViewModel_()
+                            .id(app.packageName)
+                            .update(update)
+                            .download(download)
+                            .positiveAction { _ -> installApp(app) }
+                            .negativeAction { _ -> cancelApp(app) }
+                    )
+                }
+            }
+        }
+    }
+
+    private fun installApp(app: App) {
+        if (app.fileList.requiresObbDir()) {
+            if (isGranted(requireContext(), PermissionType.STORAGE_MANAGER)) {
+                viewModel.download(app)
+            } else {
+                permissionProvider.request(PermissionType.STORAGE_MANAGER) {
+                    if (it) viewModel.download(app)
+                }
+            }
+        } else {
+            viewModel.download(app)
+        }
+    }
+
+    private fun cancelApp(app: App) {
+        viewModel.cancelDownload(app.packageName)
     }
 
     override fun onDestroyView() {
-        binding.pager.adapter = null
         super.onDestroyView()
-    }
-
-    internal class ViewPagerAdapter(
-        fragment: FragmentManager,
-        lifecycle: Lifecycle,
-        private val isGoogleAccount: Boolean,
-        private val isForYouEnabled: Boolean
-    ) :
-        FragmentStateAdapter(fragment, lifecycle) {
-
-        private val tabFragments: MutableList<Fragment> = mutableListOf<Fragment>().apply {
-            if (isForYouEnabled) {
-                add(ForYouFragment.newInstance(0))
-            }
-            add(TopChartContainerFragment.newInstance(0))
-            add(CategoryFragment.newInstance(0))
-        }
-
-        override fun createFragment(position: Int): Fragment {
-            return tabFragments[position]
-        }
-
-        override fun getItemCount(): Int {
-            return tabFragments.size
-        }
     }
 }

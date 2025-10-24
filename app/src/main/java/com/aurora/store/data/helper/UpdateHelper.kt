@@ -41,7 +41,8 @@ import javax.inject.Inject
  */
 class UpdateHelper @Inject constructor(
     private val updateDao: UpdateDao,
-    @ApplicationContext private val context: Context
+    @ApplicationContext private val context: Context,
+    private val whitelistProvider: com.aurora.store.data.providers.WhitelistProvider
 ) {
 
     companion object {
@@ -88,7 +89,15 @@ class UpdateHelper @Inject constructor(
         get() = Preferences.getBoolean(context, Preferences.PREFERENCE_UPDATES_EXTENDED)
 
     val updates = updateDao.updates()
-        .map { list -> if (!isExtendedUpdateEnabled) list.filter { it.hasValidCert } else list }
+        .map { list ->
+            list.filter { update ->
+                // Filter by whitelist first - ONLY show whitelisted apps
+                val isWhitelisted = whitelistProvider.isWhitelisted(update.packageName)
+                // Then filter by cert if extended updates are disabled
+                val hasValidCert = if (!isExtendedUpdateEnabled) update.hasValidCert else true
+                isWhitelisted && hasValidCert
+            }
+        }
         .stateIn(AuroraApp.scope, SharingStarted.WhileSubscribed(), null)
 
     val isCheckingUpdates = WorkManager.getInstance(context)
