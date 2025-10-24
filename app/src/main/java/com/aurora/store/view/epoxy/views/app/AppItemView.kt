@@ -43,28 +43,27 @@ import com.aurora.extensions.px
 import com.aurora.store.R
 import com.aurora.store.data.model.DownloadStatus
 import com.aurora.store.data.room.download.Download
-import com.aurora.store.data.room.update.Update
-import com.aurora.store.databinding.ViewAppUpdateBinding
+import com.aurora.store.databinding.ViewAppItemBinding
 import com.aurora.store.util.CommonUtil
 import com.aurora.store.view.epoxy.views.BaseModel
 import com.aurora.store.view.epoxy.views.BaseView
+import com.aurora.gplayapi.data.models.App
 
 @ModelView(
     autoLayout = ModelView.Size.MATCH_WIDTH_WRAP_HEIGHT,
     baseModelClass = BaseModel::class
 )
-class AppUpdateView @JvmOverloads constructor(
+class AppItemView @JvmOverloads constructor(
     context: Context?,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : BaseView<ViewAppUpdateBinding>(context, attrs, defStyleAttr) {
+) : BaseView<ViewAppItemBinding>(context, attrs, defStyleAttr) {
     private var iconDrawable: Drawable? = null
     private val cornersTransformation = RoundedCornersTransformation(8.px.toFloat())
 
     @ModelProp
-    fun update(update: Update) {
-        /*Inflate App details*/
-        with(update) {
+    fun app(app: App) {
+        with(app) {
             binding.txtLine1.text = displayName
             binding.imgIcon.load(iconURL) {
                 placeholder(R.drawable.bg_placeholder)
@@ -121,7 +120,21 @@ class AppUpdateView @JvmOverloads constructor(
                     animateImageView(scaleFactor = 1f)
                 }
             }
+        } else {
+            // Set button text to "Install" when no download is in progress
+            binding.btnAction.updateState(DownloadStatus.UNAVAILABLE, false)
         }
+    }
+
+    @ModelProp
+    fun isInstalled(isInstalled: Boolean) {
+        // Update button text based on installation status
+        val buttonText = if (isInstalled) {
+            context.getString(R.string.action_uninstall)
+        } else {
+            context.getString(R.string.action_install)
+        }
+        binding.btnAction.setButtonText(buttonText)
     }
 
     @CallbackProp
@@ -139,11 +152,6 @@ class AppUpdateView @JvmOverloads constructor(
         binding.btnAction.addNegativeOnClickListener(onClickListener)
     }
 
-    @ModelProp
-    fun buttonText(text: String) {
-        binding.btnAction.setButtonText(text)
-    }
-
     @CallbackProp
     fun longClick(onClickListener: OnLongClickListener?) {
         binding.layoutContent.setOnLongClickListener(onClickListener)
@@ -157,8 +165,8 @@ class AppUpdateView @JvmOverloads constructor(
             headerIndicator.removeCallbacks {}
             progressDownload.invisible()
             btnAction.apply {
-                removeCallbacks { }
-                updateState(DownloadStatus.UNAVAILABLE)
+                // Reset to default state
+                updateState(DownloadStatus.UNAVAILABLE, false)
             }
         }
     }

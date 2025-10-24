@@ -25,11 +25,11 @@ import android.widget.RelativeLayout
 import com.aurora.extensions.runOnUiThread
 import com.aurora.store.R
 import com.aurora.store.data.model.DownloadStatus
-import com.aurora.store.databinding.ViewUpdateButtonBinding
+import com.aurora.store.databinding.ViewAppActionButtonBinding
 
-class UpdateButton : RelativeLayout {
+class AppActionButton : RelativeLayout {
 
-    private lateinit var binding: ViewUpdateButtonBinding
+    private lateinit var binding: ViewAppActionButtonBinding
 
     constructor(context: Context) : super(context) {
         init(context)
@@ -48,11 +48,11 @@ class UpdateButton : RelativeLayout {
     }
 
     private fun init(context: Context) {
-        val view = inflate(context, R.layout.view_update_button, this)
-        binding = ViewUpdateButtonBinding.bind(view)
+        val view = inflate(context, R.layout.view_app_action_button, this)
+        binding = ViewAppActionButtonBinding.bind(view)
     }
 
-    fun updateState(downloadStatus: DownloadStatus) {
+    fun updateState(downloadStatus: DownloadStatus, isInstalled: Boolean = false) {
         val displayChild = when (downloadStatus) {
             DownloadStatus.QUEUED,
             DownloadStatus.DOWNLOADING,
@@ -60,6 +60,15 @@ class UpdateButton : RelativeLayout {
 
             else -> 0
         }
+
+        // Update button text based on installation status
+        val buttonText = if (isInstalled) {
+            context.getString(R.string.action_uninstall)
+        } else {
+            context.getString(R.string.action_install)
+        }
+
+        binding.btnPositive.text = buttonText
 
         if (binding.viewFlipper.displayedChild != displayChild) {
             runOnUiThread {

@@ -166,7 +166,7 @@
             app:uri="play.google.com/store/search?q={query}" />
         <action
             android:id="@+id/action_splashFragment_to_updatesFragment"
-            app:destination="@id/updatesFragment"
+            app:destination="@id/appsContainerFragment"
             app:launchSingleTop="true"
             app:popUpTo="@id/mobile_navigation"
             app:popUpToInclusive="true" />
