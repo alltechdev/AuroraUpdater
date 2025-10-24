@@ -23,7 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.aurora.store.R
 
 /**
- * Menu for the blacklist screen
+ * Menu for the whitelist screen
  * @param modifier The modifier to be applied to the composable
  * @param onMenuItemClicked Callback when a menu item has been clicked
  * @see MenuItem

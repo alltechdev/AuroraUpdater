@@ -98,10 +98,10 @@ class UpdatesFragment : BaseFragment<FragmentUpdatesBinding>() {
             viewModel.fetchUpdates()
         }
 
-        // Listen for blacklist updates and refresh automatically
+        // Listen for whitelist updates and refresh automatically
         viewLifecycleOwner.lifecycleScope.launch {
             AuroraApp.events.busEvent.collect { event ->
-                if (event is BusEvent.BlacklistUpdated) {
+                if (event is BusEvent.WhitelistUpdated) {
                     viewModel.fetchUpdates()
                 }
             }

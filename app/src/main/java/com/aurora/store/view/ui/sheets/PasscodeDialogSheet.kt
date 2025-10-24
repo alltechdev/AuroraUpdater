@@ -189,9 +189,9 @@ class PasscodeDialogSheet : BottomSheetDialogFragment() {
 
         when (mode) {
             MODE_VERIFY -> {
-                // Direct access to blacklist without password
+                // Direct access to whitelist without password
                 dismiss()
-                findNavController().navigate(Screen.Blacklist)
+                findNavController().navigate(Screen.Whitelist)
             }
             MODE_SET -> {
                 // First entry, ask for confirmation
@@ -203,7 +203,7 @@ class PasscodeDialogSheet : BottomSheetDialogFragment() {
                 val tempPassword = arguments?.getString(ARG_TEMP_PASSCODE) ?: ""
                 if (password == tempPassword) {
                     // Passwords match, save it
-                    PasscodeUtil.setBlacklistPassword(requireContext(), password)
+                    PasscodeUtil.setWhitelistPassword(requireContext(), password)
                     dismiss()
                     Toast.makeText(
                         requireContext(),
@@ -227,13 +227,13 @@ class PasscodeDialogSheet : BottomSheetDialogFragment() {
                 }
             }
             MODE_REMOVE -> {
-                if (PasscodeUtil.verifyBlacklistPassword(requireContext(), password)) {
+                if (PasscodeUtil.verifyWhitelistPassword(requireContext(), password)) {
                     // Password correct, show confirmation dialog
                     MaterialAlertDialogBuilder(requireContext())
                         .setTitle("Remove Password")
                         .setMessage("Are you sure you want to remove the password?")
                         .setPositiveButton("Remove") { _, _ ->
-                            PasscodeUtil.removeBlacklistPassword(requireContext())
+                            PasscodeUtil.removeWhitelistPassword(requireContext())
                             dismiss() // Dismiss after the action is confirmed
                             Toast.makeText(
                                 requireContext(),
@@ -260,7 +260,7 @@ class PasscodeDialogSheet : BottomSheetDialogFragment() {
                 }
             }
             MODE_VERIFY_FOR_CHANGE -> {
-                if (PasscodeUtil.verifyBlacklistPassword(requireContext(), password)) {
+                if (PasscodeUtil.verifyWhitelistPassword(requireContext(), password)) {
                     // Password correct, proceed to set new password
                     dismiss()
                     val setPasswordDialog = newInstanceForSet()

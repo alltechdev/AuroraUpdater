@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-package com.aurora.store.compose.ui.blacklist.menu
+package com.aurora.store.compose.ui.whitelist.menu
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.DropdownMenu
@@ -23,13 +23,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.aurora.store.R
 
 /**
- * Menu for the blacklist screen
+ * Menu for the whitelist screen
  * @param modifier The modifier to be applied to the composable
  * @param onMenuItemClicked Callback when a menu item has been clicked
  * @see MenuItem
  */
 @Composable
-fun BlacklistMenu(
+fun WhitelistMenu(
     modifier: Modifier = Modifier,
     isExpanded: Boolean = false,
     onMenuItemClicked: (menuItem: MenuItem) -> Unit = {}
@@ -70,6 +70,6 @@ fun BlacklistMenu(
 
 @Preview(showBackground = true)
 @Composable
-private fun BlacklistMenuPreview() {
-    BlacklistMenu(isExpanded = true)
+private fun WhitelistMenuPreview() {
+    WhitelistMenu(isExpanded = true)
 }

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-package com.aurora.store.compose.ui.blacklist
+package com.aurora.store.compose.ui.whitelist
 
 import android.content.pm.PackageInfo
 import android.net.Uri
@@ -45,35 +45,35 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.aurora.Constants
 import com.aurora.extensions.toast
 import com.aurora.store.R
-import com.aurora.store.compose.composables.BlackListComposable
-import com.aurora.store.compose.ui.blacklist.menu.BlacklistMenu
-import com.aurora.store.compose.ui.blacklist.menu.MenuItem
+import com.aurora.store.compose.composables.WhiteListComposable
+import com.aurora.store.compose.ui.whitelist.menu.WhitelistMenu
+import com.aurora.store.compose.ui.whitelist.menu.MenuItem
 import com.aurora.store.util.PackageUtil
-import com.aurora.store.viewmodel.blacklist.BlacklistViewModel
+import com.aurora.store.viewmodel.whitelist.WhitelistViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.Calendar
 
 @Composable
-fun BlacklistScreen(onNavigateUp: () -> Unit, viewModel: BlacklistViewModel = hiltViewModel()) {
+fun WhitelistScreen(onNavigateUp: () -> Unit, viewModel: WhitelistViewModel = hiltViewModel()) {
     val context = LocalContext.current
     val packages by viewModel.filteredPackages.collectAsStateWithLifecycle()
 
     ScreenContent(
         packages = packages,
         onNavigateUp = onNavigateUp,
-        isPackageBlacklisted = { pkgName -> pkgName in viewModel.blacklist },
+        isPackageWhitelisted = { pkgName -> pkgName in viewModel.whitelist },
         isPackageFiltered = { pkgInfo -> viewModel.isFiltered(pkgInfo) },
-        onBlacklistImport = { uri ->
-            viewModel.importBlacklist(context, uri)
+        onWhitelistImport = { uri ->
+            viewModel.importWhitelist(context, uri)
             context.toast(R.string.toast_black_import_success)
         },
-        onBlacklistExport = { uri ->
-            viewModel.exportBlacklist(context, uri)
+        onWhitelistExport = { uri ->
+            viewModel.exportWhitelist(context, uri)
             context.toast(R.string.toast_black_export_success)
         },
-        onBlacklist = { packageName -> viewModel.blacklist(packageName) },
-        onBlacklistAll = { viewModel.blacklistAll() },
+        onWhitelist = { packageName -> viewModel.whitelist(packageName) },
+        onWhitelistAll = { viewModel.whitelistAll() },
         onWhitelist = { packageName -> viewModel.whitelist(packageName) },
         onWhitelistAll = { viewModel.whitelistAll() },
         onSearch = { query -> viewModel.search(query) }
@@ -84,12 +84,12 @@ fun BlacklistScreen(onNavigateUp: () -> Unit, viewModel: BlacklistViewModel = hi
 private fun ScreenContent(
     packages: List<PackageInfo>? = null,
     onNavigateUp: () -> Unit = {},
-    isPackageBlacklisted: (packageName: String) -> Boolean = { false },
+    isPackageWhitelisted: (packageName: String) -> Boolean = { false },
     isPackageFiltered: (packageInfo: PackageInfo) -> Boolean = { false },
-    onBlacklistImport: (uri: Uri) -> Unit = {},
-    onBlacklistExport: (uri: Uri) -> Unit = {},
-    onBlacklist: (packageName: String) -> Unit = {},
-    onBlacklistAll: () -> Unit = {},
+    onWhitelistImport: (uri: Uri) -> Unit = {},
+    onWhitelistExport: (uri: Uri) -> Unit = {},
+    onWhitelist: (packageName: String) -> Unit = {},
+    onWhitelistAll: () -> Unit = {},
     onWhitelist: (packageName: String) -> Unit = {},
     onWhitelistAll: () -> Unit = {},
     onSearch: (query: String) -> Unit = {}
@@ -104,7 +104,7 @@ private fun ScreenContent(
         contract = ActivityResultContracts.OpenDocument(),
         onResult = {
             if (it != null) {
-                onBlacklistImport(it)
+                onWhitelistImport(it)
             } else {
                 context.toast(R.string.toast_black_import_failed)
             }
@@ -114,7 +114,7 @@ private fun ScreenContent(
         contract = ActivityResultContracts.CreateDocument(Constants.JSON_MIME_TYPE),
         onResult = {
             if (it != null) {
-                onBlacklistExport(it)
+                onWhitelistExport(it)
             } else {
                 context.toast(R.string.toast_black_export_failed)
             }
@@ -128,9 +128,9 @@ private fun ScreenContent(
 
     @Composable
     fun SetupMenu() {
-        BlacklistMenu { menuItem ->
+        WhitelistMenu { menuItem ->
             when (menuItem) {
-                MenuItem.SELECT_ALL -> onBlacklistAll()
+                MenuItem.SELECT_ALL -> onWhitelistAll()
                 MenuItem.REMOVE_ALL -> onWhitelistAll()
                 MenuItem.IMPORT -> {
                     docImportLauncher.launch(arrayOf(Constants.JSON_MIME_TYPE))
@@ -213,21 +213,21 @@ private fun ScreenContent(
             verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.margin_xxsmall))
         ) {
             items(items = packages ?: emptyList(), key = { p -> p.packageName.hashCode() }) { pkg ->
-                val isBlacklisted = isPackageBlacklisted(pkg.packageName)
+                val isWhitelisted = isPackageWhitelisted(pkg.packageName)
                 val isFiltered = isPackageFiltered(pkg)
-                BlackListComposable(
+                WhiteListComposable(
                     icon = PackageUtil.getIconForPackage(context, pkg.packageName)!!,
                     displayName = pkg.applicationInfo!!.loadLabel(context.packageManager).toString(),
                     packageName = pkg.packageName,
                     versionName = pkg.versionName!!,
                     versionCode = PackageInfoCompat.getLongVersionCode(pkg),
-                    isChecked = isBlacklisted || isFiltered,
+                    isChecked = isWhitelisted || isFiltered,
                     isEnabled = !isFiltered,
                     onClick = {
-                        if (isBlacklisted) {
+                        if (isWhitelisted) {
                             onWhitelist(pkg.packageName)
                         } else {
-                            onBlacklist(pkg.packageName)
+                            onWhitelist(pkg.packageName)
                         }
                     }
                 )
@@ -238,6 +238,6 @@ private fun ScreenContent(
 
 @Preview
 @Composable
-private fun BlacklistScreenPreview() {
+private fun WhitelistScreenPreview() {
     ScreenContent()
 }

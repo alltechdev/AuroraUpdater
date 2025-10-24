@@ -24,28 +24,28 @@ import java.security.MessageDigest
 
 object PasscodeUtil {
     
-    fun hasBlacklistPassword(context: Context): Boolean {
-        return Preferences.getString(context, Preferences.PREFERENCE_BLACKLIST_PASSWORD).isNotEmpty()
+    fun hasWhitelistPassword(context: Context): Boolean {
+        return Preferences.getString(context, Preferences.PREFERENCE_WHITELIST_PASSWORD).isNotEmpty()
     }
     
-    fun setBlacklistPassword(context: Context, password: String) {
+    fun setWhitelistPassword(context: Context, password: String) {
         if (isValidPassword(password)) {
             val hashedPassword = hashPassword(password)
-            Preferences.putString(context, Preferences.PREFERENCE_BLACKLIST_PASSWORD, hashedPassword)
+            Preferences.putString(context, Preferences.PREFERENCE_WHITELIST_PASSWORD, hashedPassword)
         }
     }
     
-    fun verifyBlacklistPassword(context: Context, password: String): Boolean {
+    fun verifyWhitelistPassword(context: Context, password: String): Boolean {
         if (!isValidPassword(password)) return false
         
-        val storedPassword = Preferences.getString(context, Preferences.PREFERENCE_BLACKLIST_PASSWORD)
+        val storedPassword = Preferences.getString(context, Preferences.PREFERENCE_WHITELIST_PASSWORD)
         if (storedPassword.isEmpty()) return true // No password set
         
         return hashPassword(password) == storedPassword
     }
     
-    fun removeBlacklistPassword(context: Context) {
-        Preferences.remove(context, Preferences.PREFERENCE_BLACKLIST_PASSWORD)
+    fun removeWhitelistPassword(context: Context) {
+        Preferences.remove(context, Preferences.PREFERENCE_WHITELIST_PASSWORD)
     }
     
     fun isValidPassword(password: String): Boolean {

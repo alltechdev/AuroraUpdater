@@ -31,26 +31,26 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class BlacklistProvider @Inject constructor(
+class WhitelistProvider @Inject constructor(
     private val json: Json,
     @ApplicationContext val context: Context,
 ) {
 
-    private val PREFERENCE_BLACKLIST = "PREFERENCE_BLACKLIST"
-    private val TAG = BlacklistProvider::class.java.simpleName
+    private val PREFERENCE_WHITELIST = "PREFERENCE_WHITELIST"
+    private val TAG = WhitelistProvider::class.java.simpleName
 
-    var blacklist: MutableSet<String>
+    var whitelist: MutableSet<String>
         set(value) {
-            Log.d(TAG, "Setting blacklist with ${value.size} entries: ${value.take(5)}")
+            Log.d(TAG, "Setting whitelist with ${value.size} entries: ${value.take(5)}")
             Preferences.putString(
                 context,
-                PREFERENCE_BLACKLIST,
+                PREFERENCE_WHITELIST,
                 json.encodeToString(value)
             )
         }
         get() {
             return try {
-                val rawBlacklist = if (isNAndAbove) {
+                val rawWhitelist = if (isNAndAbove) {
                     val refMethod = Context::class.java.getDeclaredMethod(
                         "getSharedPreferences",
                         File::class.java,
@@ -58,44 +58,44 @@ class BlacklistProvider @Inject constructor(
                     )
                     val refSharedPreferences = refMethod.invoke(
                         context,
-                        File("/product/etc/com.aurora.store/blacklist.xml"),
+                        File("/product/etc/com.aurora.store/whitelist.xml"),
                         Context.MODE_PRIVATE
                     ) as SharedPreferences
 
                     Preferences.getPrefs(context)
                         .getString(
-                            PREFERENCE_BLACKLIST,
-                            refSharedPreferences.getString(PREFERENCE_BLACKLIST, "")
+                            PREFERENCE_WHITELIST,
+                            refSharedPreferences.getString(PREFERENCE_WHITELIST, "")
                         )
                 } else {
-                    Preferences.getString(context, PREFERENCE_BLACKLIST)
+                    Preferences.getString(context, PREFERENCE_WHITELIST)
                 }
-                if (rawBlacklist!!.isEmpty()) {
-                    Log.d(TAG, "No blacklist found, returning empty set")
+                if (rawWhitelist!!.isEmpty()) {
+                    Log.d(TAG, "No whitelist found, returning empty set")
                     mutableSetOf()
                 } else {
-                    val blacklistSet = json.decodeFromString<MutableSet<String>>(rawBlacklist)
-                    Log.d(TAG, "Retrieved blacklist with ${blacklistSet.size} entries: ${blacklistSet.take(5)}")
-                    blacklistSet
+                    val whitelistSet = json.decodeFromString<MutableSet<String>>(rawWhitelist)
+                    Log.d(TAG, "Retrieved whitelist with ${whitelistSet.size} entries: ${whitelistSet.take(5)}")
+                    whitelistSet
                 }
             } catch (e: Exception) {
                 mutableSetOf()
             }
         }
 
-    fun isBlacklisted(packageName: String): Boolean {
-        return blacklist.contains(packageName)
+    fun isWhitelisted(packageName: String): Boolean {
+        return whitelist.contains(packageName)
     }
 
 
-    fun blacklist(packageName: String) {
-        blacklist = blacklist.apply {
+    fun addToWhitelist(packageName: String) {
+        whitelist = whitelist.apply {
             add(packageName)
         }
     }
 
-    fun whitelist(packageName: String) {
-        blacklist = blacklist.apply {
+    fun removeFromWhitelist(packageName: String) {
+        whitelist = whitelist.apply {
             remove(packageName)
         }
     }

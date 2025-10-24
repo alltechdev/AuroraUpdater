@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-package com.aurora.store.viewmodel.blacklist
+package com.aurora.store.viewmodel.whitelist
 
 import android.content.Context
 import android.content.pm.PackageInfo
@@ -15,7 +15,7 @@ import androidx.lifecycle.viewModelScope
 import com.aurora.store.AuroraApp
 import com.aurora.store.data.event.BusEvent
 import com.aurora.store.data.helper.UpdateHelper
-import com.aurora.store.data.providers.BlacklistProvider
+import com.aurora.store.data.providers.WhitelistProvider
 import com.aurora.store.util.CertUtil
 import com.aurora.store.util.PackageUtil
 import com.aurora.store.util.Preferences
@@ -29,14 +29,14 @@ import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
 @HiltViewModel
-class BlacklistViewModel @Inject constructor(
+class WhitelistViewModel @Inject constructor(
     private val json: Json,
     private val updateHelper: UpdateHelper,
-    private val blacklistProvider: BlacklistProvider,
+    private val whitelistProvider: WhitelistProvider,
     @ApplicationContext private val context: Context
 ) : ViewModel() {
 
-    private val TAG = BlacklistViewModel::class.java.simpleName
+    private val TAG = WhitelistViewModel::class.java.simpleName
 
     private val isAuroraOnlyFilterEnabled =
         Preferences.getBoolean(context, Preferences.PREFERENCE_FILTER_AURORA_ONLY, false)
@@ -49,10 +49,10 @@ class BlacklistViewModel @Inject constructor(
     private val _filteredPackages = MutableStateFlow<List<PackageInfo>?>(null)
     val filteredPackages = _filteredPackages.asStateFlow()
 
-    val blacklist = mutableStateListOf<String>()
+    val whitelist = mutableStateListOf<String>()
 
     init {
-        blacklist.addAll(blacklistProvider.blacklist)
+        whitelist.addAll(whitelistProvider.whitelist)
         fetchApps()
     }
 
@@ -88,32 +88,32 @@ class BlacklistViewModel @Inject constructor(
         }
     }
 
-    fun blacklist(packageName: String) {
-        blacklist.add(packageName)
-        blacklistProvider.blacklist(packageName)
-        AuroraApp.Companion.events.send(BusEvent.Blacklisted(packageName))
+    fun whitelist(packageName: String) {
+        whitelist.add(packageName)
+        whitelistProvider.whitelist(packageName)
+        AuroraApp.Companion.events.send(BusEvent.Whitelisted(packageName))
     }
 
-    fun blacklistAll() {
-        blacklistProvider.blacklist = _packages.value!!.map { it.packageName }.toMutableSet()
-        blacklist.apply {
+    fun whitelistAll() {
+        whitelistProvider.whitelist = _packages.value!!.map { it.packageName }.toMutableSet()
+        whitelist.apply {
             clear()
-            addAll(blacklistProvider.blacklist)
+            addAll(whitelistProvider.whitelist)
         }
         viewModelScope.launch { updateHelper.deleteAllUpdates() }
     }
 
     fun whitelist(packageName: String) {
-        blacklist.remove(packageName)
-        blacklistProvider.whitelist(packageName)
+        whitelist.remove(packageName)
+        whitelistProvider.whitelist(packageName)
     }
 
     fun whitelistAll() {
-        blacklist.clear()
-        blacklistProvider.blacklist = mutableSetOf()
+        whitelist.clear()
+        whitelistProvider.whitelist = mutableSetOf()
     }
 
-    fun importBlacklist(context: Context, uri: Uri) {
+    fun importWhitelist(context: Context, uri: Uri) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 context.contentResolver.openInputStream(uri)?.use {
@@ -123,26 +123,26 @@ class BlacklistViewModel @Inject constructor(
 
                     val validImportedSet = importedSet
                         .filter { pkgName -> _packages.value!!.any { it.packageName == pkgName } }
-                    blacklistProvider.blacklist.addAll(validImportedSet)
-                    blacklist.apply {
+                    whitelistProvider.whitelist.addAll(validImportedSet)
+                    whitelist.apply {
                         clear()
-                        addAll(blacklistProvider.blacklist)
+                        addAll(whitelistProvider.whitelist)
                     }
                 }
             } catch (exception: Exception) {
-                Log.e(TAG, "Failed to import blacklist", exception)
+                Log.e(TAG, "Failed to import whitelist", exception)
             }
         }
     }
 
-    fun exportBlacklist(context: Context, uri: Uri) {
+    fun exportWhitelist(context: Context, uri: Uri) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 context.contentResolver.openOutputStream(uri)?.use {
-                    it.write(json.encodeToString(blacklistProvider.blacklist).encodeToByteArray())
+                    it.write(json.encodeToString(whitelistProvider.whitelist).encodeToByteArray())
                 }
             } catch (exception: Exception) {
-                Log.e(TAG, "Failed to export blacklist", exception)
+                Log.e(TAG, "Failed to export whitelist", exception)
             }
         }
     }

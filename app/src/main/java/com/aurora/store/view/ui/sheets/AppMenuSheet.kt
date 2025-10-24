@@ -62,7 +62,7 @@ class AppMenuSheet : BaseDialogSheet<SheetAppMenuBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val isBlacklisted: Boolean = viewModel.blacklistProvider.isBlacklisted(args.app.packageName)
+        val isWhitelisted: Boolean = viewModel.whitelistProvider.isWhitelisted(args.app.packageName)
 
         with(binding.navigationView) {
             //Show/Hide actions based on installed status
