@@ -102,7 +102,6 @@
     <string name="action_info">"App info"</string>
     <string name="action_update">"Update"</string>
     <string name="action_update_all">"Update all"</string>
-    <string name="action_whitelist">"Whitelist"</string>
     <string name="details_beta">"Beta program"</string>
     <string name="details_beta_subscribed">"You're a beta tester"</string>
     <string name="details_beta_available">"Join beta program?"</string>
@@ -278,7 +277,6 @@
     <string name="title_advanced">"Advanced"</string>
     <string name="title_manual_download">"Manual download"</string>
     <string name="toast_anonymous_restriction">"Not available on anonymous accounts"</string>
-    <string name="toast_apk_whitelisted">"Whitelisted"</string>
     <string name="toast_apk_whitelisted">"Whitelisted"</string>
     <string name="toast_app_unavailable">"App not available for your device"</string>
     <string name="toast_clipboard_copied">"Copied to clipboard"</string>
