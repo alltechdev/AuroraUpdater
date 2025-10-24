@@ -101,8 +101,6 @@
     <string name="account_login_using">... ilə daxil olun</string>
     <string name="account_logout">Aurora-dan çıxın</string>
     <string name="action_back">Geri</string>
-    <string name="action_blacklist">Qara siyahı</string>
-    <string name="action_blacklist_add">Qara siyahıya əlavə et</string>
     <string name="action_cancel">Ləğv et</string>
     <string name="action_clear">Təmizlə</string>
     <string name="action_close">Bağla</string>
@@ -196,7 +194,6 @@
     <string name="title_apps">Tətbiqlər</string>
     <string name="title_apps_games">Tətbiqlərim və oyunlarım</string>
     <string name="title_apps_library">Kitabxanadakı tətbiqlər</string>
-    <string name="title_blacklist_manager">Qara siyahı meneceri</string>
     <string name="title_device">Cihaz</string>
     <string name="title_download_manager">Endirmələr</string>
     <string name="title_download_playstore">Play Market</string>
@@ -210,7 +207,6 @@
     <string name="title_updates">Yenilənmələr</string>
     <string name="title_manual_download">Əl ilə yükləmə</string>
     <string name="toast_anonymous_restriction">Gizli hesablarda mövcud deyil</string>
-    <string name="toast_apk_blacklisted">Qara siyahıya salındı</string>
     <string name="toast_developer_setting_failed">Açmaq üçün cihaz tənzimləmələrindən yaradıcı seçimlərini aktiv edin.</string>
     <string name="toast_spoof_applied">Cihaz hiyləsi tətbiq edildi.</string>
     <string name="toast_purchase_blocked">Tətbiq alışları gizli hesablarda mövcud deyil.</string>

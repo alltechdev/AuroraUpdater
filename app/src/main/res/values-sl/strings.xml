@@ -22,8 +22,6 @@
     <string name="account_anonymous">Anonimno</string>
     <string name="account_logout">Odjavite se iz Aurora</string>
     <string name="action_back">Nazaj</string>
-    <string name="action_blacklist">Črni seznam</string>
-    <string name="action_blacklist_add">Dodaj na črni seznam</string>
     <string name="action_copy_link">Kopiraj povezavo</string>
     <string name="action_disable">Onemogoči</string>
     <string name="action_filter_gsf_dependent_apps">Zahteva GSF</string>
@@ -176,7 +174,6 @@
     <string name="tab_top_grossing">Najboljše dobičkonosne</string>
     <string name="tab_top_paid">Najboljše plačane</string>
     <string name="title_apps_library">Aplikacije v knjižnici</string>
-    <string name="title_blacklist_manager">Upravitelj črnega seznama</string>
     <string name="toast_import_success">Konfiguracija naprave je uvožena</string>
     <string name="toast_import_failed">Ni bilo mogoče uvoziti konfiguracije naprave</string>
     <string name="spoof_property"><xliff:g id="manufacturer">%1$s</xliff:g> • API <xliff:g id="api">%2$s</xliff:g></string>
@@ -195,7 +192,6 @@
     <string name="title_updates">Posodobitve</string>
     <string name="title_advanced">Napredno</string>
     <string name="toast_anonymous_restriction">Ni na voljo za anonimne račune</string>
-    <string name="toast_apk_blacklisted">Na črnem seznamu</string>
     <string name="toast_spoof_applied">Uporabljena je prevara naprave.</string>
     <string name="toast_developer_setting_failed">Vklopite nastavitve razvijalca v nastavitvah naprave, da jih odprete.</string>
     <string name="toast_permission_granted">Dovoljenje izdano</string>

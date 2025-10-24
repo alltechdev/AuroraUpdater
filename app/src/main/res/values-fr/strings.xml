@@ -28,7 +28,6 @@
     <string name="title_about">À propos</string>
     <string name="tab_trending">Tendances</string>
     <string name="title_apps_games">Mes applis et jeux</string>
-    <string name="title_blacklist_manager">Gestionnaire de la liste d’exclusion</string>
     <string name="title_apps_library">Applis dans la logithèque</string>
     <string name="toast_anonymous_restriction">N’est pas proposée pour les comptes anonymes</string>
     <string name="title_settings">Paramètres</string>
@@ -48,7 +47,6 @@
     <string name="toast_developer_setting_failed">Pour les ouvrir, activez les paramètres du développeur dans le paramètres de l’appareil.</string>
     <string name="toast_clipboard_copied">Copié dans le presse-papier</string>
     <string name="toast_apk_whitelisted">Incluses</string>
-    <string name="toast_apk_blacklisted">Exclues</string>
     <string name="toast_spoof_applied">L’usurpation d’appareil a été appliquée.</string>
     <string name="about_xda_summary">Consultez le fil de discussion d’Aurora Store sur XDA où vous trouverez discussions et suggestions.</string>
     <string name="about_bitcoin_eth_summary">Faites un don avec Ethereum (ETH)</string>
@@ -127,8 +125,6 @@
     <string name="action_close">Fermer</string>
     <string name="action_clear">Effacer</string>
     <string name="action_cancel">Annuler</string>
-    <string name="action_blacklist_add">Ajouter à la liste d’exclusion</string>
-    <string name="action_blacklist">Liste d’exclusion</string>
     <string name="action_back">Retour</string>
     <string name="account_logout">Se déconnecter d’Aurora</string>
     <string name="account_login_using">Mode de connexion</string>

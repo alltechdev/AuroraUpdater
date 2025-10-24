@@ -104,8 +104,6 @@
     <string name="title_library">Biblioteka</string>
     <string name="about_paypal_summary">Paaukoti per „PayPal“</string>
     <string name="account_login_using">Prisijungti naudojant</string>
-    <string name="action_blacklist">Juodasis sąrašas</string>
-    <string name="action_blacklist_add">Pridėti į juodąjį sąrašą</string>
     <string name="action_filter_apps_with_ads">Programėlės su reklamomis</string>
     <string name="account_google">„Google“</string>
     <string name="action_filter_gsf_dependent_apps">Priklausomos nuo GSF</string>
@@ -113,7 +111,6 @@
     <string name="details_paid">Mokama</string>
     <string name="download_none">Nėra atsiuntimų</string>
     <string name="installer_service_available">Aurora tarnybos yra prieinamos ir paruoštos įdiegti.</string>
-    <string name="title_blacklist_manager">Juodojo sąrašo tvarkytuvė</string>
     <string name="title_no_network">Nėra interneto</string>
     <string name="toast_rated_success">Įvertinta, gali šiek tiek užtrukti, kol bus rodoma</string>
     <string name="toast_rated_failed">Nepavyko pateikti įvertinimo</string>
@@ -208,7 +205,6 @@
     <string name="pref_install_delete_title">Po įdiegimo ištrinti APK paketus</string>
     <string name="pref_ui_no_for_you_desc">Rodyti pradžios ekrane puslapius „Jums“</string>
     <string name="onboarding_permission_esm">Išorinės saugyklos tvarkytuvė</string>
-    <string name="toast_apk_blacklisted">Pridėta į juodąjį sąrašą</string>
     <string name="toast_apk_whitelisted">Pridėta į baltąjį sąrašą</string>
     <string name="toast_page_unavailable">Naršomas puslapis neprieinamas</string>
     <string name="spoof_property"><xliff:g id="manufacturer">%1$s</xliff:g> • API <xliff:g id="api">%2$s</xliff:g></string>

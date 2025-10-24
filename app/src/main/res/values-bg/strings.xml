@@ -29,8 +29,6 @@
     <string name="account_login_using">Влизане чрез</string>
     <string name="account_logout">Излизане от Aurora</string>
     <string name="action_back">Назад</string>
-    <string name="action_blacklist">Черен списък</string>
-    <string name="action_blacklist_add">Добавяне към черен списък</string>
     <string name="action_cancel">Отказ</string>
     <string name="action_clear">Изчистване</string>
     <string name="action_close">Затваряне</string>
@@ -194,7 +192,6 @@
     <string name="tab_top_grossing">С най-големи приходи</string>
     <string name="tab_top_paid">Най-добре платени</string>
     <string name="title_apps_library">Приложения в библиотеката</string>
-    <string name="title_blacklist_manager">Мениджър на черния списък</string>
     <string name="tab_trending">Тенденция</string>
     <string name="title_installed">Инсталиран</string>
     <string name="title_installer">Инсталатор на приложения</string>
@@ -245,7 +242,6 @@
     <string name="device_miui_extra">По желание можете да изберете Native installer, но тогава не можете да инсталирате пакетни (разделени) APK файлове, така че изборът е ваш.</string>
     <string name="title_no_network">Няма мрежа</string>
     <string name="title_purchase_history">История на покупките</string>
-    <string name="toast_apk_blacklisted">В черния списък</string>
     <string name="toast_apk_whitelisted">В белия списък</string>
     <string name="toast_clipboard_copied">Копирано в клипборда</string>
     <string name="title_manual_download">Ръчно изтегляне</string>

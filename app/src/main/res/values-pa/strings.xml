@@ -17,7 +17,6 @@
     <string name="toast_developer_setting_failed">ਪਹਿਲਾਂ ਡਿਵਾਈਸ ਸੈਟਿੰਗਾਂ ਚੋਂ ਡਿਵੈਲਪਰ ਸੈਟਿੰਗਾਂ ਨੂੰ ਚਾਲੂ ਕਰੋ।</string>
     <string name="toast_clipboard_copied">ਕਲਿਪਬੋਰਡ ਚ ਕਾਪੀ ਹੋ ਗਿਆ ਹੈ</string>
     <string name="toast_apk_whitelisted">ਵਾਈਟ ਲਿਸਟ ਕੀਤੀ ਗਈ</string>
-    <string name="toast_apk_blacklisted">ਬਲੈਕ ਲਿਸਟ ਕੀਤੀ ਗਈ</string>
     <string name="toast_anonymous_restriction">ਇਹ ਅਗਿਆਤ ਖਾਤਾ ਲੌਗ-ਇਨ ਵਿਧੀ ਵਿੱਚ ਉਪਲਬੱਧ ਨਹੀਂ ਹੈ</string>
     <string name="title_manual_download">ਖੁਦ ਡਾਊਨਲੋਡ ਕਰੋ</string>
     <string name="title_updates">ਅੱਪਡੇਟਾਂ</string>
@@ -34,7 +33,6 @@
     <string name="title_download_playstore">ਪਲੇਅ ਸਟੋਰ</string>
     <string name="title_download_manager">ਡਾਊਨਲੋਡਸ</string>
     <string name="title_device">ਡਿਵਾਈਸ</string>
-    <string name="title_blacklist_manager">ਬਲੈਕ ਲਿਸਟ ਮੈਨੇਜਰ</string>
     <string name="title_apps_library">ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਐਪਸ</string>
     <string name="title_apps_games">ਮੇਰੇ ਐਪਸ ਤੇ ਗੇਮਜ਼</string>
     <string name="title_apps">ਐਪਸ</string>
@@ -203,8 +201,6 @@
     <string name="action_close">ਬੰਦ ਕਰੋ</string>
     <string name="action_clear">ਹਟਾਓ</string>
     <string name="action_cancel">ਰੱਦ ਕਰੋ</string>
-    <string name="action_blacklist_add">ਬਲੈਕ ਲਿਸਟ ਵਿੱਚ ਸ਼ਾਮਿਲ ਕਰੋ</string>
-    <string name="action_blacklist">ਬਲੈਕ ਲਿਸਟ</string>
     <string name="action_back">ਪਿੱਛੇ</string>
     <string name="account_logout">ਔਰੋਰਾ ਤੋਂ ਲਾਗ-ਆਊਟ ਕਰੋ</string>
     <string name="account_login_using">ਲਾਗ-ਇਨ ਕਰਨ ਦਾ ਜ਼ਰੀਆ ਚੁਣੋ</string>

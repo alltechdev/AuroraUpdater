@@ -75,8 +75,6 @@
     <string name="action_installing">Instalas</string>
     <string name="action_installations">Instaladoj</string>
     <string name="action_install">Instali</string>
-    <string name="action_blacklist_add">Aldoni al nigra listo</string>
-    <string name="action_blacklist">Nigra listo</string>
     <string name="action_clear">Vakigi</string>
     <string name="details_dev_details">Kontakto kun programisto</string>
     <string name="details_dev_profile">Programista profilo</string>
@@ -145,7 +143,6 @@
     <string name="title_account_manager">Kontoj</string>
     <string name="title_installed">Instalitaj</string>
     <string name="title_settings">Agordoj</string>
-    <string name="toast_apk_blacklisted">Nigrlistigita</string>
     <string name="title_apps">Apoj</string>
     <string name="title_download_manager">Elŝutoj</string>
     <string name="title_library">Biblioteko</string>
@@ -259,7 +256,6 @@
     <string name="notification_updates_available"><xliff:g id="apps_count">%1$d</xliff:g> ĝisdatigoj disponeblaj</string>
     <string name="pref_updates_auto">Apojn aŭtomate ĝisdatigi</string>
     <string name="toast_export_failed">Eksporto de la aparaton agordo fiaskis</string>
-    <string name="title_blacklist_manager">Nigran liston administri</string>
     <string name="spoof_property"><xliff:g id="manufacturer">%1$s</xliff:g> • API <xliff:g id="api">%2$s</xliff:g></string>
     <string name="action_favourite">Marki kiel preferato</string>
     <string name="toast_anonymous_restriction">Maldisponebla per anonimaj kontoj</string>

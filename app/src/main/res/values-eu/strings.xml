@@ -9,7 +9,6 @@
     <string name="toast_developer_setting_failed">Aktibatu programatzaileen doikuntzak gailuaren doikuntzetatik horiek irekitzeko.</string>
     <string name="toast_clipboard_copied">Arbelean kopiatu da</string>
     <string name="toast_apk_whitelisted">Zerrenda zurian</string>
-    <string name="toast_apk_blacklisted">Zerrenda beltzan</string>
     <string name="toast_anonymous_restriction">Ezin da erabili kontu ezezagunekin</string>
     <string name="title_updates">Eguneratzeak</string>
     <string name="title_spoof_manager">Simulazio gestorea</string>
@@ -25,7 +24,6 @@
     <string name="title_download_playstore">Play Store</string>
     <string name="title_download_manager">Deskargak</string>
     <string name="title_device">Gailua</string>
-    <string name="title_blacklist_manager">Zerrenda beltzaren gestorea</string>
     <string name="title_apps_library">Aplikazioak bibliotekan</string>
     <string name="title_apps_games">Nire aplikazioak eta jokoak</string>
     <string name="title_apps">Aplikazioak</string>
@@ -179,8 +177,6 @@
     <string name="action_close">Itxi</string>
     <string name="action_clear">Garbitu</string>
     <string name="action_cancel">Bertan utzi</string>
-    <string name="action_blacklist_add">Zerrenda beltzan sartu</string>
-    <string name="action_blacklist">Zerrenda beltza</string>
     <string name="action_back">Atzera</string>
     <string name="account_logout">Auroraren saioa itxi</string>
     <string name="account_login_using">Saioa hasi hau erabiliz</string>

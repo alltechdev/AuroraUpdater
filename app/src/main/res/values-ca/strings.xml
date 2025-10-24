@@ -29,7 +29,6 @@
     <string name="account_login_using">Inicia la sessió via</string>
     <string name="account_logout">Sortir d\'Aurora</string>
     <string name="action_next">Següent</string>
-    <string name="action_blacklist">Llista negra</string>
     <string name="action_leave">Sortir</string>
     <string name="action_pending">Pendent</string>
     <string name="details_beta_description">Veureu noves característiques i errors abans que el públic ho faci. Doneu els vostres comentaris als desenvolupadors per ajudar-los a millorar.</string>
@@ -70,7 +69,6 @@
     <string name="action_restart">Reiniciar</string>
     <string name="action_resume">Reprendre</string>
     <string name="action_back">Enrere</string>
-    <string name="action_blacklist_add">Afegeix a la llista negra</string>
     <string name="action_cancel">Cancel·lar</string>
     <string name="action_clear">Netejar</string>
     <string name="action_close">Tancar</string>
@@ -177,7 +175,6 @@
     <string name="purchase_unsupported">Aplicació no compatible</string>
     <string name="purchase_not_found">No s\'ha trobat l\'aplicació</string>
     <string name="purchase_failed">Error en descarregar</string>
-    <string name="title_blacklist_manager">Gestor de llistes negres</string>
     <string name="pref_ui_no_for_you_desc">Visualitzar les Pàgines per a tu a la pantalla d\'inici</string>
     <string name="tab_categories">Categories</string>
     <string name="tab_top_free">Top gratuït</string>
@@ -223,7 +220,6 @@
     <string name="title_device">Dispositiu</string>
     <string name="title_download_playstore">Play Store</string>
     <string name="title_installed">Instal·lat</string>
-    <string name="toast_apk_blacklisted">Posat a la llista negra</string>
     <string name="toast_anonymous_restriction">No disponible en comptes anònims</string>
     <string name="toast_developer_setting_failed">Activa la configuració de desenvolupador des de les del dispositiu per a obrir-la.</string>
     <string name="title_spoof_manager">Gestor de falsificacions</string>

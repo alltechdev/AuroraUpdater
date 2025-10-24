@@ -88,8 +88,6 @@
     <string name="action_close">Закрити</string>
     <string name="action_clear">Очистити</string>
     <string name="action_cancel">Скасувати</string>
-    <string name="action_blacklist_add">Додати до чорного списку</string>
-    <string name="action_blacklist">Чорний список</string>
     <string name="action_back">Назад</string>
     <string name="account_logout">Вийти з Aurora</string>
     <string name="account_login_using">Увійти за допомогою</string>
@@ -123,7 +121,6 @@
     <string name="toast_developer_setting_failed">Увімкніть налаштування розробника в налаштуваннях пристрою, щоби відкрити їх.</string>
     <string name="toast_clipboard_copied">Скопійовано до буфера обміну</string>
     <string name="toast_apk_whitelisted">У білому списку</string>
-    <string name="toast_apk_blacklisted">У чорному списку</string>
     <string name="toast_anonymous_restriction">Недоступно для знеособлених облікових записів</string>
     <string name="title_manual_download">Ручне завантаження</string>
     <string name="title_updates">Оновлення</string>
@@ -140,7 +137,6 @@
     <string name="title_download_playstore">Play Маркет</string>
     <string name="title_download_manager">Завантаження</string>
     <string name="title_device">Пристрій</string>
-    <string name="title_blacklist_manager">Менеджер чорного списку</string>
     <string name="title_apps_library">Застосунки в бібліотеці</string>
     <string name="title_apps_games">Мої застосунки та ігри</string>
     <string name="title_apps">Застосунки</string>

@@ -22,8 +22,6 @@
     <string name="action_close">Tutup</string>
     <string name="action_clear">Hapus</string>
     <string name="action_cancel">Batalkan</string>
-    <string name="action_blacklist_add">Tambahkan ke daftar blokir</string>
-    <string name="action_blacklist">Daftar blokir</string>
     <string name="action_back">Kembali</string>
     <string name="about_telegram_summary">Gabung di grup Dukungan Aurora untuk diskusi atau saran.</string>
     <string name="about_telegram">Telegram</string>
@@ -75,9 +73,7 @@
     <string name="toast_page_unavailable">Halaman jelajah tidak tersedia</string>
     <string name="toast_clipboard_copied">Disalin ke papan klip</string>
     <string name="toast_apk_whitelisted">Masuk daftar putih</string>
-    <string name="toast_apk_blacklisted">Masuk daftar hitam</string>
     <string name="toast_anonymous_restriction">Tidak tersedia di akun anonim</string>
-    <string name="title_blacklist_manager">Pengelola daftar hitam</string>
     <string name="title_apps_library">Aplikasi di perpustakaan</string>
     <string name="title_apps_games">Aplikasi &amp; permainan saya</string>
     <string name="title_apps">Aplikasi</string>

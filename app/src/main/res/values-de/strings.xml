@@ -33,8 +33,6 @@
     <string name="details_dev_email">E-Mail</string>
     <string name="about_bitcoin_eth_summary">Mit Ethereum spenden (ETH)</string>
     <string name="account_anonymous">Anonym</string>
-    <string name="action_blacklist_add">Zur Sperrliste hinzufügen</string>
-    <string name="action_blacklist">Sperrliste</string>
     <string name="action_back">Zurück</string>
     <string name="about_gitlab_summary">Aurora-Store-Quellcode von Aurora OSS bei GitLab herunterladen</string>
     <string name="about_bitcoin_btc_summary">Mit Bitcoin spenden (BTC)</string>
@@ -69,7 +67,6 @@
     <string name="toast_spoof_applied">Gerätevortäuschung angewendet.</string>
     <string name="toast_permission_granted">Berechtigung gewährt</string>
     <string name="toast_developer_setting_failed">Entwickleroptionen in den Geräteeinstellungen aktivieren, um sie zu öffnen.</string>
-    <string name="toast_apk_blacklisted">Auf der Sperrliste</string>
     <string name="toast_anonymous_restriction">Bei anonymen Konten nicht verfügbar</string>
     <string name="title_updates">Updates</string>
     <string name="title_spoof_manager">Vortäuschungen</string>
@@ -83,7 +80,6 @@
     <string name="title_download_playstore">Zum Play Store</string>
     <string name="title_download_manager">Downloads</string>
     <string name="title_device">Gerät</string>
-    <string name="title_blacklist_manager">Sperrlisten-Verwaltung</string>
     <string name="title_account_manager">Konten</string>
     <string name="title_about">Über</string>
     <string name="tab_trending">Trends</string>

@@ -51,8 +51,6 @@
     <string name="action_copy">Másolás</string>
     <string name="action_close">Bezárás</string>
     <string name="action_cancel">Mégse</string>
-    <string name="action_blacklist_add">Hozzáadás a tiltólistához</string>
-    <string name="action_blacklist">Tiltólista</string>
     <string name="action_back">Vissza</string>
     <string name="account_logout">Kijelentkezés az Aurorából</string>
     <string name="account_login_using">Bejelentkezés ezzel</string>
@@ -150,7 +148,6 @@
     <string name="toast_permission_granted">Engedély megadva</string>
     <string name="toast_clipboard_copied">Vágólapra másolva</string>
     <string name="toast_apk_whitelisted">Engedélyezési listás</string>
-    <string name="toast_apk_blacklisted">Tiltólistás</string>
     <string name="toast_anonymous_restriction">Nem elérhető anonim fiókoknál</string>
     <string name="title_updates">Frissítések</string>
     <string name="title_spoof_manager">Álcakezelő</string>
@@ -166,7 +163,6 @@
     <string name="title_download_playstore">Play Áruház</string>
     <string name="title_download_manager">Letöltések</string>
     <string name="title_device">Eszköz</string>
-    <string name="title_blacklist_manager">Tiltólista-kezelő</string>
     <string name="title_apps_library">Alkalmazások a könyvtárban</string>
     <string name="title_apps_games">Saját alkalmazások és játékok</string>
     <string name="title_apps">Alkalmazások</string>

@@ -25,7 +25,6 @@
     <string name="title_download_playstore">متجر Play</string>
     <string name="title_download_manager">التنزيلات</string>
     <string name="title_device">الجهاز</string>
-    <string name="title_blacklist_manager">مدير القائمة السوداء</string>
     <string name="title_apps_library">تطبيقات في المكتبة</string>
     <string name="title_apps">التطبيقات</string>
     <string name="title_account_manager">الحسابات</string>
@@ -175,8 +174,6 @@
     <string name="action_close">اغلاق</string>
     <string name="action_clear">مسح</string>
     <string name="action_cancel">إلغاء</string>
-    <string name="action_blacklist_add">أضف إلى القائمة السوداء</string>
-    <string name="action_blacklist">القائمة السوداء</string>
     <string name="action_back">رجوع</string>
     <string name="account_logout">تسجيل الخروج من Aurora</string>
     <string name="account_login_using">تسجيل الدخول باستخدام</string>
@@ -200,7 +197,6 @@
     <string name="about_bitcoin_bch_summary">التبرع عبر بيتكوين كاش (BCH)</string>
     <string name="about_bitcoin_bch">بيتكوين كاش</string>
     <string name="about_bhim_summary">التبرع عبر UPI</string>
-    <string name="toast_apk_blacklisted">مدرج في القائمة السوداء</string>
     <string name="title_updates">التحديثات</string>
     <string name="title_settings">الإعدادات</string>
     <string name="title_purchase_history">تاريخ الشراء</string>

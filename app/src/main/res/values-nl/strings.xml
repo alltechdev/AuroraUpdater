@@ -3,9 +3,6 @@
     <string name="title_about">Over</string>
     <string name="title_apps">Apps</string>
     <string name="title_account_manager">Accounts</string>
-    <string name="action_blacklist_add">Toevoegen aan zwarte lijst</string>
-    <string name="action_blacklist">Zwarte lijst</string>
-    <string name="toast_apk_blacklisted">Op zwarte lijst</string>
     <string name="details_free">Gratis</string>
     <string name="details_dev_website">Website</string>
     <string name="details_dev_profile">Ontwikkelaarsprofiel</string>
@@ -52,7 +49,6 @@
     <string name="title_download_playstore">Play Store</string>
     <string name="title_download_manager">Downloads</string>
     <string name="title_device">Apparaat</string>
-    <string name="title_blacklist_manager">Zwarte lijst beheren</string>
     <string name="title_apps_library">Apps in bibliotheek</string>
     <string name="title_apps_games">Mijn apps &amp; spellen</string>
     <string name="tab_trending">Viraal</string>

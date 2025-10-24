@@ -5,7 +5,6 @@
     <string name="toast_developer_setting_failed">Activa los ajustes de desarrollador desde las opciones del dispositivo.</string>
     <string name="toast_clipboard_copied">Copiado al portapapeles</string>
     <string name="toast_apk_whitelisted">En la lista blanca</string>
-    <string name="toast_apk_blacklisted">En la lista negra</string>
     <string name="toast_anonymous_restriction">No disponible en cuentas anónimas</string>
     <string name="title_updates">Actualizaciones</string>
     <string name="title_spoof_manager">Gestor de suplantación de dispositivo</string>
@@ -21,7 +20,6 @@
     <string name="title_download_playstore">Play Store</string>
     <string name="title_download_manager">Descargas</string>
     <string name="title_device">Dispositivo</string>
-    <string name="title_blacklist_manager">Gestión de la lista negra</string>
     <string name="title_apps_library">Apps en la biblioteca</string>
     <string name="title_apps_games">Mis apps y juegos</string>
     <string name="title_apps">Aplicaciones</string>
@@ -176,8 +174,6 @@
     <string name="action_close">Cerrar</string>
     <string name="action_clear">Limpiar</string>
     <string name="action_cancel">Cancelar</string>
-    <string name="action_blacklist_add">Añadir a la lista negra</string>
-    <string name="action_blacklist">Lista negra</string>
     <string name="action_back">Atrás</string>
     <string name="account_logout">Cerrar sesión de Aurora</string>
     <string name="account_login_using">Iniciar sesión con</string>

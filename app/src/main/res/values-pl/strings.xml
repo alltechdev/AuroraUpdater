@@ -60,8 +60,6 @@
     <string name="action_close">Zamknij</string>
     <string name="action_clear">Wyczyść</string>
     <string name="action_cancel">Anuluj</string>
-    <string name="action_blacklist_add">Dodaj do czarnej listy</string>
-    <string name="action_blacklist">Czarna lista</string>
     <string name="action_back">Wstecz</string>
     <string name="account_logout">Wyloguj się z Aurory</string>
     <string name="account_login_using">Zaloguj się za pomocą konta</string>
@@ -97,7 +95,6 @@
     <string name="toast_developer_setting_failed">Włącz ustawienia programisty w ustawieniach urządzenia, aby je otworzyć.</string>
     <string name="toast_clipboard_copied">Skopiowano do schowka</string>
     <string name="toast_apk_whitelisted">Dodano do białej listy</string>
-    <string name="toast_apk_blacklisted">Dodano do czarnej listy</string>
     <string name="toast_anonymous_restriction">Niedostępne na kontach anonimowych</string>
     <string name="title_updates">Aktualizacje</string>
     <string name="title_spoof_manager">Menedżer podmiany</string>
@@ -111,7 +108,6 @@
     <string name="title_download_playstore">Sklep Play</string>
     <string name="title_download_manager">Pobrane</string>
     <string name="title_device">Urządzenie</string>
-    <string name="title_blacklist_manager">Menedżer czarnej listy</string>
     <string name="title_apps_library">Aplikacje w bibliotece</string>
     <string name="title_apps_games">Moje gry i aplikacje</string>
     <string name="title_apps">Aplikacje</string>

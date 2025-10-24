@@ -8,7 +8,6 @@
     <string name="toast_developer_setting_failed">Укључите подешавања програмера у подешавањима уређаја да бисте их отворили.</string>
     <string name="toast_clipboard_copied">Копирано у привремену меморију</string>
     <string name="toast_apk_whitelisted">На белој листи</string>
-    <string name="toast_apk_blacklisted">На црној листи</string>
     <string name="toast_anonymous_restriction">Није доступно на анонимним налозима</string>
     <string name="title_updates">Ажурирања</string>
     <string name="title_spoof_manager">Менаџер лажне верзије</string>
@@ -24,7 +23,6 @@
     <string name="title_download_playstore">Play Store</string>
     <string name="title_download_manager">Преузимања</string>
     <string name="title_device">Уређај</string>
-    <string name="title_blacklist_manager">Менаџер црне листе</string>
     <string name="title_apps_library">Апликације у збирци</string>
     <string name="title_apps_games">Моје апликације и игре</string>
     <string name="title_apps">Апликације</string>
@@ -180,8 +178,6 @@
     <string name="action_copy">Копирај</string>
     <string name="action_close">Затвори</string>
     <string name="action_cancel">Откажи</string>
-    <string name="action_blacklist_add">Додај на црну листу</string>
-    <string name="action_blacklist">Црна листа</string>
     <string name="action_back">Назад</string>
     <string name="account_logout">Одјавите се из Aurore</string>
     <string name="account_login_using">Пријавите се користећи</string>

@@ -29,8 +29,6 @@
     <string name="action_close">Κλείσιμο</string>
     <string name="action_clear">Εκκαθάριση</string>
     <string name="action_cancel">Ακύρωση</string>
-    <string name="action_blacklist_add">Προσθήκη στη μαύρη λίστα</string>
-    <string name="action_blacklist">Μαύρη λίστα</string>
     <string name="action_back">Επιστροφή</string>
     <string name="account_logout">Αποσύνδεση από το Aurora</string>
     <string name="account_login_using">Σύνδεση με</string>
@@ -201,7 +199,6 @@
     <string name="title_apps_games">Εφαρμογές &amp; παιχνίδια</string>
     <string name="pref_install_delete_title">Διαγραφή APK μετά την εγκατάσταση</string>
     <string name="pref_ui_similar_apps">Παρόμοιες και σχετικές εφαρμογές</string>
-    <string name="title_blacklist_manager">Διαχείριση μαύρης λίστας</string>
     <string name="title_apps_library">Εφαρμογές στη βιβλιοθήκη</string>
     <string name="title_about">Σχετικά με</string>
     <string name="pref_ui_no_for_you">Σελίδες για εσάς</string>
@@ -217,7 +214,6 @@
     <string name="filter_review_two">Δύο</string>
     <string name="filter_review_three">Τρεις</string>
     <string name="filter_review_positive">Θετικός</string>
-    <string name="toast_apk_blacklisted">Μπήκε στη μαύρη λίστα</string>
     <string name="tab_top_grossing">Κορυφαίες Πωλήσεις</string>
     <string name="toast_export_success">Εξαγωγή διαμόρφωσης συσκευής</string>
     <string name="toast_manual_unavailable">Ο κωδικός έκδοσης που ζητάτε δεν είναι διαθέσιμος.</string>
