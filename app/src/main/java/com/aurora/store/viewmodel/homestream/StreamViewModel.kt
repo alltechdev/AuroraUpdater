@@ -38,7 +38,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class StreamViewModel @Inject constructor(
-    private val webStreamHelper: WebStreamHelper
+    private val webStreamHelper: WebStreamHelper,
+    private val whitelistProvider: com.aurora.store.data.providers.WhitelistProvider
 ) : ViewModel() {
 
     private val TAG = StreamViewModel::class.java.simpleName
@@ -81,10 +82,13 @@ class StreamViewModel @Inject constructor(
                             streamContract.fetch(type, category)
                         }
 
+                        // Filter apps by whitelist
+                        val filteredBundle = filterBundleByWhitelist(newBundle)
+
                         // Update old bundle
                         val mergedBundle = bundle.copy(
-                            streamClusters = bundle.streamClusters + newBundle.streamClusters,
-                            streamNextPageUrl = newBundle.streamNextPageUrl
+                            streamClusters = bundle.streamClusters + filteredBundle.streamClusters,
+                            streamNextPageUrl = filteredBundle.streamNextPageUrl
                         )
                         stash[category] = mergedBundle
 
@@ -108,8 +112,11 @@ class StreamViewModel @Inject constructor(
                         streamCluster.clusterNextPageUrl
                     )
 
+                    // Filter apps by whitelist
+                    val filteredCluster = filterClusterByWhitelist(newCluster)
+
                     stashMutex.withLock {
-                        updateCluster(category, streamCluster.id, newCluster)
+                        updateCluster(category, streamCluster.id, filteredCluster)
                     }
 
                     liveData.postValue(ViewState.Success(stash.toMap()))
@@ -160,5 +167,26 @@ class StreamViewModel @Inject constructor(
 
     private fun targetBundle(category: StreamContract.Category): StreamBundle {
         return stash.getOrPut(category) { StreamBundle() }
+    }
+
+    /**
+     * Filter apps in a StreamBundle by whitelist - only keep whitelisted apps
+     */
+    private fun filterBundleByWhitelist(bundle: StreamBundle): StreamBundle {
+        val filteredClusters = bundle.streamClusters.mapValues { (_, cluster) ->
+            filterClusterByWhitelist(cluster)
+        }
+        return bundle.copy(streamClusters = filteredClusters)
+    }
+
+    /**
+     * Filter apps in a StreamCluster by whitelist - only keep whitelisted apps
+     */
+    private fun filterClusterByWhitelist(cluster: StreamCluster): StreamCluster {
+        val filteredApps = cluster.clusterAppList.filter { app ->
+            whitelistProvider.isWhitelisted(app.packageName)
+        }
+        Log.d(TAG, "Filtered cluster '${cluster.clusterTitle}': ${cluster.clusterAppList.size} -> ${filteredApps.size} apps (whitelist)")
+        return cluster.copy(clusterAppList = filteredApps)
     }
 }

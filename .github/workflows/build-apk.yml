@@ -2,7 +2,7 @@ name: Build APK
 
 on:
   push:
-    branches: [ feature/auto-blacklist-updates, feature/auto-whitelist-updates ]
+    branches: [ feature/auto-blacklist-updates, feature/auto-whitelist-updates, feature/store-auto-whitelist-updates ]
     paths-ignore:
       - '**.md'
       - '**.txt'
@@ -10,7 +10,7 @@ on:
       - '.gitignore'
       - 'LICENSE'
   pull_request:
-    branches: [ feature/auto-blacklist-updates, feature/auto-whitelist-updates ]
+    branches: [ feature/auto-blacklist-updates, feature/auto-whitelist-updates, feature/store-auto-whitelist-updates ]
     paths-ignore:
       - '**.md'
       - '**.txt'
@@ -85,5 +85,6 @@ jobs:
         echo "- 🎯 Smart change detection (only updates when needed)" >> $GITHUB_STEP_SUMMARY
         echo "- 📡 GitHub API integration with proper URL" >> $GITHUB_STEP_SUMMARY
         echo "- ⚠️ Whitelist branches: Shows ONLY apps in the list" >> $GITHUB_STEP_SUMMARY
+        echo "- 🏪 Store tab: Browse and discover whitelisted apps (feature/store-auto-whitelist-updates)" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "📦 Download the artifacts from the Actions tab above!" >> $GITHUB_STEP_SUMMARY
