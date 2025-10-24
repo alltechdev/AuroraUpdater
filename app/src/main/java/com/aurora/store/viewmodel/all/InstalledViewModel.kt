@@ -27,8 +27,6 @@ import androidx.lifecycle.viewModelScope
 import com.aurora.gplayapi.data.models.App
 import com.aurora.gplayapi.helpers.web.WebAppDetailsHelper
 import com.aurora.store.data.providers.WhitelistProvider
-import com.aurora.store.data.room.favourite.Favourite
-import com.aurora.store.data.room.favourite.ImportExport
 import com.aurora.store.util.PackageUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -79,14 +77,11 @@ class InstalledViewModel @Inject constructor(
     fun exportApps(context: Context, uri: Uri) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val favourites: List<Favourite> = apps.value!!.map { app ->
-                    Favourite.fromApp(app, Favourite.Mode.IMPORT)
-                }
-                context.contentResolver.openOutputStream(uri)?.use {
-                    it.write(json.encodeToString(ImportExport(favourites)).encodeToByteArray())
-                }
+                // Export functionality disabled for whitelist-only store
+                // TODO: Implement whitelist export if needed
+                Log.w(TAG, "Export functionality disabled for whitelist-only store")
             } catch (exception: Exception) {
-                Log.e(TAG, "Failed to installed apps", exception)
+                Log.e(TAG, "Failed to export apps", exception)
             }
         }
     }

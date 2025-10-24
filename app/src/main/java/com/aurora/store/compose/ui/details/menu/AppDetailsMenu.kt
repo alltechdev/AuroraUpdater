@@ -37,7 +37,6 @@ import com.aurora.store.compose.preview.AppPreviewProvider
 fun AppDetailsMenu(
     modifier: Modifier = Modifier,
     isInstalled: Boolean = false,
-    isFavorite: Boolean = false,
     isExpanded: Boolean = false,
     onMenuItemClicked: (menuItem: MenuItem) -> Unit = {}
 ) {
@@ -45,17 +44,6 @@ fun AppDetailsMenu(
     fun onClick(menuItem: MenuItem) {
         onMenuItemClicked(menuItem)
         expanded = false
-    }
-
-    IconButton(onClick = { onClick(MenuItem.FAVORITE) }) {
-        Icon(
-            painter = if (isFavorite) {
-                painterResource(R.drawable.ic_favorite_checked)
-            } else {
-                painterResource(R.drawable.ic_favorite_unchecked)
-            },
-            contentDescription = stringResource(R.string.action_favourite)
-        )
     }
 
     IconButton(onClick = { onClick(MenuItem.SHARE) }) {

@@ -166,12 +166,6 @@ private fun ScreenContent(
                         overflow = TextOverflow.Ellipsis
                     )
                 },
-                leadingIcon = {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_round_search),
-                        contentDescription = stringResource(R.string.action_search)
-                    )
-                },
                 trailingIcon = {
                     if (textFieldState.text.isNotBlank()) {
                         IconButton(

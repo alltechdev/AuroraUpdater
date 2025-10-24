@@ -31,7 +31,7 @@ class ComposeActivity : ComponentActivity() {
             intent,
             Screen.PARCEL_KEY,
             Screen::class.java
-        ) ?: Screen.Search
+        ) ?: Screen.Whitelist
 
         val localUI = when {
             PackageUtil.isTv(this) -> UI.TV

@@ -23,7 +23,6 @@ import com.aurora.store.compose.ui.about.AboutScreen
 import com.aurora.store.compose.ui.accounts.AccountsScreen
 import com.aurora.store.compose.ui.commons.PermissionRationaleScreen
 import com.aurora.store.compose.ui.details.AppDetailsScreen
-import com.aurora.store.compose.ui.dev.DevProfileScreen
 import com.aurora.store.compose.ui.downloads.DownloadsScreen
 
 /**
@@ -60,16 +59,7 @@ fun NavDisplay(startDestination: NavKey) {
                 )
             }
 
-            entry<Screen.DevProfile> { screen ->
-                DevProfileScreen(
-                    developerId = screen.developerId,
-                    onNavigateUp = { onNavigateUp() },
-                    onNavigateToAppDetails = { packageName ->
-                        backstack.add(Screen.AppDetails(packageName))
-                    }
-                )
-            }
-
+            
             entry<Screen.PermissionRationale> { screen ->
                 PermissionRationaleScreen(
                     onNavigateUp = { onNavigateUp() },

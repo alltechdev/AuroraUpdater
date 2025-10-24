@@ -78,7 +78,6 @@ import com.aurora.store.compose.ui.details.components.Testing
 import com.aurora.store.compose.ui.details.menu.AppDetailsMenu
 import com.aurora.store.compose.ui.details.menu.MenuItem
 import com.aurora.store.compose.ui.details.navigation.ExtraScreen
-import com.aurora.store.compose.ui.dev.DevProfileScreen
 import com.aurora.store.data.installer.AppInstaller
 import com.aurora.store.data.model.AppState
 import com.aurora.store.data.model.PermissionType
@@ -337,8 +336,7 @@ private fun ScreenContentApp(
             ) {
                 Details(
                     app = app,
-                    state = state,
-                    onNavigateToDetailsDevProfile = { showExtraPane(Screen.DevProfile(it)) }
+                    state = state
                 )
 
                 SetupActions()
@@ -480,12 +478,7 @@ private fun ScreenContentApp(
                 onNavigateUp = ::onNavigateBack
             )
 
-            is Screen.DevProfile -> DevProfileScreen(
-                publisherId = app.developerName,
-                onNavigateUp = ::onNavigateBack,
-                onNavigateToAppDetails = { onNavigateToAppDetails(it) }
-            )
-
+            
             is Screen.PermissionRationale -> PermissionRationaleScreen(
                 onNavigateUp = ::onNavigateBack,
                 requiredPermissions = screen.requiredPermissions,

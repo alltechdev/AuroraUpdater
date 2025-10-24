@@ -9,7 +9,6 @@ package com.aurora.store.compose.ui.details.menu
  * Valid menu items for app details screen for handling clicks
  */
 enum class MenuItem {
-    FAVORITE,
     SHARE,
     MANUAL_DOWNLOAD,
     APP_INFO,
