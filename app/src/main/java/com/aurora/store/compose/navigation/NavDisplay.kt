@@ -25,8 +25,6 @@ import com.aurora.store.compose.ui.commons.PermissionRationaleScreen
 import com.aurora.store.compose.ui.details.AppDetailsScreen
 import com.aurora.store.compose.ui.dev.DevProfileScreen
 import com.aurora.store.compose.ui.downloads.DownloadsScreen
-import com.aurora.store.compose.ui.favourite.FavouriteScreen
-import com.aurora.store.compose.ui.search.SearchScreen
 
 /**
  * Navigation display for compose screens
@@ -51,10 +49,7 @@ fun NavDisplay(startDestination: NavKey) {
         ),
         entryProvider = entryProvider {
 
-            entry<Screen.Search> {
-                SearchScreen(onNavigateUp = { onNavigateUp() })
-            }
-
+  
             entry<Screen.AppDetails> { screen ->
                 AppDetailsScreen(
                     packageName = screen.packageName,
@@ -111,14 +106,6 @@ fun NavDisplay(startDestination: NavKey) {
                 AboutScreen(onNavigateUp = { onNavigateUp() })
             }
 
-            entry<Screen.Favourite> {
-                FavouriteScreen(
-                    onNavigateUp = { onNavigateUp() },
-                    onNavigateToAppDetails = { packageName ->
-                        backstack.add(Screen.AppDetails(packageName))
-                    }
-                )
             }
-        }
     )
 }

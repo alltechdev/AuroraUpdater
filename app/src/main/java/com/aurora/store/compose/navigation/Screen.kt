@@ -32,9 +32,6 @@ sealed class Screen : NavKey, Parcelable {
     data class AppDetails(val packageName: String) : Screen()
 
     @Serializable
-    data object Search : Screen()
-
-    @Serializable
     data class PermissionRationale(
         val requiredPermissions: Set<PermissionType> = emptySet()
     ) : Screen()
@@ -48,6 +45,4 @@ sealed class Screen : NavKey, Parcelable {
     @Serializable
     data object About : Screen()
 
-    @Serializable
-    data object Favourite : Screen()
-}
+    }
