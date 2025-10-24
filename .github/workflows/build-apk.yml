@@ -2,7 +2,7 @@ name: Build APK
 
 on:
   push:
-    branches: [ master, main, master-qin, qin-feature/auto-blacklist-updates ]
+    branches: [ master, main, master-qin, qin-feature/auto-blacklist-updates, qin-feature/auto-whitelist-updates, feature/auto-whitelist-updates ]
     paths-ignore:
       - '**.md'
       - '**.txt'
@@ -10,7 +10,7 @@ on:
       - '.gitignore'
       - 'LICENSE'
   pull_request:
-    branches: [ master, main, master-qin, qin-feature/auto-blacklist-updates ]
+    branches: [ master, main, master-qin, qin-feature/auto-blacklist-updates, qin-feature/auto-whitelist-updates, feature/auto-whitelist-updates ]
     paths-ignore:
       - '**.md'
       - '**.txt'
@@ -81,10 +81,10 @@ jobs:
         ls -la app/build/outputs/apk/vanilla/release/*.apk >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "✨ **Features in this build:**" >> $GITHUB_STEP_SUMMARY
-        echo "- 🔄 Auto-blacklist updates every 15 seconds" >> $GITHUB_STEP_SUMMARY
-        echo "- 🚀 Automatic UI refresh when blacklist changes" >> $GITHUB_STEP_SUMMARY
+        echo "- 🔄 Auto-updates every 15 seconds (blacklist or whitelist mode)" >> $GITHUB_STEP_SUMMARY
+        echo "- 🚀 Automatic UI refresh when list changes" >> $GITHUB_STEP_SUMMARY
         echo "- 🎯 Smart change detection (only updates when needed)" >> $GITHUB_STEP_SUMMARY
-        echo "- 🔧 Removed blacklist password protection" >> $GITHUB_STEP_SUMMARY
-        echo "- 📡 Fixed GitHub API integration with proper URL" >> $GITHUB_STEP_SUMMARY
+        echo "- 📡 GitHub API integration with proper URL" >> $GITHUB_STEP_SUMMARY
+        echo "- ⚠️ Whitelist branches: Shows ONLY apps in the list" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "📦 Download the artifacts from the Actions tab above!" >> $GITHUB_STEP_SUMMARY
