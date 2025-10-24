@@ -185,8 +185,8 @@ abstract class BaseFlavouredSplashFragment : BaseFragment<FragmentSplashBinding>
         }
     }
 
-    private fun handleBlacklistAccess() {
-        // Blacklist management is no longer available to users
-        // Blacklist is now automatically managed via remote URL
+    private fun handleWhitelistAccess() {
+        // Whitelist management is no longer available to users
+        // Whitelist is now automatically managed via remote URL
     }
 }

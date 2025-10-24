@@ -52,7 +52,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             findNavController().navigate(R.id.updatesPreference)
             true
         }
-        // Blacklist preference removed - direct access no longer needed
+        // Whitelist preference removed - direct access no longer needed
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

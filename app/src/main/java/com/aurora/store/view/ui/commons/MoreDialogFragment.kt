@@ -449,7 +449,7 @@ class MoreDialogFragment : DialogFragment() {
     }
 
     private fun handleComposeOptionClick(context: Context, screen: Screen) {
-        // Navigate normally (blacklist option removed)
+        // Navigate normally (whitelist option removed)
         context.navigate(screen)
         dismiss()
     }

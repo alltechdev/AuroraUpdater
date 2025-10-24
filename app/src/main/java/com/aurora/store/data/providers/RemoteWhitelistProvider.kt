@@ -41,128 +41,128 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class RemoteBlacklistProvider @Inject constructor(
+class RemoteWhitelistProvider @Inject constructor(
     private val json: Json,
     @ApplicationContext private val context: Context,
-    private val blacklistProvider: BlacklistProvider
+    private val whitelistProvider: WhitelistProvider
 ) {
 
-    private val TAG = RemoteBlacklistProvider::class.java.simpleName
-    
+    private val TAG = RemoteWhitelistProvider::class.java.simpleName
+
     private val httpClient = OkHttpClient.Builder()
         .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
         .build()
 
-    val isRemoteBlacklistEnabled: Boolean
-        get() = Preferences.getBoolean(context, Preferences.PREFERENCE_REMOTE_BLACKLIST_ENABLED, true)
+    val isRemoteWhitelistEnabled: Boolean
+        get() = Preferences.getBoolean(context, Preferences.PREFERENCE_REMOTE_WHITELIST_ENABLED, true)
 
-    var remoteBlacklistUrl: String
+    var remoteWhitelistUrl: String
         get() = Preferences.getString(
-            context, 
-            Preferences.PREFERENCE_REMOTE_BLACKLIST_URL,
-            "https://api.github.com/repos/ByteFlex1579/Blacklist.json/contents/Blacklist.json?ref=main"
+            context,
+            Preferences.PREFERENCE_REMOTE_WHITELIST_URL,
+            "https://api.github.com/repos/ByteFlex1579/Whitelist.json/contents/Whitelist.json?ref=main"
         )
-        set(value) = Preferences.putString(context, Preferences.PREFERENCE_REMOTE_BLACKLIST_URL, value)
+        set(value) = Preferences.putString(context, Preferences.PREFERENCE_REMOTE_WHITELIST_URL, value)
 
     private var lastUpdateTime: Long
-        get() = Preferences.getLong(context, Preferences.PREFERENCE_REMOTE_BLACKLIST_LAST_UPDATE)
-        set(value) = Preferences.putLong(context, Preferences.PREFERENCE_REMOTE_BLACKLIST_LAST_UPDATE, value)
+        get() = Preferences.getLong(context, Preferences.PREFERENCE_REMOTE_WHITELIST_LAST_UPDATE)
+        set(value) = Preferences.putLong(context, Preferences.PREFERENCE_REMOTE_WHITELIST_LAST_UPDATE, value)
 
     fun shouldUpdate(): Boolean {
         // Always update when app opens
         return true
     }
 
-    suspend fun fetchAndUpdateBlacklist(): Boolean = withContext(Dispatchers.IO) {
-        if (!isRemoteBlacklistEnabled) {
-            Log.d(TAG, "Remote blacklist is disabled")
+    suspend fun fetchAndUpdateWhitelist(): Boolean = withContext(Dispatchers.IO) {
+        if (!isRemoteWhitelistEnabled) {
+            Log.d(TAG, "Remote whitelist is disabled")
             return@withContext false
         }
 
         try {
-            Log.d(TAG, "Fetching blacklist from: $remoteBlacklistUrl")
-            
+            Log.d(TAG, "Fetching whitelist from: $remoteWhitelistUrl")
+
             val request = Request.Builder()
-                .url(remoteBlacklistUrl)
+                .url(remoteWhitelistUrl)
                 .addHeader("User-Agent", "Aurora-Store")
                 .build()
 
             val response = httpClient.newCall(request).execute()
-            
+
             if (!response.isSuccessful) {
-                Log.e(TAG, "Failed to fetch blacklist: HTTP ${response.code}")
+                Log.e(TAG, "Failed to fetch whitelist: HTTP ${response.code}")
                 return@withContext false
             }
 
             val responseBody = response.body?.string()
             if (responseBody.isNullOrEmpty()) {
-                Log.e(TAG, "Empty response from remote blacklist")
+                Log.e(TAG, "Empty response from remote whitelist")
                 return@withContext false
             }
 
-            val remoteBlacklist = try {
+            val remoteWhitelist = try {
                 // Check if this is a GitHub API response or direct JSON
-                if (remoteBlacklistUrl.contains("api.github.com")) {
+                if (remoteWhitelistUrl.contains("api.github.com")) {
                     // Parse GitHub API response
                     val apiResponse = json.parseToJsonElement(responseBody).jsonObject
                     val contentEncoded = apiResponse["content"]?.jsonPrimitive?.content
                         ?: throw IllegalArgumentException("No content field in GitHub API response")
-                    
+
                     // Decode base64 content
                     val decodedContent = String(Base64.getDecoder().decode(contentEncoded.replace("\n", "")))
-                    Log.d(TAG, "Decoded blacklist content: $decodedContent")
+                    Log.d(TAG, "Decoded whitelist content: $decodedContent")
                     json.decodeFromString<List<String>>(decodedContent).toMutableSet()
                 } else {
                     // Direct JSON response
                     json.decodeFromString<List<String>>(responseBody).toMutableSet()
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "Failed to parse remote blacklist JSON", e)
+                Log.e(TAG, "Failed to parse remote whitelist JSON", e)
                 return@withContext false
             }
 
-            // Check if blacklist has changed before updating
-            val currentBlacklist = blacklistProvider.blacklist
-            if (currentBlacklist != remoteBlacklist) {
-                // Update local blacklist with remote data
-                blacklistProvider.blacklist = remoteBlacklist
+            // Check if whitelist has changed before updating
+            val currentWhitelist = whitelistProvider.whitelist
+            if (currentWhitelist != remoteWhitelist) {
+                // Update local whitelist with remote data
+                whitelistProvider.whitelist = remoteWhitelist
                 lastUpdateTime = System.currentTimeMillis()
-                
-                Log.d(TAG, "Successfully updated blacklist with ${remoteBlacklist.size} entries (changed)")
-                Log.d(TAG, "Blacklist entries: ${remoteBlacklist.take(5)}")  // Show first 5 entries
-                
-                // Emit event to notify UI that blacklist has been updated
-                AuroraApp.events.send(BusEvent.BlacklistUpdated)
+
+                Log.d(TAG, "Successfully updated whitelist with ${remoteWhitelist.size} entries (changed)")
+                Log.d(TAG, "Whitelist entries: ${remoteWhitelist.take(5)}")  // Show first 5 entries
+
+                // Emit event to notify UI that whitelist has been updated
+                AuroraApp.events.send(BusEvent.WhitelistUpdated)
             } else {
-                Log.d(TAG, "Blacklist unchanged, skipping update")
+                Log.d(TAG, "Whitelist unchanged, skipping update")
             }
             return@withContext true
 
         } catch (e: IOException) {
-            Log.e(TAG, "Network error while fetching blacklist", e)
+            Log.e(TAG, "Network error while fetching whitelist", e)
             return@withContext false
         } catch (e: Exception) {
-            Log.e(TAG, "Unexpected error while fetching blacklist", e)
+            Log.e(TAG, "Unexpected error while fetching whitelist", e)
             return@withContext false
         }
     }
 
-    fun enableRemoteBlacklist(url: String = remoteBlacklistUrl) {
-        remoteBlacklistUrl = url
-        Preferences.putBoolean(context, Preferences.PREFERENCE_REMOTE_BLACKLIST_ENABLED, true)
-        
+    fun enableRemoteWhitelist(url: String = remoteWhitelistUrl) {
+        remoteWhitelistUrl = url
+        Preferences.putBoolean(context, Preferences.PREFERENCE_REMOTE_WHITELIST_ENABLED, true)
+
         // Fetch immediately when enabled
         CoroutineScope(Dispatchers.IO).launch {
-            fetchAndUpdateBlacklist()
+            fetchAndUpdateWhitelist()
         }
     }
 
-    fun disableRemoteBlacklist() {
-        Preferences.putBoolean(context, Preferences.PREFERENCE_REMOTE_BLACKLIST_ENABLED, false)
+    fun disableRemoteWhitelist() {
+        Preferences.putBoolean(context, Preferences.PREFERENCE_REMOTE_WHITELIST_ENABLED, false)
     }
 
     suspend fun forceUpdate(): Boolean {
-        return fetchAndUpdateBlacklist()
+        return fetchAndUpdateWhitelist()
     }
 }

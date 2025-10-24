@@ -20,7 +20,7 @@ class AppPreviewProvider : PreviewParameterProvider<App> {
     companion object {
         private const val CHANGELOG = """
             • New app compatibility ratings powered by Plexus<br>
-            • Improvements to blacklist manager<br>
+            • Improvements to whitelist manager<br>
             • Ability to change auto-update restrictions<br>
             • Minor bug fixes and improvements<br>
             • Translation updates; additional strings localized
@@ -37,7 +37,7 @@ class AppPreviewProvider : PreviewParameterProvider<App> {
             • Device &amp; Locale spoofing: Change your device and/or locale to access geo locked apps<br>
             • Exodus Privacy integration: Instantly see trackers in app<br>
             • Plexus integration: Instantly see app compatibility without Google Play Services or with microG<br>
-            • Updates blacklisting: Ignore updates for specific apps</p>
+            • Updates whitelisting: Ignore updates for specific apps</p>
         """
     }
 

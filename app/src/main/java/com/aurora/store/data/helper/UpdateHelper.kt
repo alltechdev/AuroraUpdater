@@ -117,7 +117,7 @@ class UpdateHelper @Inject constructor(
         }.launchIn(AuroraApp.scope)
 
         AuroraApp.events.busEvent.onEach {
-            if (it is BusEvent.Blacklisted) deleteUpdate(it.packageName)
+            if (it is BusEvent.Whitelisted) deleteUpdate(it.packageName)
         }.launchIn(AuroraApp.scope)
     }
 

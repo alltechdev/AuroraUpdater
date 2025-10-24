@@ -23,21 +23,21 @@ import android.content.Context
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.aurora.store.data.providers.RemoteBlacklistProvider
+import com.aurora.store.data.providers.RemoteWhitelistProvider
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 
 @HiltWorker
-class RemoteBlacklistWorker @AssistedInject constructor(
+class RemoteWhitelistWorker @AssistedInject constructor(
     @Assisted context: Context,
     @Assisted workerParams: WorkerParameters,
-    private val remoteBlacklistProvider: RemoteBlacklistProvider
+    private val remoteWhitelistProvider: RemoteWhitelistProvider
 ) : CoroutineWorker(context, workerParams) {
 
     override suspend fun doWork(): Result {
         return try {
-            if (remoteBlacklistProvider.shouldUpdate()) {
-                val success = remoteBlacklistProvider.fetchAndUpdateBlacklist()
+            if (remoteWhitelistProvider.shouldUpdate()) {
+                val success = remoteWhitelistProvider.fetchAndUpdateWhitelist()
                 if (success) Result.success() else Result.retry()
             } else {
                 Result.success()

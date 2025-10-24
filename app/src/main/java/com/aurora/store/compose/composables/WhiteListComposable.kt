@@ -33,19 +33,19 @@ import com.aurora.store.BuildConfig
 import com.aurora.store.R
 
 /**
- * Composable for displaying package details in a list for blacklisting
+ * Composable for displaying package details in a list for whitelisting
  * @param modifier The modifier to be applied to the composable
  * @param icon Icon for the package
  * @param displayName User-readable name of the package
  * @param packageName Name of the package
  * @param versionName versionName of the package
  * @param versionCode versionCode of the package
- * @param isChecked Whether the app is blacklisted
- * @param isEnabled Whether this app is allowed to be blacklisted
+ * @param isChecked Whether the app is whitelisted
+ * @param isEnabled Whether this app is allowed to be whitelisted
  * @param onClick Callback when the composable is clicked
  */
 @Composable
-fun BlackListComposable(
+fun WhiteListComposable(
     modifier: Modifier = Modifier,
     icon: Bitmap,
     displayName: String,
@@ -102,8 +102,8 @@ fun BlackListComposable(
 
 @Preview(showBackground = true)
 @Composable
-private fun BlackListComposablePreview() {
-    BlackListComposable(
+private fun WhiteListComposablePreview() {
+    WhiteListComposable(
         icon = Color.GRAY.toDrawable().toBitmap(56, 56),
         displayName = LocalContext.current.getString(R.string.app_name),
         packageName = BuildConfig.APPLICATION_ID,

@@ -26,7 +26,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aurora.gplayapi.data.models.App
 import com.aurora.gplayapi.helpers.web.WebAppDetailsHelper
-import com.aurora.store.data.providers.BlacklistProvider
+import com.aurora.store.data.providers.WhitelistProvider
 import com.aurora.store.data.room.favourite.Favourite
 import com.aurora.store.data.room.favourite.ImportExport
 import com.aurora.store.util.PackageUtil
@@ -42,7 +42,7 @@ import javax.inject.Inject
 @HiltViewModel
 class InstalledViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val blacklistProvider: BlacklistProvider,
+    private val whitelistProvider: WhitelistProvider,
     private val json: Json,
     private val webAppDetailsHelper: WebAppDetailsHelper
 ) : ViewModel() {
@@ -60,7 +60,7 @@ class InstalledViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val packages = PackageUtil.getAllValidPackages(context)
-                    .filterNot { blacklistProvider.isBlacklisted(it.packageName) }
+                    .filter { whitelistProvider.isWhitelisted(it.packageName) }
 
                 // Divide the list of packages into chunks of 100 & fetch app details
                 // 50 is a safe number to avoid hitting the rate limit or package size limit

@@ -38,7 +38,7 @@ import com.aurora.extensions.setAppTheme
 import com.aurora.store.data.event.EventFlow
 import com.aurora.store.data.helper.DownloadHelper
 import com.aurora.store.data.helper.UpdateHelper
-import com.aurora.store.data.providers.RemoteBlacklistProvider
+import com.aurora.store.data.providers.RemoteWhitelistProvider
 import com.aurora.store.data.receiver.PackageManagerReceiver
 import com.aurora.store.util.CommonUtil
 import com.aurora.store.util.NotificationUtil
@@ -68,10 +68,10 @@ class AuroraApp : Application(), Configuration.Provider, SingletonImageLoader.Fa
     lateinit var updateHelper: UpdateHelper
 
     @Inject
-    lateinit var remoteBlacklistProvider: RemoteBlacklistProvider
+    lateinit var remoteWhitelistProvider: RemoteWhitelistProvider
     
-    private var blacklistUpdateHandler: Handler? = null
-    private var blacklistUpdateRunnable: Runnable? = null
+    private var whitelistUpdateHandler: Handler? = null
+    private var whitelistUpdateRunnable: Runnable? = null
 
     override val workManagerConfiguration: Configuration
         get() = Configuration.Builder()
@@ -116,27 +116,27 @@ class AuroraApp : Application(), Configuration.Provider, SingletonImageLoader.Fa
 
         CommonUtil.cleanupInstallationSessions(applicationContext)
 
-        // Start continuous blacklist updates
-        startBlacklistUpdateService()
+        // Start continuous whitelist updates
+        startWhitelistUpdateService()
     }
 
-    private fun startBlacklistUpdateService() {
+    private fun startWhitelistUpdateService() {
         // Update immediately when app starts
         scope.launch {
-            remoteBlacklistProvider.fetchAndUpdateBlacklist()
+            remoteWhitelistProvider.fetchAndUpdateWhitelist()
         }
         
         // Setup repeating timer for every 15 seconds
-        blacklistUpdateHandler = Handler(Looper.getMainLooper())
-        blacklistUpdateRunnable = object : Runnable {
+        whitelistUpdateHandler = Handler(Looper.getMainLooper())
+        whitelistUpdateRunnable = object : Runnable {
             override fun run() {
                 scope.launch {
-                    remoteBlacklistProvider.fetchAndUpdateBlacklist()
+                    remoteWhitelistProvider.fetchAndUpdateWhitelist()
                 }
-                blacklistUpdateHandler?.postDelayed(this, 15_000) // 15 seconds
+                whitelistUpdateHandler?.postDelayed(this, 15_000) // 15 seconds
             }
         }
-        blacklistUpdateHandler?.postDelayed(blacklistUpdateRunnable!!, 15_000) // Start first update after 15 seconds
+        whitelistUpdateHandler?.postDelayed(whitelistUpdateRunnable!!, 15_000) // Start first update after 15 seconds
     }
 
     override fun newImageLoader(context: Context): ImageLoader {

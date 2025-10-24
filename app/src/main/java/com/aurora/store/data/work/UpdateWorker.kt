@@ -21,7 +21,7 @@ import com.aurora.store.data.model.SelfUpdate
 import com.aurora.store.data.model.UpdateMode
 import com.aurora.store.data.providers.AccountProvider
 import com.aurora.store.data.providers.AuthProvider
-import com.aurora.store.data.providers.BlacklistProvider
+import com.aurora.store.data.providers.WhitelistProvider
 import com.aurora.store.data.room.update.Update
 import com.aurora.store.data.room.update.UpdateDao
 import com.aurora.store.util.CertUtil
@@ -47,7 +47,7 @@ import java.util.Locale
 @HiltWorker
 class UpdateWorker @AssistedInject constructor(
     private val json: Json,
-    private val blacklistProvider: BlacklistProvider,
+    private val whitelistProvider: WhitelistProvider,
     private val httpClient: IHttpClient,
     private val updateDao: UpdateDao,
     private val downloadHelper: DownloadHelper,
@@ -149,7 +149,7 @@ class UpdateWorker @AssistedInject constructor(
     private suspend fun checkUpdates(): List<Update> {
         return withContext(Dispatchers.IO) {
             val packages = PackageUtil.getAllValidPackages(context)
-                .filterNot { blacklistProvider.isBlacklisted(it.packageName) }
+                .filter { whitelistProvider.isWhitelisted(it.packageName) }
                 .filter { if (!isExtendedUpdateEnabled) it.applicationInfo!!.enabled else true }
 
             // Filter out packages based on user's preferences
