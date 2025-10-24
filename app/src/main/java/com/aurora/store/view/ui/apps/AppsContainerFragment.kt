@@ -174,13 +174,29 @@ class AppsContainerFragment : BaseFragment<FragmentUpdatesBinding>() {
     }
 
     private fun uninstallApp(app: App) {
-        // Use root uninstallation with su -c pm uninstall
-        try {
-            val process = Runtime.getRuntime().exec(arrayOf("su", "-c", "pm uninstall ${app.packageName}"))
-            process.waitFor()
+        // Check if root is available first
+        if (isRootAvailable()) {
+            try {
+                val process = Runtime.getRuntime().exec(arrayOf("su", "-c", "pm uninstall ${app.packageName}"))
+                process.waitFor()
+                return
+            } catch (e: Exception) {
+                // Root failed, fall through to user's selected installer method
+            }
+        }
+
+        // Fallback to user's selected installation method (session installer, root installer, etc.)
+        AppInstaller.uninstall(requireContext(), app.packageName)
+    }
+
+    private fun isRootAvailable(): Boolean {
+        return try {
+            val process = Runtime.getRuntime().exec("su")
+            process.outputStream.write("exit\n".toByteArray())
+            process.outputStream.flush()
+            process.waitFor() == 0
         } catch (e: Exception) {
-            // Fallback to standard uninstall if root fails
-            AppInstaller.uninstall(requireContext(), app.packageName)
+            false
         }
     }
 
