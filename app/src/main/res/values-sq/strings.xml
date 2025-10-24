@@ -32,8 +32,6 @@
     <string name="account_login_using">Bëni hyrjen duke përdorur</string>
     <string name="account_logout">Dil nga Aurora</string>
     <string name="action_back">Mbprasht</string>
-    <string name="action_blacklist">Listë bllokimesh</string>
-    <string name="action_blacklist_add">Shtoje në listë bllokimesh</string>
     <string name="action_cancel">Anoloje</string>
     <string name="action_clear">Spastroje</string>
     <string name="action_close">Mbylle</string>
@@ -193,7 +191,6 @@
     <string name="title_apps">Aplikacione</string>
     <string name="title_apps_games">Apllikacionet &amp; lojërat e mia</string>
     <string name="title_apps_library">Aplikacione në bibliotekë</string>
-    <string name="title_blacklist_manager">Përgjegjës liste bllokimesh</string>
     <string name="title_device">Pajisje</string>
     <string name="title_download_manager">Shkarkime</string>
     <string name="title_download_playstore">Play Store</string>
@@ -210,7 +207,6 @@
     <string name="title_updates">Përditësime</string>
     <string name="title_manual_download">Shkarkim dorazi</string>
     <string name="toast_anonymous_restriction">Jo i passhëm në llogari anonime</string>
-    <string name="toast_apk_blacklisted">Në listë bllokimesh</string>
     <string name="toast_apk_whitelisted">Në listë lejimesh</string>
     <string name="toast_clipboard_copied">U kopjua në të papastër</string>
     <string name="toast_developer_setting_failed">Që t’i hapni, aktivizoni rregullime zhvilluesi që nga rregullimet e pajisjes.</string>

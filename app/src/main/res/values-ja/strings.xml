@@ -144,8 +144,6 @@
     <string name="action_close">閉じる</string>
     <string name="action_clear">クリア</string>
     <string name="action_cancel">キャンセル</string>
-    <string name="action_blacklist_add">ブラックリストに追加</string>
-    <string name="action_blacklist">ブラックリスト</string>
     <string name="action_back">戻る</string>
     <string name="account_logout">Aurora からログアウトする</string>
     <string name="title_device">デバイス</string>
@@ -156,7 +154,6 @@
     <string name="toast_developer_setting_failed">デバイス設定で開発者設定を有効化してください。</string>
     <string name="toast_clipboard_copied">クリップボードにコピーしました</string>
     <string name="toast_apk_whitelisted">ホワイトリスト</string>
-    <string name="toast_apk_blacklisted">ブラックリスト</string>
     <string name="toast_anonymous_restriction">匿名アカウントでは使用できません</string>
     <string name="title_updates">更新</string>
     <string name="title_spoof_manager">偽装マネージャー</string>
@@ -171,7 +168,6 @@
     <string name="title_games">ゲーム</string>
     <string name="title_download_playstore">Play ストア</string>
     <string name="title_download_manager">ダウンロード</string>
-    <string name="title_blacklist_manager">ブラックリストマネージャー</string>
     <string name="title_apps_library">ライブラリのアプリ</string>
     <string name="tab_categories">カテゴリ</string>
     <string name="tab_editor_choice">エディターのおすすめ</string>

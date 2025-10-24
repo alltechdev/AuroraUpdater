@@ -7,7 +7,6 @@
     <string name="action_search">Otsi</string>
     <string name="details_dev_profile">Arendaja profiil</string>
     <string name="details_paid">Tasuline</string>
-    <string name="action_blacklist_add">Lisa musta nimekirja</string>
     <string name="action_ignore">Eira</string>
     <string name="action_install">Paigalda</string>
     <string name="action_filter_apply">Rakenda</string>
@@ -34,7 +33,6 @@
     <string name="account_anonymous">Anonüümne</string>
     <string name="account_google">Google</string>
     <string name="account_logout">Logi Aurorast välja</string>
-    <string name="action_blacklist">Must nimekiri</string>
     <string name="action_clear">Tühjenda</string>
     <string name="action_close">Sule</string>
     <string name="action_copy_link">Kopeeri link</string>
@@ -223,7 +221,6 @@
     <string name="toast_proxy_success">Puhverserveri seadistamine õnnestus</string>
     <string name="toast_export_success">Seadme konfiguratsioon eksporditud</string>
     <string name="toast_export_failed">Seadme konfiguratsiooni ei saanud eksportida</string>
-    <string name="toast_apk_blacklisted">Lisatud musta nimekirja</string>
     <string name="toast_purchase_blocked">Rakenduste ostmine pole anonüümse kontoga võimalik.</string>
     <string name="session_login_failed_google">Google kaudu ei saanud sisse logida</string>
     <string name="tab_editor_choice">Toimetaja valik</string>
@@ -248,7 +245,6 @@
     <string name="toast_app_unavailable">Rakendus pole sinu seadme jaoks saadaval</string>
     <string name="toast_developer_setting_failed">Nende avamiseks lülita seadme seadetes sisse arendaja valikud.</string>
     <string name="tab_top_charts">Populaarsed</string>
-    <string name="title_blacklist_manager">Musta nimekirja haldur</string>
     <string name="title_games">Mängud</string>
     <string name="title_settings">Seaded</string>
     <string name="toast_proxy_invalid">Vale puhverserveri URL, kontrolli vormingut!</string>

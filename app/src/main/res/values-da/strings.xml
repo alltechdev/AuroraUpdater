@@ -17,7 +17,6 @@
     <string name="details_description">Beskrivelse</string>
     <string name="about_bhim_summary">Donér via UPI</string>
     <string name="action_filter_gsf_dependent_apps">Kræver GSF</string>
-    <string name="action_blacklist_add">Føj til sortliste</string>
     <string name="action_cancel">Annuller</string>
     <string name="action_clear">Ryd</string>
     <string name="action_disable">Deaktivér</string>
@@ -26,7 +25,6 @@
     <string name="action_filter">Filtre</string>
     <string name="action_installing">Installerer</string>
     <string name="action_back">Tilbage</string>
-    <string name="action_blacklist">Sortlist</string>
     <string name="action_close">Luk</string>
     <string name="action_copy">Kopiér</string>
     <string name="action_copy_link">Kopiér link</string>
@@ -125,7 +123,6 @@
     <string name="details_no_dependencies">Ingen afhængigheder</string>
     <string name="details_no_permission">Ingen tilladelser</string>
     <string name="pref_common_extra">Ekstra</string>
-    <string name="toast_apk_blacklisted">Sortlistet</string>
     <string name="action_filter_apply">Anvend</string>
     <string name="installer_am_unavailable">Installer App Manager eller skift installationsprogrammet.</string>
     <string name="installer_root_unavailable">Ingen root-adgang. Giv adgang eller skift installationsprogrammet.</string>
@@ -199,7 +196,6 @@
     <string name="title_apps">Apps</string>
     <string name="title_apps_games">Mine apps og spil</string>
     <string name="title_apps_library">Apps i biblioteket</string>
-    <string name="title_blacklist_manager">Sortliste-administrator</string>
     <string name="title_device">Enhed</string>
     <string name="title_download_manager">Downloads</string>
     <string name="title_download_playstore">Play Butik</string>

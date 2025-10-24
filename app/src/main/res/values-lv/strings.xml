@@ -34,8 +34,6 @@
     <string name="action_close">Aizvērt</string>
     <string name="action_clear">Notīrīt</string>
     <string name="action_cancel">Atcelt</string>
-    <string name="action_blacklist_add">Pievienot izņēmumiem</string>
-    <string name="action_blacklist">Izņēmumi</string>
     <string name="action_back">Atpakaļ</string>
     <string name="account_logout">Atteikties no Aurora</string>
     <string name="account_login_using">Pieteikties ar</string>
@@ -174,13 +172,11 @@
     <string name="device_miui_subtitle">Sesijas uzstādītājs nevar uzstādīt lietotnes MIUI uzlabojumu dēļ.</string>
     <string name="onboarding_permission_esa">Ārējās krātuves piekļuve</string>
     <string name="tab_for_you">Tev</string>
-    <string name="toast_apk_blacklisted">Pievienota izņēmumiem</string>
     <string name="spoof_apply">Jānodrošina atkārtota pieteikšanās, lai pielietotu atdarināšanu</string>
     <string name="installer_root_unavailable">Nav superlietotāja piekļuves. Tā ir jāpiešķir vai jānomaina uzstādītājs.</string>
     <string name="title_spoof_manager">Atdarināšanas pārvaldnieks</string>
     <string name="exodus_powered">Nodrošina Exodus Privacy</string>
     <string name="installer_am_unavailable">Jāuzstāda App Manager vai jānomaina uzstādītājs.</string>
-    <string name="title_blacklist_manager">Izņēmumu pārvaldnieks</string>
     <string name="notification_updates_available_desc_1">Ir pieejama jauna <xliff:g id="app_one_name">%1$s</xliff:g> versija</string>
     <string name="tab_editor_choice">Redaktora izvēle</string>
     <string name="session_login_failed_google">Neizdevās pieteikties ar Google</string>

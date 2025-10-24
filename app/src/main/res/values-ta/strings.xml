@@ -28,8 +28,6 @@
     <string name="action_close">மூடுக</string>
     <string name="action_clear">நீக்கு</string>
     <string name="action_cancel">ரத்துசெய்</string>
-    <string name="action_blacklist_add">தடுப்புப்பட்டியலில் சேர்</string>
-    <string name="action_blacklist">தடுப்புப்பட்டியல்</string>
     <string name="about_fdroid">எஃப்-டிரயோடு</string>
     <string name="about_bhim_summary">யுபிஐ வழியாக கொடையளி</string>
     <string name="action_filter_apply">செயல்படுத்து</string>
@@ -102,10 +100,8 @@
     <string name="title_installed">நிறவப்பட்டவை</string>
     <string name="title_installer">செயலி நிறுவி</string>
     <string name="title_library">நூலகம்</string>
-    <string name="title_blacklist_manager">கரும்பட்டியல் நிர்வாகி</string>
     <string name="title_language">மொழி</string>
     <string name="toast_rated_failed">மதிப்பீட்டைச் சமர்ப்பிக்க முடியவில்லை</string>
-    <string name="toast_apk_blacklisted">கரும்பட்டியலிடப்பட்டது</string>
     <string name="toast_manual_unavailable">நீங்கள் கோரும் பதிப்புக் குறியீடு கிடைக்கவில்லை.</string>
     <string name="toast_rated_success">மதிப்பிடப்பட்டது, காட்ட சிறிது நேரம் ஆகலாம்</string>
     <string name="app_updater_service_notif_title">பின்னணி பயன்பாடு பதிவிறக்கம்</string>

@@ -53,8 +53,6 @@
     <string name="action_close">Zatvori</string>
     <string name="action_clear">Izbriši</string>
     <string name="action_cancel">Prekini</string>
-    <string name="action_blacklist_add">Dodaj u popis blokiranih</string>
-    <string name="action_blacklist">Blokiraj</string>
     <string name="action_back">Natrag</string>
     <string name="account_logout">Odjavi se iz Aurore</string>
     <string name="account_login_using">Prijavi se, koristeći</string>
@@ -90,7 +88,6 @@
     <string name="toast_developer_setting_failed">Za otvaranje, uključi postavke za programere u postavkama uređaja.</string>
     <string name="toast_clipboard_copied">Kopirano u međuspremnik</string>
     <string name="toast_apk_whitelisted">U popisu neblokiranih</string>
-    <string name="toast_apk_blacklisted">U popisu blokiranih</string>
     <string name="toast_anonymous_restriction">Nije dostupno na anonimnim računima</string>
     <string name="title_updates">Aktualiziranja</string>
     <string name="title_spoof_manager">Upravljač lažnog predstavljanja</string>
@@ -106,7 +103,6 @@
     <string name="title_download_playstore">Trgovina igrama</string>
     <string name="title_download_manager">Preuzimanja</string>
     <string name="title_device">Uređaj</string>
-    <string name="title_blacklist_manager">Upravljač popisa blokiranih</string>
     <string name="title_apps_library">Aplikacije u biblioteci</string>
     <string name="title_apps_games">Moje aplikacije i igre</string>
     <string name="title_apps">Aplikacije</string>

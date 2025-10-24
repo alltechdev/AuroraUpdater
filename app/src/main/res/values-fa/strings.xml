@@ -28,7 +28,6 @@
     <string name="about_gitlab">گیت‌لَب</string>
     <string name="about_fdroid">اِف‌دروید</string>
     <string name="about_bitcoin_btc">بیت کوین</string>
-    <string name="title_blacklist_manager">مدیر لیست سیاه</string>
     <string name="title_apps_library">برنامه های موجود در کتابخانه</string>
     <string name="title_manual_download">بارگیری دستی</string>
     <string name="title_updates">بروزرسانی‌ها</string>
@@ -78,12 +77,10 @@
     <string name="details_beta_subscribed">شما یه آزمایش کننده هستید</string>
     <string name="about_paypal">پی پل</string>
     <string name="account_anonymous">ناشناس</string>
-    <string name="action_blacklist_add">افزودن به لیست سیاه</string>
     <string name="action_cancel">لغو</string>
     <string name="action_copy_link">کپی پیوند</string>
     <string name="action_export">استخراج</string>
     <string name="action_installations">نصب ها</string>
-    <string name="action_blacklist">لیست سیاه</string>
     <string name="action_uninstall">حذف نصب</string>
     <string name="action_grant">مجوز دادن</string>
     <string name="about_xda">مبحث های (XDA)</string>
@@ -226,7 +223,6 @@
     <string name="spoof_apply">اطمینان حاصل کنید که برای اعمال پارامتر جعلی دوباره وارد سیستم شوید</string>
     <string name="tab_editor_choice">انتخاب سردبیران</string>
     <string name="title_no_network">بدون شبکه</string>
-    <string name="toast_apk_blacklisted">در لیست سیاه بودن</string>
     <string name="toast_export_success">پیکربندی دستگاه صادر شد</string>
     <string name="app_updater_service_notif_text">امکان دانلود برنامه پس زمینه را فراهم می کند</string>
     <string name="session_enjoy">وارد شوید و لذت ببرید.</string>

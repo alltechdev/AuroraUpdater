@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="action_update">Instalovat</string>
-    <string name="action_blacklist">Černá listina</string>
-    <string name="action_blacklist_add">Přidat na černou listinu</string>
-    <string name="title_blacklist_manager">Správa černé listiny</string>
-    <string name="toast_apk_blacklisted">Na černé listině</string>
     <string name="action_whitelist">Bílá Listina</string>
     <string name="toast_manual_unavailable">Kód verze, který požadujete, není k dispozici.</string>
     <string name="toast_spoof_applied">Byl použit spoofing zařízení.</string>

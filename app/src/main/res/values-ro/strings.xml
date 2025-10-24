@@ -57,7 +57,6 @@
     <string name="onboarding_permission_esa">Acces la stocare</string>
     <string name="onboarding_permission_esm">Manager de stocare externă</string>
     <string name="action_copy_link">Copiază link-ul</string>
-    <string name="action_blacklist_add">Adaugă la lista neagră</string>
     <string name="action_grant">Acordă</string>
     <string name="action_export">Exportă</string>
     <string name="action_filter_downloads">Descărcări</string>
@@ -68,7 +67,6 @@
     <string name="download_force_clear_all">Șterge forțat totul</string>
     <string name="account_logout">Deconectează-te de la Aurora</string>
     <string name="action_back">Înapoi</string>
-    <string name="action_blacklist">Lista neagră</string>
     <string name="details_no_ads">Fără reclame</string>
     <string name="details_no_app_match">Nu a fost găsită nicio aplicație corespunzătoare</string>
     <string name="installer_am_unavailable">Instalează App Manager sau modifică programul de instalare.</string>
@@ -190,7 +188,6 @@
     <string name="title_apps">Aplicații</string>
     <string name="title_apps_games">Aplicațiile și jocurile mele</string>
     <string name="title_apps_library">Aplicații în bibliotecă</string>
-    <string name="title_blacklist_manager">Managerul listei negre</string>
     <string name="title_device">Dispozitiv</string>
     <string name="toast_developer_setting_failed">Activează setările pentru dezvoltatori în setările dispozitivului pentru a le deschide.</string>
     <string name="toast_permission_granted">Permisiune acordată</string>
@@ -231,7 +228,6 @@
     <string name="title_installer">Instalator de aplicații</string>
     <string name="title_language">Limbă</string>
     <string name="title_installed">Instalat</string>
-    <string name="toast_apk_blacklisted">În lista neagră</string>
     <string name="title_download_manager">Descărcări</string>
     <string name="title_download_playstore">Magazin Play</string>
     <string name="title_games">Jocuri</string>

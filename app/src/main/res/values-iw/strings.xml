@@ -57,8 +57,6 @@
     <string name="action_close">סגירה</string>
     <string name="action_cancel">ביטול</string>
     <string name="action_back">חזרה</string>
-    <string name="action_blacklist_add">הוספה לרשימה השחורה</string>
-    <string name="action_blacklist">רשימה שחורה</string>
     <string name="about_telegram_summary">הצטרף לקבוצת Aurora Support לדיונים או הצעות.</string>
     <string name="about_libera_summary">תמיכה ב-Liberapay</string>
     <string name="about_gitlab_summary">השג את קוד המקור של Aurora Store מ-Aurora OSS ב-GitLab.</string>
@@ -102,7 +100,6 @@
     <string name="action_join">הצטרפות</string>
     <string name="download_resume_all">להמשיך הכול</string>
     <string name="details_changelog">יומן שינויים</string>
-    <string name="toast_apk_blacklisted">ברשימת החסימה</string>
     <string name="title_settings">הגדרות</string>
     <string name="toast_apk_whitelisted">ברשימת ההתרה</string>
     <string name="action_clear">ניקוי</string>
@@ -135,7 +132,6 @@
     <string name="tab_categories">קטגוריות</string>
     <string name="title_apps">יישומים</string>
     <string name="title_apps_library">יישומים בספרייה</string>
-    <string name="title_blacklist_manager">מנהל רשימת החסימה</string>
     <string name="title_device">מכשיר</string>
     <string name="details_beta_available">להצטרף לתוכנית גרסת הביתא ?</string>
     <string name="details_beta_subscribed">נרשמת לתוכנית הבדיקה של גרסת הביתא</string>

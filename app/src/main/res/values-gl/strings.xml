@@ -147,8 +147,6 @@
     <string name="action_export">Exportar</string>
     <string name="action_disable">Desactivar</string>
     <string name="action_cancel">Cancelar</string>
-    <string name="action_blacklist_add">Engadir á lista negra</string>
-    <string name="action_blacklist">Lista negra</string>
     <string name="action_back">Volver</string>
     <string name="account_logout">Fechar sesión</string>
     <string name="account_login_using">Iniciar sesión con</string>
@@ -192,7 +190,6 @@
     <string name="toast_purchase_blocked">As compras de aplicacións non están dispoñíbeis para contas anónimas.</string>
     <string name="toast_permission_granted">Permiso concedido</string>
     <string name="toast_apk_whitelisted">Engadida á lista branca</string>
-    <string name="toast_apk_blacklisted">Engadido á lista negra</string>
     <string name="toast_anonymous_restriction">Non dispoñíbel en contas anónimas</string>
     <string name="title_manual_download">Descarga manual</string>
     <string name="title_updates">Actualizacións</string>
@@ -208,7 +205,6 @@
     <string name="title_download_playstore">Play Store</string>
     <string name="title_download_manager">Descargas</string>
     <string name="title_device">Dispositivo</string>
-    <string name="title_blacklist_manager">Xestionar lista negra</string>
     <string name="title_apps_library">Aplicacións na biblioteca</string>
     <string name="title_apps_games">As miñas apps &amp; xogos</string>
     <string name="app_updater_service_notif_text">Habilitar servizo de descarga de apps en segundo plano</string>

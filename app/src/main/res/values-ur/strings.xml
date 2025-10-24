@@ -43,7 +43,6 @@
     <string name="title_advanced">ایڈوانسڈ</string>
     <string name="title_manual_download">دستی ڈاؤن لوڈ</string>
     <string name="toast_anonymous_restriction">گمنام اکاؤنٹس پر دستیاب نہیں</string>
-    <string name="toast_apk_blacklisted">بلیک لسٹ</string>
     <string name="search_hint">ایپس اور کھیلوں کی تلاش کریں</string>
     <string name="requesting_new_session">نئے سیشن کی درخواست کرنا</string>
     <string name="failed_to_fetch_report">رازداری کی رپورٹ لانے میں ناکام</string>
@@ -80,7 +79,6 @@
     <string name="action_back">پیچھے</string>
     <string name="about_gitlab_summary">گٹ لیب پر Aurora OSS سے Aurora Store سورس کوڈ حاصل کریں۔</string>
     <string name="action_cancel">منسوخ کریں</string>
-    <string name="action_blacklist_add">بلیکلسٹ میں شامل کریں</string>
     <string name="action_clear">صاف</string>
     <string name="action_close">بند کرو</string>
     <string name="action_copy">کاپی</string>
@@ -265,7 +263,6 @@
     <string name="title_app_settings">ایپ کی ترتیبات</string>
     <string name="title_apps_games">میرے ایپس اور گیمز</string>
     <string name="title_apps_library">لائبریری میں ایپس</string>
-    <string name="title_blacklist_manager">بلیک لسٹ منیجر</string>
     <string name="title_favourites_manager">پسندیدہ ایپس</string>
     <string name="title_device">ڈیوائس</string>
     <string name="title_download_manager">ڈاؤن لوڈ</string>
@@ -361,7 +358,6 @@
     <string name="made_with_love"><xliff:g id="heart_emoji">%1$s</xliff:g>ہندوستان میں بنایا گیا</string>
     <string name="about_aurora_store_title">ارورہ اسٹور کے بارے میں</string>
     <string name="pref_network_microg_login_desc">آسان سائن ان فلو کے لیے گوگل اکاؤنٹس میں سائن ان کرتے وقت مائیکرو جی کا استعمال کرکے تصدیق کریں۔</string>
-    <string name="action_blacklist">بلیکلسٹ</string>
     <string name="failed_generating_session">سیشن بنانے میں ناکام، ایرر کوڈ: <xliff:g id="status_code">%1$d</xliff:g></string>
     <string name="installer_status_success">کامیابی سے انسٹال</string>
     <string name="onboarding_title_permissions">اجازتیں</string>

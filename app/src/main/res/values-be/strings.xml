@@ -21,8 +21,6 @@
     <string name="account_login_using">Увайсці з дапамогаю</string>
     <string name="account_logout">Выйсці з Aurora</string>
     <string name="action_back">Вярнуцца</string>
-    <string name="action_blacklist">Чорны спіс</string>
-    <string name="action_blacklist_add">Дадаць да чорнага спісу</string>
     <string name="action_cancel">Скасаваць</string>
     <string name="action_clear">Ачысціць</string>
     <string name="action_copy">Скапіяваць</string>
@@ -129,10 +127,8 @@
     <string name="tab_trending">Прарыўное</string>
     <string name="title_app_settings">Налады праграмы</string>
     <string name="title_apps_games">Мае праграмы і гульні</string>
-    <string name="title_blacklist_manager">Чорны спіс</string>
     <string name="title_favourites_manager">Абраныя праграмы</string>
     <string name="toast_anonymous_restriction">Немагчыма праз ананімны ўліковы запіс</string>
-    <string name="toast_apk_blacklisted">У чорным спісе</string>
     <string name="toast_developer_setting_failed">Уключыце налады распрацоўшчыка праз налады прылады, каб адкрыць іх.</string>
     <string name="toast_purchase_blocked">Купля праграм немагчымая праз ананімныя ўліковыя запісы.</string>
     <string name="toast_manual_unavailable">Версія, якую вы запытвайце, недаступная.</string>

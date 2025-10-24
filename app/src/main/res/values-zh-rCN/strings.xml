@@ -83,8 +83,6 @@
     <string name="action_export">导出</string>
     <string name="action_clear">清除</string>
     <string name="action_cancel">取消</string>
-    <string name="action_blacklist_add">加入黑名单</string>
-    <string name="action_blacklist">黑名单</string>
     <string name="action_back">返回</string>
     <string name="account_logout">登出 Aurora</string>
     <string name="account_login_using">登录方式</string>
@@ -130,7 +128,6 @@
     <string name="toast_developer_setting_failed">从设备设置开启开发者设置来打开它们。</string>
     <string name="toast_clipboard_copied">已复制到剪贴板</string>
     <string name="toast_apk_whitelisted">已加入白名单</string>
-    <string name="toast_apk_blacklisted">已拉黑</string>
     <string name="toast_anonymous_restriction">对匿名帐号不可用</string>
     <string name="title_updates">更新</string>
     <string name="title_spoof_manager">伪装</string>
@@ -146,7 +143,6 @@
     <string name="title_download_playstore">Play 商店</string>
     <string name="title_download_manager">下载</string>
     <string name="title_device">设备</string>
-    <string name="title_blacklist_manager">黑名单管理</string>
     <string name="title_apps_library">库内应用</string>
     <string name="title_apps_games">我的应用和游戏</string>
     <string name="title_apps">应用</string>

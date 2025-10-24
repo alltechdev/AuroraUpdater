@@ -8,7 +8,6 @@
     <string name="details_description">Descrição</string>
     <string name="title_spoof_manager">Simulação</string>
     <string name="action_whitelist">Desbloquear atualizações</string>
-    <string name="title_blacklist_manager">Atualizações bloqueadas</string>
     <string name="title_download_playstore">Play Store</string>
     <string name="title_download_manager">Downloads</string>
     <string name="title_apps">Apps</string>
@@ -25,7 +24,6 @@
     <string name="action_ok">OK</string>
     <string name="action_filter_apps_with_ads">Apps com anúncios</string>
     <string name="action_export">Exportar</string>
-    <string name="action_blacklist_add">Bloquear atualizações</string>
     <string name="account_logout">Desconectar da Aurora</string>
     <string name="account_login_using">Conectar-se usando</string>
     <string name="account_google">Google</string>
@@ -37,7 +35,6 @@
     <string name="toast_developer_setting_failed">Ative as configurações do desenvolvedor a partir das configurações do dispositivo para abri-las.</string>
     <string name="toast_clipboard_copied">Copiado para a área de transferência</string>
     <string name="toast_apk_whitelisted">As atualizações foram desbloqueadas</string>
-    <string name="toast_apk_blacklisted">As atualizações estão bloqueadas</string>
     <string name="toast_anonymous_restriction">Não está disponível em contas anônimas</string>
     <string name="title_updates">Atualizações</string>
     <string name="title_settings">Configurações</string>
@@ -163,7 +160,6 @@
     <string name="action_close">Fechar</string>
     <string name="action_clear">Limpar</string>
     <string name="action_cancel">Cancelar</string>
-    <string name="action_blacklist">Bloquear atualizações</string>
     <string name="action_back">Voltar</string>
     <string name="account_anonymous">Anônimo</string>
     <string name="about_xda_summary">Veja a publicação da Aurora Store no XDA para discussões ou sugestões.</string>

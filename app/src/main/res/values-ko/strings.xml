@@ -24,8 +24,6 @@
     <string name="about_telegram_summary">토론이나 제안을 위해 Aurora 지원 그룹에 가입하세요.</string>
     <string name="account_anonymous">익명</string>
     <string name="account_google">구글</string>
-    <string name="action_blacklist_add">블랙리스트에 추가</string>
-    <string name="action_blacklist">블랙리스트</string>
     <string name="action_open">열기</string>
     <string name="action_ok">그래</string>
     <string name="action_whitelist">화이트리스트</string>
@@ -198,7 +196,6 @@
     <string name="title_apps_library">라이브러리의 앱</string>
     <string name="title_device">기기</string>
     <string name="session_good">와우! 모두 좋습니다.</string>
-    <string name="title_blacklist_manager">블랙리스트 관리자</string>
     <string name="pref_install_mode_summary">APK 설치 모드 선택</string>
     <string name="title_download_manager">다운로드</string>
     <string name="pref_install_mode_am">AM 인스톨러</string>
@@ -261,7 +258,6 @@
     <string name="title_settings">설정</string>
     <string name="title_installer">앱 인스톨러</string>
     <string name="title_language">언어</string>
-    <string name="toast_apk_blacklisted">블랙리스트됨</string>
     <string name="notification_channel_updates">업데이트 알림</string>
     <string name="server_maintenance">유지 보수를 위해 서버가 다운</string>
     <string name="notification_updates_available_1"><xliff:g id="apps_count">%1$d</xliff:g> 업데이트 대기 중</string>

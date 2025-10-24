@@ -46,7 +46,6 @@
     <string name="toast_developer_setting_failed">Ative as definições de programador nas definições do dispositivo para as abrir.</string>
     <string name="toast_clipboard_copied">Copiado para a área de transferência</string>
     <string name="toast_apk_whitelisted">Adicionada à lista branca</string>
-    <string name="toast_apk_blacklisted">Adicionada à lista negra</string>
     <string name="toast_anonymous_restriction">Não disponível em contas anónimas</string>
     <string name="title_manual_download">Descarga manual</string>
     <string name="title_updates">Atualizações</string>
@@ -62,7 +61,6 @@
     <string name="title_games">Jogos</string>
     <string name="title_download_manager">Descargas</string>
     <string name="title_device">Dispositivo</string>
-    <string name="title_blacklist_manager">Gerir lista negra</string>
     <string name="title_apps_games">Minhas aplicações e jogos</string>
     <string name="title_apps">Aplicações</string>
     <string name="title_account_manager">Contas</string>
@@ -218,8 +216,6 @@
     <string name="action_close">Fechar</string>
     <string name="action_clear">Limpar</string>
     <string name="action_cancel">Cancelar</string>
-    <string name="action_blacklist_add">Adicionar à lista de bloqueio</string>
-    <string name="action_blacklist">Lista negra</string>
     <string name="action_back">Recuar</string>
     <string name="account_logout">Terminar sessão</string>
     <string name="account_login_using">Iniciar sessão com</string>

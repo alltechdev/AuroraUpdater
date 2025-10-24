@@ -22,8 +22,6 @@
     <string name="about_xda_summary">Diskusie alebo návrhy nájdete vo vlákne Aurora Store XDA.</string>
     <string name="account_anonymous">Anonymný</string>
     <string name="account_google">Google</string>
-    <string name="action_blacklist">Čierna listina</string>
-    <string name="action_blacklist_add">Pridať na čiernu listinu</string>
     <string name="action_cancel">Zrušiť</string>
     <string name="action_close">Zavrieť</string>
     <string name="action_copy">Kopírovať</string>
@@ -57,7 +55,6 @@
     <string name="tab_trending">Populárne</string>
     <string name="title_about">O aplikácií</string>
     <string name="title_account_manager">Účty</string>
-    <string name="title_blacklist_manager">Správca čiernej listiny</string>
     <string name="title_device">Zariadenie</string>
     <string name="title_download_manager">Sťahovanie</string>
     <string name="title_download_playstore">Obchod Play</string>
@@ -67,7 +64,6 @@
     <string name="toast_developer_setting_failed">Ak ich chcete otvoriť, zapnite nastavenia vývojára v nastaveniach zariadenia.</string>
     <string name="toast_permission_granted">Povolenie udelené</string>
     <string name="toast_anonymous_restriction">Nie je k dispozícii na anonymných účtoch</string>
-    <string name="toast_apk_blacklisted">Na čiernej listine</string>
     <string name="toast_apk_whitelisted">Na bielej listine</string>
     <string name="spoof_property"><xliff:g id="výrobca">%1$s</xliff:g> • API <xliff:g id="api">%2$s</xliff:g></string>
     <string name="notification_channel_updates">Oznámenia o aktualizáciách</string>

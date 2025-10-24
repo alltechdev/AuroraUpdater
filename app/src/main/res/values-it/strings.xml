@@ -11,7 +11,6 @@
     <string name="details_dev_email">E-mail</string>
     <string name="toast_clipboard_copied">Copiato negli appunti</string>
     <string name="toast_apk_whitelisted">Rimossa da lista nera</string>
-    <string name="toast_apk_blacklisted">Messo in lista nera</string>
     <string name="title_updates">Aggiornamenti</string>
     <string name="title_settings">Impostazioni</string>
     <string name="title_purchase_history">Cronologia degli acquisti</string>
@@ -22,7 +21,6 @@
     <string name="title_installation">Installazione</string>
     <string name="title_games">Giochi</string>
     <string name="title_device">Dispositivo</string>
-    <string name="title_blacklist_manager">Gestore lista nera</string>
     <string name="title_download_playstore">Play Store</string>
     <string name="title_download_manager">Scaricamenti</string>
     <string name="purchase_failed">Scaricamento fallito</string>
@@ -117,8 +115,6 @@
     <string name="action_close">Chiudi</string>
     <string name="action_clear">Cancella</string>
     <string name="action_cancel">Annulla</string>
-    <string name="action_blacklist_add">Aggiungi alla lista nera</string>
-    <string name="action_blacklist">Lista nera</string>
     <string name="action_back">Indietro</string>
     <string name="account_logout">Esci da Aurora</string>
     <string name="account_login_using">Accedi usando</string>

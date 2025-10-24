@@ -79,7 +79,6 @@
     <string name="download_speed_estimating">Estimando</string>
     <string name="action_granted">Concedióse</string>
     <string name="installer_status_failure">L\'instalador falló</string>
-    <string name="toast_apk_blacklisted">Amestóse a la llista prieta</string>
     <string name="action_join">Xunise</string>
     <string name="download_none">Nun hai nenguna descarga</string>
     <string name="about_fdroid_summary">Consigui Aurora Store per F-Droid.</string>
@@ -224,7 +223,6 @@
     <string name="tab_top_grossing">Al alza</string>
     <string name="tab_top_paid">De pagu</string>
     <string name="title_about">Tocante a</string>
-    <string name="title_blacklist_manager">Llista prieta</string>
     <string name="title_download_manager">Descargues</string>
     <string name="title_download_playstore">Play Store</string>
     <string name="toast_permission_granted">Concedióse\'l permisu</string>
