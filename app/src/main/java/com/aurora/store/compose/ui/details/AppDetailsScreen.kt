@@ -251,9 +251,8 @@ private fun ScreenContentApp(
 
     @Composable
     fun SetupMenu() {
-        AppDetailsMenu(isInstalled = app.isInstalled, isFavorite = isFavorite) { menuItem ->
+        AppDetailsMenu(isInstalled = app.isInstalled) { menuItem ->
             when (menuItem) {
-                MenuItem.FAVORITE -> onFavorite()
                 MenuItem.MANUAL_DOWNLOAD -> {
                     showExtraPane(ExtraScreen.ManualDownload)
                 }

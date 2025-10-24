@@ -29,8 +29,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.airbnb.epoxy.EpoxyRecyclerView
 import com.aurora.extensions.navigate
-import com.aurora.gplayapi.data.models.Category
-import com.aurora.gplayapi.data.models.StreamCluster
 import com.aurora.store.MobileNavigationDirections
 import com.aurora.store.compose.navigation.Screen
 import com.aurora.store.data.model.MinimalApp
@@ -86,39 +84,7 @@ abstract class BaseFragment<ViewBindingType : ViewBinding> : Fragment() {
         )
     }
 
-    fun openCategoryBrowseFragment(category: Category) {
-        findNavController().navigate(
-            MobileNavigationDirections.actionGlobalCategoryBrowseFragment(
-                category.title,
-                category.browseUrl
-            )
-        )
-    }
-
-    fun openStreamBrowseFragment(browseUrl: String, title: String = "") {
-        if (browseUrl.lowercase().contains("expanded")) {
-            findNavController().navigate(
-                MobileNavigationDirections.actionGlobalExpandedStreamBrowseFragment(
-                    title,
-                    browseUrl
-                )
-            )
-        } else if (browseUrl.lowercase().contains("developer")) {
-            findNavController().navigate(
-                MobileNavigationDirections.actionGlobalDevProfileFragment(
-                    browseUrl.substringAfter("developer-"),
-                    title
-                )
-            )
-        }
-    }
-
-    fun openStreamBrowseFragment(streamCluster: StreamCluster) {
-        findNavController().navigate(
-            MobileNavigationDirections.actionGlobalStreamBrowseFragment(streamCluster)
-        )
-    }
-
+    
     fun openAppMenuSheet(app: MinimalApp) {
         findNavController().navigate(MobileNavigationDirections.actionGlobalAppMenuSheet(app))
     }
