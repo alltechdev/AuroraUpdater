@@ -105,8 +105,7 @@ fun AppDetailsScreen(
     val app by viewModel.app.collectAsStateWithLifecycle()
     val state by viewModel.state.collectAsStateWithLifecycle()
     val featuredReviews by viewModel.featuredReviews.collectAsStateWithLifecycle()
-    val favorite by viewModel.favourite.collectAsStateWithLifecycle()
-    val exodusReport by viewModel.exodusReport.collectAsStateWithLifecycle()
+          val exodusReport by viewModel.exodusReport.collectAsStateWithLifecycle()
     val dataSafetyReport by viewModel.dataSafetyReport.collectAsStateWithLifecycle()
     val plexusScores by viewModel.plexusScores.collectAsStateWithLifecycle()
     val suggestions by viewModel.suggestions.collectAsStateWithLifecycle()
@@ -127,8 +126,7 @@ fun AppDetailsScreen(
                 app = app!!,
                 featuredReviews = featuredReviews,
                 suggestions = suggestions,
-                isFavorite = favorite,
-                isAnonymous = viewModel.authProvider.isAnonymous,
+                                isAnonymous = viewModel.authProvider.isAnonymous,
                 state = state,
                 plexusScores = plexusScores,
                 dataSafetyReport = dataSafetyReport,
@@ -136,8 +134,7 @@ fun AppDetailsScreen(
                 onNavigateUp = onNavigateUp,
                 onNavigateToAppDetails = onNavigateToAppDetails,
                 onDownload = { viewModel.purchase(app!!) },
-                onFavorite = { viewModel.toggleFavourite(app!!) },
-                onCancelDownload = { viewModel.cancelDownload(app!!) },
+                                onCancelDownload = { viewModel.cancelDownload(app!!) },
                 onUninstall = { AppInstaller.uninstall(context, packageName) },
                 onOpen = {
                     try {

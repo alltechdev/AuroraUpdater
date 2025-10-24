@@ -31,8 +31,6 @@ import com.aurora.store.data.model.PlexusReport
 import com.aurora.store.data.model.Report
 import com.aurora.store.data.model.Scores
 import com.aurora.store.data.providers.AuthProvider
-import com.aurora.store.data.room.favourite.Favourite
-import com.aurora.store.data.room.favourite.FavouriteDao
 import com.aurora.store.util.CertUtil
 import com.aurora.store.util.PackageUtil
 import com.aurora.store.util.Preferences
@@ -67,7 +65,6 @@ class AppDetailsViewModel @Inject constructor(
     private val reviewsHelper: ReviewsHelper,
     private val webDataSafetyHelper: WebDataSafetyHelper,
     private val downloadHelper: DownloadHelper,
-    private val favouriteDao: FavouriteDao,
     private val httpClient: IHttpClient,
     private val json: Json
 ) : ViewModel() {
@@ -101,9 +98,7 @@ class AppDetailsViewModel @Inject constructor(
     private val _testingProgramStatus = MutableStateFlow<TestingProgramStatus?>(null)
     val testingProgramStatus = _testingProgramStatus.asStateFlow()
 
-    private val _favourite = MutableStateFlow(false)
-    val favourite = _favourite.asStateFlow()
-
+    
     private val _purchaseStatus = MutableSharedFlow<Boolean>()
     val purchaseStatus = _purchaseStatus.asSharedFlow()
 
@@ -172,7 +167,6 @@ class AppDetailsViewModel @Inject constructor(
             // Only proceed if there was no error while fetching the app details
             if (throwable != null || app.value == null) return@invokeOnCompletion
 
-            fetchFavourite(packageName)
             fetchFeaturedReviews(packageName)
             fetchDataSafetyReport(packageName)
             fetchSuggestions()
@@ -240,26 +234,7 @@ class AppDetailsViewModel @Inject constructor(
         viewModelScope.launch { downloadHelper.cancelDownload(app.packageName) }
     }
 
-    fun toggleFavourite(app: App) {
-        viewModelScope.launch(Dispatchers.IO) {
-            if (favourite.value) {
-                favouriteDao.delete(app.packageName)
-            } else {
-                favouriteDao.insert(
-                    Favourite(
-                        packageName = app.packageName,
-                        displayName = app.displayName,
-                        iconURL = app.iconArtwork.url,
-                        mode = Favourite.Mode.MANUAL,
-                        added = System.currentTimeMillis(),
-                    )
-                )
-            }
-
-            _favourite.value = !favourite.value
-        }
-    }
-
+    
     private fun observeAppState() {
         AuroraApp.events.installerEvent
             .filter { it.packageName == app.value?.packageName }
@@ -295,12 +270,7 @@ class AppDetailsViewModel @Inject constructor(
 
     }
 
-    private fun fetchFavourite(packageName: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            _favourite.value = favouriteDao.isFavourite(packageName)
-        }
-    }
-
+    
     private fun fetchDataSafetyReport(packageName: String) {
         viewModelScope.launch(Dispatchers.IO) {
             _dataSafetyReport.value = webDataSafetyHelper.fetch(packageName)
