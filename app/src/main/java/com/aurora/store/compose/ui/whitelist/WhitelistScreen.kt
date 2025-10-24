@@ -72,10 +72,10 @@ fun WhitelistScreen(onNavigateUp: () -> Unit, viewModel: WhitelistViewModel = hi
             viewModel.exportWhitelist(context, uri)
             context.toast(R.string.toast_black_export_success)
         },
-        onWhitelist = { packageName -> viewModel.whitelist(packageName) },
-        onWhitelistAll = { viewModel.whitelistAll() },
-        onWhitelist = { packageName -> viewModel.whitelist(packageName) },
-        onWhitelistAll = { viewModel.whitelistAll() },
+        onAddToWhitelist = { packageName -> viewModel.addToWhitelist(packageName) },
+        onAddAllToWhitelist = { viewModel.addAllToWhitelist() },
+        onRemoveFromWhitelist = { packageName -> viewModel.removeFromWhitelist(packageName) },
+        onRemoveAllFromWhitelist = { viewModel.removeAllFromWhitelist() },
         onSearch = { query -> viewModel.search(query) }
     )
 }
@@ -88,10 +88,10 @@ private fun ScreenContent(
     isPackageFiltered: (packageInfo: PackageInfo) -> Boolean = { false },
     onWhitelistImport: (uri: Uri) -> Unit = {},
     onWhitelistExport: (uri: Uri) -> Unit = {},
-    onWhitelist: (packageName: String) -> Unit = {},
-    onWhitelistAll: () -> Unit = {},
-    onWhitelist: (packageName: String) -> Unit = {},
-    onWhitelistAll: () -> Unit = {},
+    onAddToWhitelist: (packageName: String) -> Unit = {},
+    onAddAllToWhitelist: () -> Unit = {},
+    onRemoveFromWhitelist: (packageName: String) -> Unit = {},
+    onRemoveAllFromWhitelist: () -> Unit = {},
     onSearch: (query: String) -> Unit = {}
 ) {
     val context = LocalContext.current
@@ -130,8 +130,8 @@ private fun ScreenContent(
     fun SetupMenu() {
         WhitelistMenu { menuItem ->
             when (menuItem) {
-                MenuItem.SELECT_ALL -> onWhitelistAll()
-                MenuItem.REMOVE_ALL -> onWhitelistAll()
+                MenuItem.SELECT_ALL -> onAddAllToWhitelist()
+                MenuItem.REMOVE_ALL -> onRemoveAllFromWhitelist()
                 MenuItem.IMPORT -> {
                     docImportLauncher.launch(arrayOf(Constants.JSON_MIME_TYPE))
                 }
@@ -225,9 +225,9 @@ private fun ScreenContent(
                     isEnabled = !isFiltered,
                     onClick = {
                         if (isWhitelisted) {
-                            onWhitelist(pkg.packageName)
+                            onRemoveFromWhitelist(pkg.packageName)
                         } else {
-                            onWhitelist(pkg.packageName)
+                            onAddToWhitelist(pkg.packageName)
                         }
                     }
                 )

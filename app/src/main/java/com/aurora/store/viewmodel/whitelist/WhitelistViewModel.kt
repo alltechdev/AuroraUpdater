@@ -88,13 +88,13 @@ class WhitelistViewModel @Inject constructor(
         }
     }
 
-    fun whitelist(packageName: String) {
+    fun addToWhitelist(packageName: String) {
         whitelist.add(packageName)
-        whitelistProvider.whitelist(packageName)
+        whitelistProvider.addToWhitelist(packageName)
         AuroraApp.Companion.events.send(BusEvent.Whitelisted(packageName))
     }
 
-    fun whitelistAll() {
+    fun addAllToWhitelist() {
         whitelistProvider.whitelist = _packages.value!!.map { it.packageName }.toMutableSet()
         whitelist.apply {
             clear()
@@ -103,12 +103,12 @@ class WhitelistViewModel @Inject constructor(
         viewModelScope.launch { updateHelper.deleteAllUpdates() }
     }
 
-    fun whitelist(packageName: String) {
+    fun removeFromWhitelist(packageName: String) {
         whitelist.remove(packageName)
-        whitelistProvider.whitelist(packageName)
+        whitelistProvider.removeFromWhitelist(packageName)
     }
 
-    fun whitelistAll() {
+    fun removeAllFromWhitelist() {
         whitelist.clear()
         whitelistProvider.whitelist = mutableSetOf()
     }
