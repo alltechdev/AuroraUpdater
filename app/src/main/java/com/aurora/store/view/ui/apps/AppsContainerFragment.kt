@@ -36,6 +36,7 @@ import com.aurora.store.data.providers.PermissionProvider.Companion.isGranted
 import com.aurora.store.data.room.download.Download
 import com.aurora.store.data.room.update.Update
 import com.aurora.store.databinding.FragmentUpdatesBinding
+import com.aurora.store.data.installer.AppInstaller
 import com.aurora.store.util.PackageUtil
 import com.aurora.store.view.epoxy.views.app.AppUpdateViewModel_
 import com.aurora.store.view.epoxy.views.app.NoAppViewModel_
@@ -142,8 +143,7 @@ class AppsContainerFragment : BaseFragment<FragmentUpdatesBinding>() {
                             .buttonText(if (isInstalled) getString(R.string.action_uninstall) else getString(R.string.action_install))
                             .positiveAction { _ ->
                                 if (isInstalled) {
-                                    // Handle uninstall - for now just show installed status
-                                    // TODO: Implement uninstall functionality
+                                    uninstallApp(app)
                                 } else {
                                     installApp(app)
                                 }
@@ -171,6 +171,10 @@ class AppsContainerFragment : BaseFragment<FragmentUpdatesBinding>() {
 
     private fun cancelApp(app: App) {
         viewModel.cancelDownload(app.packageName)
+    }
+
+    private fun uninstallApp(app: App) {
+        AppInstaller.uninstall(requireContext(), app.packageName)
     }
 
     override fun onDestroyView() {

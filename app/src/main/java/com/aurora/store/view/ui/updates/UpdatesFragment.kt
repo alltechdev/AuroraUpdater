@@ -164,6 +164,7 @@ class UpdatesFragment : BaseFragment<FragmentUpdatesBinding>() {
                                 .id(update.packageName)
                                 .update(update)
                                 .download(download)
+                                .buttonText(getString(R.string.action_update))
                                 .longClick { _ ->
                                     openAppMenuSheet(MinimalApp.fromUpdate(update))
                                     false
