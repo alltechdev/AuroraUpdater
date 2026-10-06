@@ -85,53 +85,11 @@
         <item>@string/about_original_aurora_store_summary</item>
     </string-array>
 
-    <string-array name="pref_default_tab">
-        <item>@string/title_apps</item>
-        <item>@string/title_games</item>
-        <item>@string/title_updates</item>
-    </string-array>
 
-    <string-array name="pref_default_tab_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
 
-    <string-array name="filterRatingValues" translatable="false">
-        <item>0</item>
-        <item>1.0</item>
-        <item>2.0</item>
-        <item>3.0</item>
-        <item>4.0</item>
-        <item>4.5</item>
-    </string-array>
 
-    <string-array name="filterRatingLabels" translatable="false">
-        <item>@string/action_filter_all</item>
-        <item> 1★ + </item>
-        <item> 2★ + </item>
-        <item> 3★ + </item>
-        <item> 4★ + </item>
-        <item> 4.5★ + </item>
-    </string-array>
 
-    <string-array name="filterDownloadsValues" translatable="false">
-        <item>0</item>
-        <item>100000</item>
-        <item>1000000</item>
-        <item>10000000</item>
-        <item>50000000</item>
-        <item>100000000</item>
-    </string-array>
 
-    <string-array name="filterDownloadsLabels" translatable="false">
-        <item>@string/action_filter_all</item>
-        <item> 100K + </item>
-        <item> 1M + </item>
-        <item> 10M + </item>
-        <item> 50M + </item>
-        <item> 100M + </item>
-    </string-array>
 
     <string-array name="pref_vending_version" translatable="false">
         <item>@string/pref_vending_version_device</item>

@@ -59,17 +59,6 @@ object CommonUtil {
         return tempValue.toString() + siPrefixes[order]
     }
 
-    fun addDiPrefix(value: Long): String? {
-        if (value <= 1L) return null
-        var tempValue = value
-        var order = 0
-        while (tempValue >= 1000.0) {
-            tempValue /= 1000.0.toLong()
-            order += 3
-        }
-        return tempValue.toString() + diPrefixes[order]
-    }
-
     fun getETAString(context: Context, etaInMilliSeconds: Long): String {
         if (etaInMilliSeconds < 0) {
             return context.getString(R.string.download_eta_calculating)

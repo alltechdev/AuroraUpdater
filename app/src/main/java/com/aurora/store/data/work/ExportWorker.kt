@@ -16,7 +16,6 @@ import androidx.work.OutOfQuotaPolicy
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import com.aurora.store.data.model.MinimalApp
-import com.aurora.store.data.room.download.Download
 import com.aurora.store.util.NotificationUtil
 import com.aurora.store.util.PackageUtil.getPackageInfo
 import com.aurora.store.util.PathUtil
@@ -63,29 +62,6 @@ class ExportWorker @AssistedInject constructor(
                 .build()
 
             Log.i(TAG, "Exporting ${app.packageName}")
-            WorkManager.getInstance(context).enqueue(oneTimeWorkRequest)
-        }
-
-        /**
-         * Exports the given download to the URI
-         * @param download Download to export
-         * @see [ExportWorker]
-         */
-        fun exportDownloadedApp(context: Context, download: Download, uri: Uri) {
-            val inputData = Data.Builder()
-                .putBoolean(IS_DOWNLOAD, true)
-                .putString(URI, uri.toString())
-                .putString(DISPLAY_NAME, download.displayName)
-                .putString(PACKAGE_NAME, download.packageName)
-                .putLong(VERSION_CODE, download.versionCode)
-                .build()
-
-            val oneTimeWorkRequest = OneTimeWorkRequestBuilder<ExportWorker>()
-                .setInputData(inputData)
-                .setExpedited(OutOfQuotaPolicy.DROP_WORK_REQUEST)
-                .build()
-
-            Log.i(TAG, "Exporting download for ${download.packageName}/${download.versionCode}")
             WorkManager.getInstance(context).enqueue(oneTimeWorkRequest)
         }
     }

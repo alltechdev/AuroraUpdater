@@ -1,7 +1,6 @@
 package com.aurora.store.view.ui.splash
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,18 +8,15 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.aurora.Constants.PACKAGE_NAME_PLAY_STORE
 import com.aurora.extensions.getPackageName
 import com.aurora.extensions.navigate
 import com.aurora.store.R
 import com.aurora.store.compose.navigation.Screen
 import com.aurora.store.data.model.AuthState
 import com.aurora.store.databinding.FragmentSplashBinding
-import com.aurora.store.util.PackageUtil
 import com.aurora.store.util.Preferences
 import com.aurora.store.util.Preferences.PREFERENCE_DEFAULT_SELECTED_TAB
 import com.aurora.store.util.Preferences.PREFERENCE_INTRO
-import com.aurora.store.util.Preferences.PREFERENCE_MICROG_AUTH
 import com.aurora.store.view.ui.commons.BaseFragment
 import com.aurora.store.view.ui.sheets.PasscodeDialogSheet
 import com.aurora.store.viewmodel.auth.AuthViewModel
@@ -33,11 +29,6 @@ abstract class BaseFlavouredSplashFragment : BaseFragment<FragmentSplashBinding>
     private val TAG = BaseFlavouredSplashFragment::class.java.simpleName
 
     val viewModel: AuthViewModel by activityViewModels()
-
-    val canLoginWithMicroG: Boolean
-        get() = PackageUtil.hasSupportedMicroGVariant(requireContext()) &&
-                Preferences.getBoolean(requireContext(), PREFERENCE_MICROG_AUTH, true)
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -171,7 +162,6 @@ abstract class BaseFlavouredSplashFragment : BaseFragment<FragmentSplashBinding>
         requireActivity().viewModelStore.clear() // Clear ViewModelStore to avoid bugs with logout
         findNavController().navigate(directions)
     }
-
 
     open fun attachActions() {
         binding.btnAnonymous.addOnClickListener {

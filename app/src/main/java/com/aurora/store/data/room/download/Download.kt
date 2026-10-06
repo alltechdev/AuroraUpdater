@@ -1,8 +1,6 @@
 package com.aurora.store.data.room.download
 
-import android.content.Context
 import android.os.Parcelable
-import androidx.compose.ui.platform.LocalContext
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.aurora.gplayapi.data.models.App
@@ -10,7 +8,6 @@ import com.aurora.gplayapi.data.models.PlayFile
 import com.aurora.store.data.model.DownloadStatus
 import com.aurora.store.data.room.suite.ExternalApk
 import com.aurora.store.data.room.update.Update
-import com.aurora.store.util.PathUtil
 import kotlinx.parcelize.Parcelize
 import java.util.Date
 
@@ -107,10 +104,5 @@ data class Download(
                 sharedLibs = emptyList(),
             )
         }
-    }
-
-    fun canInstall(context: Context): Boolean {
-        val dir = PathUtil.getAppDownloadDir(context, packageName, versionCode)
-        return isSuccessful && dir.listFiles() != null
     }
 }

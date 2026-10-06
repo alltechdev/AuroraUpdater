@@ -69,14 +69,4 @@ class ActionHeaderLayout : RelativeLayout {
     fun setTitle(header: String?) {
         binding.txtTitle.text = header
     }
-
-    fun setSubTitle(subHeader: String?) {
-        binding.txtSubtitle.visibility = View.VISIBLE
-        binding.txtSubtitle.text = subHeader
-    }
-
-    fun addClickListener(onclickListener: OnClickListener?) {
-        binding.imgAction.visibility = View.VISIBLE
-        binding.imgAction.setOnClickListener(onclickListener)
-    }
 }

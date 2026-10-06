@@ -28,13 +28,6 @@ object Constants {
     const val URL_DISCLAIMER = "https://github.com/alltechdev/AuroraUpdater/blob/master/DISCLAIMER.md"
     const val URL_POLICY = "https://github.com/alltechdev/AuroraUpdater/blob/master/POLICY.md"
 
-    const val EXODUS_SUBMIT_PAGE = "https://reports.exodus-privacy.eu.org/analysis/submit/#"
-    const val EXODUS_REPORT_URL = "https://reports.exodus-privacy.eu.org/reports/"
-    const val EXODUS_SEARCH_URL = "https://reports.exodus-privacy.eu.org/api/search/"
-
-    const val PLEXUS_API_URL = "https://plexus.techlore.tech/api/v1/apps"
-    const val PLEXUS_SEARCH_URL = "https://plexus.techlore.tech/?q="
-
     const val SHARE_URL = "https://play.google.com/store/apps/details?id="
 
     const val UPDATE_URL_STABLE = "https://github.com/alltechdev/AuroraUpdater/raw/master/updates.json"
@@ -47,7 +40,6 @@ object Constants {
     const val NOTIFICATION_CHANNEL_UPDATES = "NOTIFICATION_CHANNEL_UPDATES"
     const val NOTIFICATION_CHANNEL_ACCOUNT = "NOTIFICATION_CHANNEL_ACCOUNT"
 
-    const val GITLAB_URL = "https://github.com/alltechdev/AuroraUpdater"
     const val URL_DISPENSER = "https://auroraoss.com/api/auth"
 
     //ACCOUNTS

@@ -2,8 +2,6 @@ package com.aurora.store.data.helper
 
 import android.content.Context
 import android.util.Log
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import androidx.work.Data
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
@@ -17,7 +15,6 @@ import com.aurora.store.data.room.download.DownloadDao
 import com.aurora.store.data.room.suite.ExternalApk
 import com.aurora.store.data.room.update.Update
 import com.aurora.store.data.work.DownloadWorker
-import com.aurora.store.util.PathUtil
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.filter
@@ -111,37 +108,6 @@ class DownloadHelper @Inject constructor(
         Log.i(TAG, "Cancelling download for $packageName")
         WorkManager.getInstance(context).cancelAllWorkByTag("$PACKAGE_NAME:$packageName")
         downloadDao.updateStatus(packageName, DownloadStatus.CANCELLED)
-    }
-
-    /**
-     * Clears the entry & downloaded files for the given package
-     * @param packageName Name of the package of the app
-     * @param versionCode Version of the package
-     */
-    suspend fun clearDownload(packageName: String, versionCode: Long) {
-        Log.i(TAG, "Clearing downloads for $packageName ($versionCode)")
-        downloadDao.delete(packageName)
-        PathUtil.getAppDownloadDir(context, packageName, versionCode)
-            .deleteRecursively()
-    }
-
-    /**
-     * Clears all the downloads and their downloaded files
-     */
-    suspend fun clearAllDownloads() {
-        Log.i(TAG, "Clearing all downloads!")
-        downloadDao.deleteAll()
-        PathUtil.getDownloadDirectory(context).deleteRecursively()
-        PathUtil.getOldDownloadDirectories(context).forEach { it.deleteRecursively() }
-    }
-
-    /**
-     * Clears finished downloads and their downloaded files
-     */
-    suspend fun clearFinishedDownloads() {
-        downloadDao.downloads().firstOrNull()?.filter { it.isFinished }?.forEach {
-            clearDownload(it.packageName, it.versionCode)
-        }
     }
 
     /**

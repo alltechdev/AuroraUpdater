@@ -24,6 +24,4 @@
 
     <!-- AppDetailsFragment | Dialog -->
     <color name="colorRed">#E4002B</color>
-    <color name="colorOrange">#FF9933</color>
-    <color name="colorGreen">#49A942</color>
 </resources>

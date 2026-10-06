@@ -23,18 +23,13 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aurora.Constants
 import com.aurora.gplayapi.data.models.AuthData
 import com.aurora.gplayapi.helpers.AuthHelper
-import com.aurora.store.AuroraApp
 import com.aurora.store.R
-import com.aurora.store.data.event.AuthEvent
 import com.aurora.store.data.model.AccountType
 import com.aurora.store.data.model.AuthState
 import com.aurora.store.data.providers.AccountProvider
 import com.aurora.store.data.providers.AuthProvider
-import com.aurora.store.util.AC2DMTask
-import com.aurora.store.util.Preferences
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
@@ -48,8 +43,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AuthViewModel @Inject constructor(
     val authProvider: AuthProvider,
-    @ApplicationContext private val context: Context,
-    private val aC2DMTask: AC2DMTask
+    @ApplicationContext private val context: Context
 ) : ViewModel() {
 
     private val TAG = AuthViewModel::class.java.simpleName
@@ -88,31 +82,6 @@ class AuthViewModel @Inject constructor(
             } catch (exception: Exception) {
                 Log.e(TAG, "Failed to generate Session", exception)
                 _authState.value = AuthState.Failed(exception.message.toString())
-            }
-        }
-    }
-
-    fun buildAuthData(context: Context, email: String, oauthToken: String?) {
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                val response = aC2DMTask.getAC2DMResponse(email, oauthToken)
-                if (response.isNotEmpty()) {
-                    val aasToken = response["Token"]
-                    if (aasToken != null) {
-                        Preferences.putString(context, Constants.ACCOUNT_EMAIL_PLAIN, email)
-                        Preferences.putString(context, Constants.ACCOUNT_AAS_PLAIN, aasToken)
-                        AuroraApp.events.send(AuthEvent.GoogleLogin(true, email, aasToken))
-                    } else {
-                        Preferences.putString(context, Constants.ACCOUNT_EMAIL_PLAIN, "")
-                        Preferences.putString(context, Constants.ACCOUNT_AAS_PLAIN, "")
-                        AuroraApp.events.send(AuthEvent.GoogleLogin(false, "", ""))
-                    }
-                } else {
-                    AuroraApp.events.send(AuthEvent.GoogleLogin(false, "", ""))
-                }
-            } catch (exception: Exception) {
-                Log.e(TAG, "Failed to build AuthData", exception)
-                AuroraApp.events.send(AuthEvent.GoogleLogin(false, "", ""))
             }
         }
     }

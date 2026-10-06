@@ -32,7 +32,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Environment
 import android.os.PowerManager
-import android.provider.Settings
 import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -42,7 +41,6 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.getSystemService
 import androidx.core.net.toUri
 import com.aurora.Constants
-import com.aurora.gplayapi.data.models.App
 import com.aurora.store.ComposeActivity
 import com.aurora.store.R
 import com.aurora.store.compose.navigation.Screen
@@ -61,17 +59,6 @@ fun Context.browse(url: String) {
     }
 }
 
-fun Context.appInfo(packageName: String) {
-    try {
-        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-            data = "package:$packageName".toUri()
-        }
-        startActivity(intent)
-    } catch (exception: Exception) {
-        Log.e(TAG, "Failed to open app info", exception)
-    }
-}
-
 fun Context.share(displayName: String, packageName: String) {
     try {
         val sendIntent = Intent().apply {
@@ -83,19 +70,6 @@ fun Context.share(displayName: String, packageName: String) {
         startActivity(Intent.createChooser(sendIntent, getString(R.string.action_share)))
     } catch (exception: Exception) {
         Log.e(TAG, "Failed to share app", exception)
-    }
-}
-
-fun Context.mailTo(email: String) {
-    try {
-        val sendIntent = Intent().apply {
-            action = Intent.ACTION_SENDTO
-            data = "mailto:".toUri()
-            putExtra(Intent.EXTRA_EMAIL, email)
-        }
-        startActivity(Intent.createChooser(sendIntent, getString(R.string.details_dev_email)))
-    } catch (exception: Exception) {
-        Log.e(TAG, "Failed to email", exception)
     }
 }
 
