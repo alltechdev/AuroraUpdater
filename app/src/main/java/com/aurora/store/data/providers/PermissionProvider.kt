@@ -19,9 +19,7 @@ import com.aurora.extensions.isDomainVerified
 import com.aurora.extensions.isExternalStorageAccessible
 import com.aurora.extensions.isIgnoringBatteryOptimizations
 import com.aurora.extensions.isTAndAbove
-import com.aurora.extensions.requiresObbDir
 import com.aurora.extensions.toast
-import com.aurora.gplayapi.data.models.App
 import com.aurora.store.BuildConfig
 import com.aurora.store.R
 import com.aurora.store.data.model.PermissionType
@@ -31,20 +29,6 @@ class PermissionProvider(private val fragment: Fragment) :
     ActivityResultCallback<ActivityResult> {
 
     companion object {
-
-        /**
-         * Checks if Aurora Store has permissions to install the given app
-         */
-        fun isPermittedToInstall(context: Context, app: App): Boolean {
-            if (!isGranted(context, PermissionType.INSTALL_UNKNOWN_APPS)) return false
-            return when {
-                app.fileList.requiresObbDir() -> {
-                    return isGranted(context, PermissionType.STORAGE_MANAGER)
-                }
-
-                else -> true
-            }
-        }
 
         /**
          * Checks whether a known permission has been granted

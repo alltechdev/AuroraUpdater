@@ -27,12 +27,10 @@ import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PackageInfoFlags
 import android.content.pm.SharedLibraryInfo
 import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.os.Build
 import android.provider.Settings
 import android.util.Log
 import androidx.annotation.RequiresApi
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.pm.PackageInfoCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.net.toUri
@@ -43,7 +41,6 @@ import com.aurora.extensions.isHuawei
 import com.aurora.extensions.isOAndAbove
 import com.aurora.extensions.isPAndAbove
 import com.aurora.extensions.isTAndAbove
-import com.aurora.extensions.isVAndAbove
 import com.aurora.extensions.isValidApp
 import com.aurora.store.BuildConfig
 import com.aurora.store.R
@@ -122,14 +119,6 @@ object PackageUtil {
         }
     }
 
-    fun isArchived(context: Context, packageName: String): Boolean {
-        return try {
-            isVAndAbove && context.packageManager.getArchivedPackage(packageName) != null
-        } catch (e: Exception) {
-            false
-        }
-    }
-
     fun isSharedLibrary(context: Context, packageName: String): Boolean {
         return if (isOAndAbove) {
             getAllSharedLibraries(context).any { it.name == packageName }
@@ -197,21 +186,6 @@ object PackageUtil {
 
     fun isTv(context: Context): Boolean {
         return context.packageManager.hasSystemFeature(PackageManager.FEATURE_LEANBACK)
-    }
-
-    fun getLaunchIntent(context: Context, packageName: String?): Intent? {
-        val intent = if (isTv(context)) {
-            context.packageManager.getLeanbackLaunchIntentForPackage(packageName!!)
-        } else {
-            context.packageManager.getLaunchIntentForPackage(packageName!!)
-        }
-
-        return if (intent == null) {
-            null
-        } else {
-            intent.addCategory(if (isTv(context)) Intent.CATEGORY_LEANBACK_LAUNCHER else Intent.CATEGORY_LAUNCHER)
-            intent
-        }
     }
 
     @RequiresApi(Build.VERSION_CODES.R)
@@ -284,20 +258,6 @@ object PackageUtil {
         } catch (exception: Exception) {
             Log.e(TAG, "Failed to get icon for package!", exception)
             null
-        }
-    }
-
-    fun getIconDrawableForPackage(context: Context, packageName: String): Drawable? {
-        val placeholder = AppCompatResources.getDrawable(context, R.drawable.bg_placeholder)
-
-        return try {
-            val packageInfo = context.packageManager.getPackageInfo(packageName, 0)
-            val applicationInfo = packageInfo.applicationInfo ?: return placeholder
-
-            applicationInfo.loadIcon(context.packageManager)
-        } catch (exception: Exception) {
-            Log.e(TAG, "Failed to get icon for package!", exception)
-            placeholder
         }
     }
 

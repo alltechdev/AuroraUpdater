@@ -290,22 +290,4 @@ class SessionInstaller @Inject constructor(
             true
         )
     }
-
-    enum class ServiceResultCode(val code: Int, val reason: String) {
-        SUCCESS(0, "Request successful"),
-        SERVICE_VERSION_UPDATE_REQUIRED(2, "Interface depends on a higher version"),
-        SERVICE_INVALID(4, "Service is invalid"),
-        METHOD_UNSUPPORTED(5, "Interface is not supported"),
-        RESOLUTION_REQUIRED(6, "Needs to be resolved by opening PendingIntent"),
-        NETWORK_ERROR(7, "Network exception, unable to complete interface request"),
-        INTERNAL_ERROR(8, "Internal code error, incorrect parameter transmission in scenario"),
-        TIMEOUT(10, "Interface access timeout return"),
-        DEAD_CLIENT(12, "Current client is unavailable"),
-        RESPONSE_ERROR(13, "Server returns abnormal response"),
-        PROTOCOL_ERROR(15, "Not signed Huawei App Market agreement");
-
-        companion object {
-            fun fromCode(code: Int): ServiceResultCode? = entries.find { it.code == code }
-        }
-    }
 }

@@ -28,10 +28,6 @@ sealed class BusEvent : Event() {
     data class Blacklisted(val packageName: String) : BusEvent()
 }
 
-sealed class AuthEvent : Event() {
-    data class GoogleLogin(val success: Boolean, val email: String, val token: String) : AuthEvent()
-}
-
 open class InstallerEvent(open val packageName: String) : Event() {
     data class Installed(override val packageName: String) : InstallerEvent(packageName)
     data class Uninstalled(override val packageName: String) : InstallerEvent(packageName)

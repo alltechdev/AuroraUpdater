@@ -34,7 +34,6 @@ import com.aurora.store.data.model.Algorithm
 import com.aurora.store.util.PackageUtil.getPackageInfo
 import java.security.MessageDigest
 import java.security.cert.X509Certificate
-import javax.security.auth.x500.X500Principal
 
 object CertUtil {
 
@@ -146,21 +145,6 @@ object CertUtil {
         } else {
             @Suppress("DEPRECATION")
             getPackageInfo(context, packageName, PackageManager.GET_SIGNATURES)
-        }
-    }
-
-    private fun extractSHA1Fingerprint(certificate: X509Certificate): String {
-        val messageDigest = MessageDigest.getInstance(Algorithm.SHA1.value)
-        messageDigest.update(certificate.encoded)
-        return messageDigest.digest()
-            .joinToString("") { byte -> String.format("%02x", byte) }
-            .lowercase()
-    }
-
-    private fun parseX500Principal(principal: X500Principal): Map<String, String> {
-        return principal.name.split(",").associate {
-            val (left, right) = it.split("=")
-            left.trim() to right.trim()
         }
     }
 }
